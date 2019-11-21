@@ -3,8 +3,7 @@
     "name": "@newrelic/nr1-community",
     "description": "New Relic One Community Library",
     "version": "0.0.0",
-    "scripts": {
-    },
+    "scripts": {},
     "bugs": {
         "email": "opensource+nr1-community@newrelic.com"
     },
@@ -21,6 +20,8 @@
     "devDependencies": {
         "@newrelic/eslint-plugin-newrelic": "^0.3.0",
         "eslint": "^6.6.0",
-        "prettier": "^1.19.1"
+        "prettier": "^1.19.1",
+        "@semantic-release/changelog": "^3.0.5",
+        "@semantic-release/git": "^7.0.18"
     }
 }
