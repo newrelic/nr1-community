@@ -27,12 +27,13 @@
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "nr1": "",
+    "react-moment": "^0.9.7",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.0",
-    "eslint": "^6.6.0",
-    "prettier": "^1.19.1",
     "@semantic-release/changelog": "^3.0.5",
     "@semantic-release/git": "^7.0.18",
     "@svgr/rollup": "^2.4.1",
@@ -43,7 +44,10 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.4",
+    "eslint": "^6.6.0",
     "gh-pages": "^1.2.0",
+    "node-sass": "^4.13.0",
+    "prettier": "^1.19.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
