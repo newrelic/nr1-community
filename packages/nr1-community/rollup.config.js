@@ -18,7 +18,22 @@ function getPlugins() {
     external(),
     postcss({
       extract: true,
-      modules: true,
+      modules: {
+        // https://github.com/webpack/loader-utils#interpolatename
+        generateScopedName: '[name]__[local]___[hash:base64:5]'
+        // generateScopedName: function(name, filename, css) {
+        //   // const i = css.indexOf(`.${name}`);
+        //   // const line = css.substr(0, i).split(/[\r\n]/).length;
+
+        //   // console.debug(`Filename: ${filename}`);
+        //   // const path = require('path');
+        //   // const file = path.basename(filename, '.css');
+
+        //   // return `_${file}_${line}_${name}`;
+        //   // return `${line}_${name}`;
+        //   return `${name}`;
+        // }
+      },
       use: ['sass']
     }),
     url(),
@@ -36,20 +51,42 @@ function getPlugins() {
  * Base Config
  */
 const baseConfig = {
-  input: 'src/index.js',
+  input: 'lib/index.js',
+  // input: [
+  //   'lib/components/account-dropdown/index.js',
+  //   'lib/components/event-stream/index.js'
+  // ],
+  // experimentalCodeSplitting: true,
   output: [
     {
       file: pkg.main,
+      // dir: 'dist',
       format: 'cjs',
       sourcemap: true
     },
     {
       file: pkg.module,
+      // dir: 'dist',
       format: 'es',
       sourcemap: true
     }
   ],
-  plugins: getPlugins()
+  plugins: [
+    external(),
+    postcss({
+      extract: true,
+      modules: true,
+      use: ['sass']
+    }),
+    url(),
+    svgr(),
+    babel({
+      exclude: 'node_modules/**',
+      plugins: ['external-helpers']
+    }),
+    resolve(),
+    commonjs()
+  ]
 };
 
 const allConfigs = [];
@@ -72,12 +109,12 @@ allConfigs.push(baseConfig);
 const modularStyles = false; // Leaving here for future evaluation, but not currently in use
 
 if (modularStyles) {
-  const componentEntryPoints = glob.sync('./src/components/*/index.js');
+  const componentEntryPoints = glob.sync('./lib/components/*/index.js');
   componentEntryPoints.forEach(entryPoint => {
     const outputs = baseConfig.output;
     const plugins = getPlugins();
     const outputPath = entryPoint
-      .replace('src/', 'dist/')
+      .replace('lib/', 'dist/')
       .replace('/index.js', '');
 
     const config = {

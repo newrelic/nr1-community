@@ -1,0 +1,7 @@
+// This approach gets run through postcss twice which results in a lot of
+// names like styles_styles_
+// @import '~@newrelic/nr1-component-account-dropdown/dist/index.css';
+// @import '~@newrelic/nr1-component-event-stream/dist/index.css';
+
+@import '~@newrelic/nr1-component-account-dropdown/lib/styles.scss';
+@import '~@newrelic/nr1-component-event-stream/lib/styles.scss';

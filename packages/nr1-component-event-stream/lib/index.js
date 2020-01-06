@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NrqlQuery, Spinner, Button, Icon, Stack, StackItem } from 'nr1';
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import EventCategories from './categories';
 
 import styles from './styles.scss';
@@ -60,7 +60,7 @@ export class EventStream extends React.Component {
     const sessionEvents = [];
     data[0].data.forEach((event, i) => {
       const sessionCategory = EventCategories.setCategory(pageAction, event);
-      const date = new Date(event.timestamp);
+      // const date = new Date(event.timestamp);
       const open =
         this.state.expandedTimelineItem === i ? 'timeline-item-expanded' : '';
       const streamTimeline = this._buildStreamTimeline(event);
@@ -74,10 +74,10 @@ export class EventStream extends React.Component {
         >
           <div className={styles['timeline-item-timestamp']}>
             <span className={styles['timeline-timestamp-date']}>
-              <Moment format="MM/DD/YYYY" date={date} />
+              {/* <Moment format="MM/DD/YYYY" date={date} /> */}
             </span>
             <span className={styles['timeline-timestamp-time']}>
-              <Moment format="h:mm:ss a" date={date} />
+              {/* <Moment format="h:mm:ss a" date={date} /> */}
             </span>
           </div>
           <div className={styles['timeline-item-dot']} />
