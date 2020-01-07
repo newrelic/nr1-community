@@ -1,0 +1,7 @@
+{
+  "schemaType": "LAUNCHER",
+  "id": "nr1-community-demo-launcher",
+  "description": "NR1 Community component library demo",
+  "displayName": "Community Components",
+  "rootNerdletId": "nr1-community-demo-nerdlet"
+}
