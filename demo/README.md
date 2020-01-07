@@ -1,6 +1,16 @@
 # New Relic One Community Demo
 
+The New Relic One Community demo combines:
+
+- Markdown [docs](../docs)
+- Code samples
+- Prop references
+
+into one easily searchable guide.
+
 ## Getting Started
+
+You'll need a New Relic account.
 
 This library relies on New Relic One's programmability [client-side SDK](https://developer.newrelic.com/client-side-sdk/index.html), for demo purposes it needs to run inside of a Nerdpack, running on a New Relic account.
 
@@ -16,3 +26,5 @@ cd demo
 nr1 nerdpack:uuid -gf # Only needed the first time
 nr1 nerdpack:serve
 ```
+
+Note: You could also deploy this Nerdpack to your account.
