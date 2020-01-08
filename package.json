@@ -64,5 +64,8 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "nr1": {
+    "uuid": "0b39723a-3172-4199-9c5a-d29df63f89df"
+  }
 }

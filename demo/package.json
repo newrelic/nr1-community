@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "nr1-community-demo",
+  "description": "Nerdpack nr1-community-demo",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "nr1 nerdpack:serve",
+    "test": "exit 0",
+    "eslint-check": "eslint nerdlets/",
+    "eslint-fix": "eslint nerdlets/ --fix"
+  },
+  "nr1": {
+    "uuid": "1d24b7e6-2226-4bbd-9598-58d8b0eecca8"
+  },
+  "bugs": {
+    "email": "opensource+nr1-community@newrelic.com"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-markdown": "^4.3.1",
+    "react-highlight": "^0.12.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not ie < 11",
+    "not dead"
+  ],
+  "devDependencies": {
+    "@newrelic/eslint-plugin-newrelic": "^0.3.0",
+    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/git": "^7.0.18",
+    "eslint": "^6.6.0",
+    "prettier": "^1.19.1"
+  }
+}
