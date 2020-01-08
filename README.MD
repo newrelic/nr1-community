@@ -4,21 +4,21 @@
 
 A community-driven library of useful components for building on New Relic One's programmability platform.
 
+This library is built on top of and requires the 'nr1' core library available to Nerdpacks as part of running inside of the New Relic One platform, documentation on this underlying library can be found on [our developer site](https://developer.newrelic.com/client-side-sdk/index.html)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [nr1-community](#nr1-community)
-  - [Links](#links)
-  - [Usage](#usage)
-  - [Open Source License](#open-source-license)
-  - [Getting Started](#getting-started)
-    - [Installation](#installation)
-    - [Usage](#usage-1)
-  - [Support](#support)
-    - [Community](#community)
-    - [Issues / Enhancement Requests](#issues--enhancement-requests)
-  - [Contributing](#contributing)
+- [Links](#links)
+- [Usage](#usage)
+- [Components](#components)
+- [Related work](#related-work)
+- [Open Source License](#open-source-license)
+- [Support](#support)
+  - [Community](#community)
+  - [Issues / Enhancement Requests](#issues--enhancement-requests)
+- [Contributing](#contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -30,40 +30,35 @@ A community-driven library of useful components for building on New Relic One's 
 
 ## Usage
 
-<!-- TO DO - Usage paragraph -->
-
-![Screenshot #1](screenshots/screenshot_01.png)
-
-![Screenshot #2](screenshots/screenshot_02.png)
-
-## Related work
-
-### Layout template Nerdpacks
-
-## Open Source License
-
-This project is distributed under the [Apache 2 license](LICENSE).
-
-## Getting Started
-
-### Installation
-
 Install in your project:
 ```bash
 npm install --save @newrelic/nr1-community
 ```
 
-or
-
-```bash
-yarn install @newrelic/nr1-community
-```
-
-### Usage
-
+Import into your nerdlet:
 ```js
-import { AccountPicker } from 'nr1-community';
+import { AccountDropdown } from 'nr1-community';
 ```
+
+## Components
+
+For complete documentation and a demo, please visit [Demo](demo/README.md) and follow the instructions for viewing.
+
+- AccountDropdown
+
+![Screenshot #1](screenshots/screenshot_01.png)
+
+- EventStream
+
+![Screenshot #2](screenshots/screenshot_02.png)
+
+## Related work
+
+Boilerplate [Layout template Nerdpacks](https://github.com/newrelic?utf8=%E2%9C%93&q=nr1-nerdpack-layout&type=&language=)
+
+## Open Source License
+
+This project is distributed under the [Apache 2 license](LICENSE).
 
 ## Support
 
