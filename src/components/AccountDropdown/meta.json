@@ -1,0 +1,30 @@
+{
+  "name": "AccountDropdown",
+  "props": [
+    {
+      "name": "onSelect",
+      "description": "A callback",
+      "default": "required"
+    },
+    {
+      "name": "urlState",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "className",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "style",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "title",
+      "description": "",
+      "default": ""
+    }
+  ]
+}

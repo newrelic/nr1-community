@@ -12,25 +12,19 @@ This component provides a common interface for choosing an account with a callba
 
 1. Install nr1-community
 
-```bash
-  npm i nr1-community
-```
+  ```bash
+    npm i nr1-community
+  ```
 
-2. Install peer dependencies
+2. Import styles
 
-```bash
-  npm i moment react-moment
-```
+  Add:
 
-3. Import styles
+  ```scss
+  @import '~nr1-community/dist/index.css';
+  ```
 
-Add:
-
-```scss
-@import '~nr1-community/dist/components/AccountDropdown.css';
-```
-
-to your `styles.scss`
+  to your `styles.scss`
 
 ## Usage
 
@@ -40,14 +34,4 @@ import { AccountDropdown } from 'nr1-community';
 render () {
   <AccountDropdown></AccountDropdown>
 }
-```
-
-## Props
-
-```jsx
-  onSelect: PropTypes.func,
-  urlState: PropTypes.object,
-  className: PropTypes.string,
-  style: PropTypes.object,
-  title: PropTypes.string
 ```

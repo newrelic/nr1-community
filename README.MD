@@ -2,7 +2,7 @@
 
 ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/newrelic/nr1-community?include_prereleases&sort=semver) [![Snyk](https://snyk.io/test/github/newrelic/nr1-community/badge.svg)](https://snyk.io/test/github/newrelic/nr1-community)
 
-A community-driven library of useful styles and components for building on New Relic One's programmability platform.
+A community-driven library of useful components for building on New Relic One's programmability platform.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -26,6 +26,7 @@ A community-driven library of useful styles and components for building on New R
 
 - 📘[New Relic One's core components](https://developer.newrelic.com/client-side-sdk/index.html)
 - 🔨[Change Log](docs/CHANGELOG.md)
+- [Demo](demo/README.md)
 
 ## Usage
 
@@ -35,6 +36,9 @@ A community-driven library of useful styles and components for building on New R
 
 ![Screenshot #2](screenshots/screenshot_02.png)
 
+## Related work
+
+### Layout template Nerdpacks
 
 ## Open Source License
 

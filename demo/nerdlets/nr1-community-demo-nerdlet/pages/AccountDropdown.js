@@ -13,24 +13,6 @@ export default class AccountDropdownDemo extends React.Component {
     return (
       <>
         <Card>
-          <CardHeader title="Documentation" subtitle="" />
-          <CardBody>
-            <ReactMarkdown source={markdown} />
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardHeader title="Component Props Reference" subtitle="" />
-          <CardBody>
-            <ul>
-              {meta.props.map((prop, index) => {
-                return <li key={index}>{prop.name}</li>;
-              })}
-            </ul>
-          </CardBody>
-        </Card>
-
-        <Card>
           <CardHeader title="Code" subtitle="Simple" />
           <CardBody>
             <Highlight language="javascript">
@@ -61,6 +43,24 @@ export default class AccountDropdownDemo extends React.Component {
 
             <h2>Result:</h2>
             <AccountDropdown onSelect={account => console.log(account)} />
+          </CardBody>
+        </Card>
+
+        <Card>
+          <CardHeader title="Documentation" subtitle="" />
+          <CardBody>
+            <ReactMarkdown source={markdown} />
+          </CardBody>
+        </Card>
+
+        <Card>
+          <CardHeader title="Component Props Reference" subtitle="" />
+          <CardBody>
+            <ul>
+              {meta.props.map((prop, index) => {
+                return <li key={index}>{prop.name}</li>;
+              })}
+            </ul>
           </CardBody>
         </Card>
       </>
