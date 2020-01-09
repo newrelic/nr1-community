@@ -1,0 +1,40 @@
+{
+  "name": "Funnel",
+  "props": [
+    {
+      "name": "accountId",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "launcherUrlState",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "height",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "width",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "funnel",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "steps",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "series",
+      "description": "",
+      "default": ""
+    }
+  ]
+}

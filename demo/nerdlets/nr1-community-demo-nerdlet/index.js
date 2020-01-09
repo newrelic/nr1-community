@@ -2,9 +2,11 @@ import React from 'react';
 import { Grid, GridItem, Stack, StackItem, TextField, Button } from 'nr1';
 import * as PAGES from './pages';
 
+// TO DO - glob from /components and /utilities
 const componentList = [
   { name: 'AccountDropdown', category: 'Components' },
   { name: 'EventStream', category: 'Components' },
+  { name: 'Funnel', category: 'Components' },
   { name: 'timeRangeToNrql', category: 'Utilities' }
 ];
 

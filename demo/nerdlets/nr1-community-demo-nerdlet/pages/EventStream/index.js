@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import React from 'react';
 
-import { EventStream } from '../../../../dist';
+import { EventStream } from '@/../dist';
 
 export default class EventStreamDemo extends React.Component {
   render() {
