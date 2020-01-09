@@ -13,7 +13,13 @@ This library is built on top of and requires the 'nr1' core library available to
 - [Links](#links)
 - [Usage](#usage)
 - [Components](#components)
+- [Utilities](#utilities)
+- [Local Development](#local-development)
+- [How do I add my component?](#how-do-i-add-my-component)
 - [Related work](#related-work)
+  - [New Relic One SDK](#new-relic-one-sdk)
+  - [NewRelic Developer Site](#newrelic-developer-site)
+  - [Boilerplate Nerdpack Layouts](#boilerplate-nerdpack-layouts)
 - [Open Source License](#open-source-license)
 - [Support](#support)
   - [Community](#community)
@@ -26,7 +32,7 @@ This library is built on top of and requires the 'nr1' core library available to
 
 - 📘[New Relic One's core components](https://developer.newrelic.com/client-side-sdk/index.html)
 - 🔨[Change Log](docs/CHANGELOG.md)
-- [Demo](demo/README.md)
+- 📓[Demo](demo/README.md)
 
 ## Usage
 
@@ -44,17 +50,61 @@ import { AccountDropdown } from 'nr1-community';
 
 For complete documentation and a demo, please visit [Demo](demo/README.md) and follow the instructions for viewing.
 
-- AccountDropdown
+- [AccountDropdown](src/components/AccountDropdown/README.md)
 
-![Screenshot #1](screenshots/screenshot_01.png)
+![Screenshot #1](screenshots/screenshot_AccountDropdown.png)
 
-- EventStream
+- [EventStream](src/components/EventStream/README.md)
 
-![Screenshot #2](screenshots/screenshot_02.png)
+![Screenshot #2](screenshots/screenshot_EventStream.png)
+
+- [Funnel](src/components/Funnel/README.md)
+
+![Screenshot #1](screenshots/screenshot_Funnel.png)
+
+## Utilities
+
+- [timeRangeToNrql](src/utils/timeRangeToNrql/README.md)
+- [bytesToSize](src/utils/bytesToSize/README.md)
+
+## Local Development
+
+1. Open two terminals
+1. In one, start up the demo site ([Demo Instructions](demo/README.md))
+1. In the other, navigate to the root of this repository and run `npm run start`
+
+Our bundler will watch for changes in /src and auto-build the library. The Demo Nerdpack will see these changes and perform its own live-reloading referencing the local copy of the library.
+
+## How do I add my component?
+
+1. Fork this repository
+1. Create a new folder under `/components` or `/utils` with the name of your component (subject to review) and an `index.js`
+1. Create a README.md that will serve as the primary documentation of your contribution
+1. Create a meta.json and define the props your component requires/accepts
+1. Create a new "page" (folder) in our demo Nerdpack under `/demo/nerdlets/nr1-community-demo-nerdlet/pages`. See existing components for examples.
 
 ## Related work
 
-Boilerplate [Layout template Nerdpacks](https://github.com/newrelic?utf8=%E2%9C%93&q=nr1-nerdpack-layout&type=&language=)
+### New Relic One SDK
+
+[https://developer.newrelic.com/client-side-sdk/index.html](https://developer.newrelic.com/client-side-sdk/index.html)
+
+### NewRelic Developer Site
+
+[https://developer.newrelic.com](https://developer.newrelic.com)
+
+### Boilerplate Nerdpack Layouts
+
+- [Standard](https://github.com/newrelic/nr1-nerdpack-layout-standard)
+- [Double Sidebar](https://github.com/newrelic/nr1-nerdpack-layout-double-sidebar)
+- [4x2 Grid](https://github.com/newrelic/nr1-nerdpack-layout-4x2-grid)
+- [4 Column](https://github.com/newrelic/nr1-nerdpack-layout-4-column)
+- [3 Column](https://github.com/newrelic/nr1-nerdpack-layout-3-column)
+- [T-bone](https://github.com/newrelic/nr1-nerdpack-layout-t-bone)
+- [2x2 Grid](https://github.com/newrelic/nr1-nerdpack-layout-2x2-grid)
+- [3x2 Grid](https://github.com/newrelic/nr1-nerdpack-layout-3x2-grid)
+
+All of these and more can be found on our public Github - [Layout template Nerdpacks](https://github.com/newrelic?utf8=%E2%9C%93&q=nr1-nerdpack-layout&type=&language=)
 
 ## Open Source License
 
