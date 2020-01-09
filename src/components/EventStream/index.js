@@ -9,7 +9,7 @@ import styles from './styles.scss';
 export class EventStream extends React.Component {
   static propTypes = {
     accountId: PropTypes.number,
-    session: PropTypes.object,
+    session: PropTypes.string,
     eventType: PropTypes.string,
     durationInMinutes: PropTypes.number
   };
