@@ -37,13 +37,21 @@ This library is built on top of and requires the 'nr1' core library available to
 ## Usage
 
 Install in your project:
+
 ```bash
 npm install --save @newrelic/nr1-community
 ```
 
-Import into your nerdlet:
+Import the component/utils into your nerdlet:
+
 ```js
-import { AccountDropdown } from 'nr1-community';
+import { AccountDropdown, timeRangeToNrql } from 'nr1-community';
+```
+
+Import styles into your styles.scss (or similar):
+
+```sass
+@import '~nr1-community/dist/index.css';
 ```
 
 ## Components
