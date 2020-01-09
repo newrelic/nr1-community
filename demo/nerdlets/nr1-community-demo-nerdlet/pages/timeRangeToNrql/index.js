@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { timeRangeToNrql } from '../../../../dist';
+import { timeRangeToNrql } from '@/../dist';
 
 export default class EventStreamDemo extends React.Component {
   render() {

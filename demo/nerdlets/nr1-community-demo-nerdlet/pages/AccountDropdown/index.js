@@ -1,12 +1,13 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 import Highlight from 'react-highlight';
 import ReactMarkdown from 'react-markdown';
 
 import { Card, CardHeader, CardBody } from 'nr1';
-import { AccountDropdown } from '../../../../dist';
-import meta from '../../../../src/components/AccountDropdown/meta.json';
-import markdown from '../../../../src/components/AccountDropdown/README.md';
+import { AccountDropdown } from '@/../dist';
+import meta from '@/components/AccountDropdown/meta.json';
+import markdown from '@/components/AccountDropdown/README.md';
 
 export default class AccountDropdownDemo extends React.Component {
   render() {
