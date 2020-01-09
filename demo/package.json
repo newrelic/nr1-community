@@ -10,7 +10,7 @@
     "eslint-fix": "eslint nerdlets/ --fix"
   },
   "nr1": {
-    "uuid": "1d24b7e6-2226-4bbd-9598-58d8b0eecca8"
+    "uuid": "b1ec85b5-c8c4-41f4-bfa1-f1618fb1b48e"
   },
   "bugs": {
     "email": "opensource+nr1-community@newrelic.com"
