@@ -1,0 +1,29 @@
+{
+  "name": "EventStream",
+  "props": [
+    {
+      "name": "accountId",
+      "type": "number",
+      "description": "",
+      "default": "required"
+    },
+    {
+      "name": "session",
+      "type": "object",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "eventType",
+      "type": "string",
+      "description": "",
+      "default": ""
+    },
+    {
+      "name": "durationInMinutes",
+      "type": "number",
+      "description": "",
+      "default": ""
+    }
+  ]
+}
