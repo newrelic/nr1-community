@@ -78,37 +78,6 @@ export default class NerdpackLayoutStandard extends React.Component {
 
     return (
       <>
-        <Stack
-          className="toolbar-container"
-          fullWidth
-          gapType={Stack.GAP_TYPE.NONE}
-          horizontalType={Stack.HORIZONTAL_TYPE.FILL_EVENLY}
-          verticalType={Stack.VERTICAL_TYPE.FILL}
-        >
-          <StackItem className="toolbar-section1">
-            <Stack
-              gapType={Stack.GAP_TYPE.NONE}
-              fullWidth
-              verticalType={Stack.VERTICAL_TYPE.FILL}
-            >
-              <StackItem className="toolbar-item">
-                <TextField label="Search" placeholder="e.g. example query" />
-              </StackItem>
-            </Stack>
-          </StackItem>
-          <StackItem className="toolbar-section2">
-            <Stack
-              fullWidth
-              fullHeight
-              verticalType={Stack.VERTICAL_TYPE.CENTER}
-              horizontalType={Stack.HORIZONTAL_TYPE.RIGHT}
-            >
-              <StackItem>
-                <Button type={Button.TYPE.PRIMARY}>Primary button</Button>
-              </StackItem>
-            </Stack>
-          </StackItem>
-        </Stack>
         <Grid
           className="primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
@@ -118,19 +87,8 @@ export default class NerdpackLayoutStandard extends React.Component {
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={9}>
             <main className="primary-content full-height">
-              <Stack
-                fullWidth
-                fullHeight
-                verticalType={Stack.VERTICAL_TYPE.CENTER}
-                horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
-                directionType={Stack.DIRECTION_TYPE.VERTICAL}
-                gapType={Stack.GAP_TYPE.NONE}
-              >
-                <StackItem>
-                  {currentPage && Page && <Page />}
-                  {!currentPage && <h1>Choose a Component</h1>}
-                </StackItem>
-              </Stack>
+              {currentPage && Page && <Page />}
+              {!currentPage && <h1>Choose a Component</h1>}
             </main>
           </GridItem>
         </Grid>
