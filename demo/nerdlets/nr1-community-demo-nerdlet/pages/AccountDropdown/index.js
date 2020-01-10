@@ -30,9 +30,13 @@ export default class AccountDropdownDemo extends React.Component {
   render() {
     return (
       <>
-        <h2>{page.title}</h2>
-        <h3>{page.subtitle}</h3>
-        <BlockText>{page.examplesText}</BlockText>
+        <h1>{page.title}</h1>
+        <p className="lead-paragraph">{page.subtitle}</p>
+
+        <hr />
+
+        <h2>Examples</h2>
+        <p>{page.examplesText}</p>
 
         {/* Code Samples */}
         <BasicExample />

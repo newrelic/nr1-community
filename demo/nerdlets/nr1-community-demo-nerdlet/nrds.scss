@@ -265,26 +265,36 @@ h6 {
   font-weight: 600;
 }
 
-h1,
+h1:not(.type-heading),
 [class*="Text--type-heading-1"] {
   font-size: 32px;
   line-height: 40px;
   font-weight: 100;
+  margin: 10px 0;
+  color: #000d0d;
 }
 
-h2,
+h2:not(.type-heading),
 [class*="Text--type-heading-2"] {
   font-size: 24px;
+  font-weight: 600;
   line-height: 32px;
+  margin: 8px 0;
+  -webkit-font-smoothing: anti-aliased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h3,
+h3:not(.type-heading),
 [class*="Text--type-heading-3"] {
+  margin: 8px 0;
   font-size: 21px;
   line-height: 28px;
+  font-weight: 600;
+  -webkit-font-smoothing: anti-aliased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h4,
+h4:not(.type-heading),
 [class*="Text--type-heading-4"] {
   font-size: 16px;
   line-height: 24px;
@@ -301,6 +311,43 @@ h4,
   font-size: 14px;
   line-height: 20px;
   color: #464e4e;
+}
+
+p {
+  margin: 16px 0;
+}
+
+p + p {
+  margin: 10px 0;
+}
+
+p + h1,
+p + h2,
+p + h3,
+p + h4,
+p + h5 {
+  margin-top: 24px;
+}
+
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p {
+  margin-top: 0;
+}
+
+p.lead-paragraph {
+  font-size: 18px;
+  line-height: 24px;
+  color:#8E9494;
+  font-weight: 400;
+  -webkit-font-smoothing: anti-aliased;
+  -moz-osx-font-smoothing: grayscale;
+
+  h1 + & {
+    margin-top: -6px;
+  }
 }
 
 small {
