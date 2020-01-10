@@ -1,6 +1,6 @@
 import { NrqlQuery } from 'nr1';
 import accountsWithData from './reporting-event-types';
-import timeRangeToNrql from '../../utils/timeRangeToNrql';
+import { timeRangeToNrql } from '../../utils';
 
 /**
  * look across all the accounts the user has access to, scoped to the provided
