@@ -157,3 +157,20 @@ code {
     color: #464e4ec7;
   }
 }
+
+/* -------------------- */
+// Demo Page Styles
+/* -------------------- */
+
+.no-padding-bottom {
+  padding-bottom: 0;
+}
+
+.code-result-block {
+  box-sizing: border-box;
+  border: 2px solid #e3e4e4;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  padding: 24px;
+  // margin: 16px;
+}

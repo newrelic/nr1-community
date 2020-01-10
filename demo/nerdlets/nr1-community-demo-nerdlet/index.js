@@ -16,7 +16,7 @@ export default class NerdpackLayoutStandard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: null,
+      currentPage: componentList[0],
       categoryMap: componentList.reduce((previousValue, currentValue) => {
         const category = currentValue.category;
 
@@ -26,17 +26,6 @@ export default class NerdpackLayoutStandard extends React.Component {
 
         previousValue[category].push(currentValue);
 
-        return previousValue;
-      }, {}),
-      // eslint-disable-next-line react/no-unused-state
-      pageMap: componentList.reduce((previousValue, currentValue) => {
-        const { name } = currentValue;
-
-        if (!previousValue[name]) {
-          previousValue[name] = [];
-        }
-
-        previousValue[name].push(currentValue);
         return previousValue;
       }, {})
     };

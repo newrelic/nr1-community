@@ -1,56 +1,161 @@
-/* eslint-disable no-console */
 import React from 'react';
 
 import Highlight from 'react-highlight';
 import ReactMarkdown from 'react-markdown';
 
-import { Card, CardHeader, CardBody } from 'nr1';
+import { BlockText, Card, CardHeader, CardBody } from 'nr1';
 import { AccountDropdown } from '@/../dist';
+
+import codeRenderer from '../../shared/code-renderer';
 import meta from '@/components/AccountDropdown/meta.json';
 import markdown from '@/components/AccountDropdown/README.md';
 
+const page = {
+  title: 'Account Dropdown',
+  subtitle: 'A common interface for choosing an account',
+  examples: 'Examples',
+  examplesText:
+    'This component provides a common interface for choosing an account with a callback (onSelect allows for integration in to the rest of your application).'
+};
+
 export default class AccountDropdownDemo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedAccount: null
+    };
+    this.onSelectHandler = this.onSelectHandler.bind(this);
+  }
+
+  onSelectHandler(account) {
+    this.setState({ selectedAccount: account });
+  }
+
+  renderBasicCode() {
+    return (
+      <Highlight language="javascript">
+        {`
+  <AccountDropdown
+    title="Account"
+    onSelect={this.onSelectHandler}
+  </AccountDropdown>
+              `}
+      </Highlight>
+    );
+  }
+
+  renderWithReportingEventTypes() {
+    return (
+      <Highlight language="javascript">
+        {`
+  <AccountDropdown
+    title={this.state.selectedAccount || 'Select an Account'}
+    onSelect={this.onSelectHandler}
+    withReportingEventTypes={{
+      eventTypes: ['PageAction', 'PageView']
+    }}
+  />
+        `}
+      </Highlight>
+    );
+  }
+
+  renderKitchenSink() {
+    return (
+      <Highlight language="javascript">
+        {`
+    <AccountDropdown
+      title={this.state.selectedAccount || 'Select an Account'}
+      onSelect={this.onSelectHandler}
+      withReportingEventTypes={{
+        eventTypes: ['PageAction', 'PageView'],
+        where: ["actionName = 'SubmitLogin'"],
+        timeRange: {
+          begin_time: 0,
+          duration: 3600000, // 1 hour in milliseconds
+          end_time: 0
+        }
+      }}
+    />
+          `}
+      </Highlight>
+    );
+  }
+
   render() {
     return (
       <>
+        <h2>{page.title}</h2>
+        <h3>{page.subtitle}</h3>
+        <BlockText>{page.examplesText}</BlockText>
         <Card>
-          <CardHeader title="Code" subtitle="Simple" />
+          <CardHeader title="Basic" className="no-padding-bottom" />
           <CardBody>
-            <Highlight language="javascript">
-              {`
-                <AccountDropdown
-                  onSelect={account => console.log(account)}
-                </AccountDropdown>
-              `}
-            </Highlight>
-
-            <h2>Result:</h2>
-            <AccountDropdown onSelect={account => console.log(account)} />
+            <div className="code-result-block">
+              <AccountDropdown
+                title={this.state.selectedAccount || 'Select an Account'}
+                onSelect={this.onSelectHandler}
+              />
+            </div>
+            {this.renderBasicCode()}
           </CardBody>
         </Card>
 
         <Card>
-          <CardHeader title="Code" subtitle="Filtered By" />
+          <CardHeader
+            title="With Reporting Event Types"
+            className="no-padding-bottom"
+          />
           <CardBody>
-            <Highlight language="javascript">
-              {`
-                const filterNrql = \`FROM PageAction SELECT name SINCE 30 minutes ago\`;
-                <AccountDropdown
-                  onSelect={account => console.log(account)}
-                  filterByNrql={filterNrql}
-                </AccountDropdown>
-              `}
-            </Highlight>
+            <div className="code-result-block">
+              <AccountDropdown
+                title={this.state.selectedAccount || 'Select an Account'}
+                onSelect={this.onSelectHandler}
+                withReportingEventTypes={{
+                  eventTypes: ['PageAction', 'PageView']
+                }}
+              />
+            </div>
+            {this.renderWithReportingEventTypes()}
+          </CardBody>
+        </Card>
 
-            <h2>Result:</h2>
-            <AccountDropdown onSelect={account => console.log(account)} />
+        <Card>
+          <CardHeader
+            title="With Reporting Event Types, where clause, and timeRange"
+            className="no-padding-bottom"
+          />
+          <CardBody>
+            <div className="code-result-block">
+              <AccountDropdown
+                title={this.state.selectedAccount || 'Select an Account'}
+                onSelect={this.onSelectHandler}
+                withReportingEventTypes={{
+                  eventTypes: ['PageAction', 'PageView'],
+                  where: ["actionName = 'SubmitLogin'"],
+                  timeRange: {
+                    begin_time: 0,
+                    duration: 3600000, // 1 hour in milliseconds
+                    end_time: 0
+                  }
+                }}
+              />
+            </div>
+            {this.renderKitchenSink()}
           </CardBody>
         </Card>
 
         <Card>
           <CardHeader title="Documentation" subtitle="" />
           <CardBody>
-            <ReactMarkdown source={markdown} />
+            <ReactMarkdown
+              source={markdown}
+              escapeHtml
+              renderers={{
+                inlineCode: codeRenderer,
+                code: codeRenderer
+              }}
+            />
           </CardBody>
         </Card>
 
