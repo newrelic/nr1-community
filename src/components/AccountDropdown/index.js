@@ -10,6 +10,9 @@ import {
   Spinner
 } from 'nr1';
 
+import accountsWithData from './reporting-event-types';
+import findRelatedAccountsWith from './find-related-accounts-with';
+
 import styles from './styles.scss';
 
 const collection = 'nr1-community:AccountDropdown';
@@ -21,7 +24,8 @@ export class AccountDropdown extends React.Component {
     urlState: PropTypes.object,
     className: PropTypes.string,
     style: PropTypes.object,
-    title: PropTypes.string
+    title: PropTypes.string,
+    withReportingEventTypes: PropTypes.object
   };
 
   static defaultProps = {
@@ -106,19 +110,34 @@ export class AccountDropdown extends React.Component {
   }
 
   async loadAccounts() {
-    // eslint-disable-next-line no-unused-vars
-    const { loading, data, errors } = await AccountsQuery.query();
+    const { withReportingEventTypes } = this.props;
+    let accounts = [];
 
-    if (!data) {
-      // TO DO
-    }
+    if (withReportingEventTypes) {
+      const { eventTypes, where, timeRange } = withReportingEventTypes;
 
-    if (errors) {
-      // TO DO
+      if (!where && !timeRange) {
+        accounts = await accountsWithData({ eventTypes });
+      }
+
+      accounts = await findRelatedAccountsWith(withReportingEventTypes);
+    } else {
+      // eslint-disable-next-line no-unused-vars
+      const { loading, data, errors } = await AccountsQuery.query();
+
+      if (!data) {
+        // TO DO
+      }
+
+      if (errors) {
+        // TO DO
+      }
+
+      accounts = data;
     }
 
     this.setState({
-      accounts: data
+      accounts
     });
   }
 

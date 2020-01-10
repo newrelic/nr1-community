@@ -2,7 +2,7 @@ const MINUTE = 60000;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
 
-export default function timePickerNrql(props) {
+export default function timeRangeToNrql(props) {
   if (!props || !props.launcherUrlState) return 'SINCE 30 minutes ago';
   const { timeRange } = props.launcherUrlState;
   if (!timeRange) {
