@@ -1,14 +1,15 @@
 import React from 'react';
-
-import Highlight from 'react-highlight';
 import ReactMarkdown from 'react-markdown';
 
 import { BlockText, Card, CardHeader, CardBody } from 'nr1';
-import { AccountDropdown } from '@/../dist';
 
 import codeRenderer from '../../shared/code-renderer';
 import meta from '@/components/AccountDropdown/meta.json';
 import markdown from '@/components/AccountDropdown/README.md';
+
+import BasicExample from './examples/basic';
+import AdvancedExample from './examples/advanced';
+import KitchenSinkExample from './examples/kitchen-sink';
 
 const page = {
   title: 'Account Dropdown',
@@ -22,64 +23,8 @@ export default class AccountDropdownDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedAccount: null
+      // Local state, ex - if we use tabs for each code sample
     };
-    this.onSelectHandler = this.onSelectHandler.bind(this);
-  }
-
-  onSelectHandler(account) {
-    this.setState({ selectedAccount: account });
-  }
-
-  renderBasicCode() {
-    return (
-      <Highlight language="javascript">
-        {`
-  <AccountDropdown
-    title="Account"
-    onSelect={this.onSelectHandler}
-  </AccountDropdown>
-              `}
-      </Highlight>
-    );
-  }
-
-  renderWithReportingEventTypes() {
-    return (
-      <Highlight language="javascript">
-        {`
-  <AccountDropdown
-    title={this.state.selectedAccount || 'Select an Account'}
-    onSelect={this.onSelectHandler}
-    withReportingEventTypes={{
-      eventTypes: ['PageAction', 'PageView']
-    }}
-  />
-        `}
-      </Highlight>
-    );
-  }
-
-  renderKitchenSink() {
-    return (
-      <Highlight language="javascript">
-        {`
-    <AccountDropdown
-      title={this.state.selectedAccount || 'Select an Account'}
-      onSelect={this.onSelectHandler}
-      withReportingEventTypes={{
-        eventTypes: ['PageAction', 'PageView'],
-        where: ["actionName = 'SubmitLogin'"],
-        timeRange: {
-          begin_time: 0,
-          duration: 3600000, // 1 hour in milliseconds
-          end_time: 0
-        }
-      }}
-    />
-          `}
-      </Highlight>
-    );
   }
 
   render() {
@@ -88,63 +33,13 @@ export default class AccountDropdownDemo extends React.Component {
         <h2>{page.title}</h2>
         <h3>{page.subtitle}</h3>
         <BlockText>{page.examplesText}</BlockText>
-        <Card>
-          <CardHeader title="Basic" className="no-padding-bottom" />
-          <CardBody>
-            <div className="code-result-block">
-              <AccountDropdown
-                title={this.state.selectedAccount || 'Select an Account'}
-                onSelect={this.onSelectHandler}
-              />
-            </div>
-            {this.renderBasicCode()}
-          </CardBody>
-        </Card>
 
-        <Card>
-          <CardHeader
-            title="With Reporting Event Types"
-            className="no-padding-bottom"
-          />
-          <CardBody>
-            <div className="code-result-block">
-              <AccountDropdown
-                title={this.state.selectedAccount || 'Select an Account'}
-                onSelect={this.onSelectHandler}
-                withReportingEventTypes={{
-                  eventTypes: ['PageAction', 'PageView']
-                }}
-              />
-            </div>
-            {this.renderWithReportingEventTypes()}
-          </CardBody>
-        </Card>
+        {/* Code Samples */}
+        <BasicExample />
+        <AdvancedExample />
+        <KitchenSinkExample />
 
-        <Card>
-          <CardHeader
-            title="With Reporting Event Types, where clause, and timeRange"
-            className="no-padding-bottom"
-          />
-          <CardBody>
-            <div className="code-result-block">
-              <AccountDropdown
-                title={this.state.selectedAccount || 'Select an Account'}
-                onSelect={this.onSelectHandler}
-                withReportingEventTypes={{
-                  eventTypes: ['PageAction', 'PageView'],
-                  where: ["actionName = 'SubmitLogin'"],
-                  timeRange: {
-                    begin_time: 0,
-                    duration: 3600000, // 1 hour in milliseconds
-                    end_time: 0
-                  }
-                }}
-              />
-            </div>
-            {this.renderKitchenSink()}
-          </CardBody>
-        </Card>
-
+        {/* Markdown from /components/<component-name>/README.md */}
         <Card>
           <CardHeader title="Documentation" subtitle="" />
           <CardBody>
@@ -159,6 +54,7 @@ export default class AccountDropdownDemo extends React.Component {
           </CardBody>
         </Card>
 
+        {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
         <Card>
           <CardHeader title="Component Props Reference" subtitle="" />
           <CardBody>
