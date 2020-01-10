@@ -77,19 +77,50 @@ For complete documentation and a demo, please visit [Demo](demo/README.md) and f
 
 ## Local Development
 
-1. Open two terminals
-1. In one, start up the demo site ([Demo Instructions](demo/README.md))
-1. In the other, navigate to the root of this repository and run `npm run start`
+The `/demo` folder of this project is a Nerdpack that references the local copy of the components. You are able to develop the components and see how they function in a live environment as you develop them!
 
-Our bundler will watch for changes in /src and auto-build the library. The Demo Nerdpack will see these changes and perform its own live-reloading referencing the local copy of the library.
+1. Open two terminals, navigate both to the root of this repository
+2. In one, start up the demo site with the following commands ([Full Demo Info](demo/README.md))
+
+```sh
+  cd demo
+  npm install
+  nr1 nerdpack:uuid -gf # Only needed the first time
+  npm start
+```
+
+3. In the other, navigate to the root of this repository and run:
+
+```sh
+  npm install
+  npm start
+```
+
+> Note: You're running `npm install` twice, once for nr1-community and once for the /demo Nerdpack.
+
+Our bundler will watch for changes in /src and auto-build the library. The Demo Nerdpack will see these changes and perform its own live-reloading, referencing the local copy of the library.
 
 ## How do I add my component?
 
+### Add to component library
+
 1. Fork this repository
-1. Create a new folder under `/components` or `/utils` with the name of your component (subject to review) and an `index.js`
-1. Create a README.md that will serve as the primary documentation of your contribution
-1. Create a meta.json and define the props your component requires/accepts
-1. Create a new "page" (folder) in our demo Nerdpack under `/demo/nerdlets/nr1-community-demo-nerdlet/pages`. See existing components for examples.
+1. Create a new folder under `src/components` or `src/utils` with the name of your component (subject to review)
+    1. Create a `index.js` so that the full path looks like `src/components/<name of component>/index.js`
+    1. Create a `README.md` that will serve as the primary documentation for your component
+    1. Create a `meta.json` and define the props your component requires/accepts
+1. Export your component by adding an export line: `export { <name of component> } from './<name of component>';` to `src/components/index.js` or `src/utils/index.js`
+
+### Add to demo/examples
+
+Our goal here is to aggregate helpful information from your component, like the `README.md` and the `meta.json` (as some structured documentation of the component) alongside live code examples. We aim to keep each component's page as similar as possible and have a pattern we'd like you to follow, the easiest approach is to reference an existing one, but if you have troubles, open a pull-request as-is and we're happy to assist.
+
+1. Create a new "page" (folder) in our demo Nerdpack under `<location-of-repo>/demo/nerdlets/nr1-community-demo-nerdlet/pages`. See existing components for a pattern to follow.
+1. Your component's folder should contain the following:
+    1. An `index.js`
+    1. An `/examples` directory
+
+> Note: You'll notice us referencing the local components with the `@`, this isn't new JS magic. We've extended the typical Nerdpack's webpack config with an alias `@` for the "src" folder of the library to make imports a little less painful.
 
 ## Related work
 

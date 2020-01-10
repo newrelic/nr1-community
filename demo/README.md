@@ -23,6 +23,7 @@ git clone https://github.com/newrelic/nr1-community
 npm install
 npm run build
 cd demo
+npm install
 nr1 nerdpack:uuid -gf # Only needed the first time
 nr1 nerdpack:serve
 ```
