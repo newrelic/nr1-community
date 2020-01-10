@@ -1,2 +1,2 @@
-export { default as bytesToSize } from './bytesToSize';
-export { default as timeRangeToNrql } from './timerangetoNrql';
+export { bytesToSize } from './bytesToSize';
+export { timeRangeToNrql } from './timerangetoNrql';
