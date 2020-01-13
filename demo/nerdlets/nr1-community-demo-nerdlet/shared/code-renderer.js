@@ -10,13 +10,13 @@ Lowlight.registerLanguage('jsx', js);
 Lowlight.registerLanguage('bash', bash);
 Lowlight.registerLanguage('scss', scss);
 
-export default class CodeBlock extends React.Component {
-  // static displayName = 'CodeBlock';
-
+export default class CodeRenderer extends React.Component {
   static propTypes = {
     value: PropTypes.string,
     language: PropTypes.string,
-    inline: PropTypes.bool
+    inline: PropTypes.bool,
+    // eslint-disable-next-line react/no-unused-prop-types
+    children: PropTypes.string // or undefined
   };
 
   constructor(props) {
