@@ -1,7 +1,6 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 
-import { Card, CardHeader, CardBody } from 'nr1';
 import { AccountDropdown } from '@/../dist';
 
 export default class AccountDropdownAdvancedDemo extends React.Component {
@@ -19,7 +18,7 @@ export default class AccountDropdownAdvancedDemo extends React.Component {
 
   renderHighlight() {
     return (
-      <Highlight language="javascript">
+      <Highlight className="javascript">
         {`
   <AccountDropdown
     title={
@@ -39,30 +38,26 @@ export default class AccountDropdownAdvancedDemo extends React.Component {
 
   render() {
     return (
-      <>
-        <Card>
-          <CardHeader
-            title="With Reporting Event Types"
-            className="no-padding-bottom"
-          />
-          <CardBody>
-            <div className="code-result-block">
-              <AccountDropdown
-                title={
-                  this.state.selectedAccount !== null
-                    ? this.state.selectedAccount.name
-                    : 'Select an Account'
-                }
-                onSelect={this.onSelectHandler}
-                withReportingEventTypes={{
-                  eventTypes: ['PageAction', 'PageView']
-                }}
-              />
-            </div>
-            {this.renderHighlight()}
-          </CardBody>
-        </Card>
-      </>
+      <div className="example-container">
+        <h3>With Reporting Event Types</h3>
+        <p>Nulla quis tortor orci. Etiam at risus et justo dignissim.</p>
+        <div className="example-container-content">
+          <div className="code-result-block">
+            <AccountDropdown
+              title={
+                this.state.selectedAccount !== null
+                  ? this.state.selectedAccount.name
+                  : 'Select an Account'
+              }
+              onSelect={this.onSelectHandler}
+              withReportingEventTypes={{
+                eventTypes: ['PageAction', 'PageView']
+              }}
+            />
+          </div>
+          {this.renderHighlight()}
+        </div>
+      </div>
     );
   }
 }

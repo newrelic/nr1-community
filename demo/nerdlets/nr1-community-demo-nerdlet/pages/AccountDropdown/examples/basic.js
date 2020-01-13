@@ -36,10 +36,6 @@ export default class AccountDropdownBasicDemo extends React.Component {
   render() {
     return (
       <div className="example-container">
-        <link
-          rel="stylesheet"
-          href="@/../node_modules/highlight.js/styles/github-gist.css"
-        />
         <h3>Basic</h3>
         <p>
           Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis

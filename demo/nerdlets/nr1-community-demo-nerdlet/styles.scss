@@ -1,7 +1,7 @@
 @import "./nrds.scss";
 @import "../../node_modules/highlight.js/styles/monokai-sublime.css";
 @import '../../../dist/index.css';
-@import "../../node_modules/highlight.js/styles/arduino-light.css";
+@import "../../node_modules/highlight.js/styles/atelier-lakeside-light.css";
 
 /* -------------------- */
 // Utility Classes
@@ -175,6 +175,11 @@ hr {
 
 .example-container {
   margin: 24px 0;
+
+
+  .example-container + & {
+    margin-top: 32px;
+  }
 }
 
 .example-container-content {

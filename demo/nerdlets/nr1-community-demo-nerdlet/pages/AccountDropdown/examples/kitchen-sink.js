@@ -1,7 +1,6 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 
-import { Card, CardHeader, CardBody } from 'nr1';
 import { AccountDropdown } from '@/../dist';
 
 export default class AccountDropdownKitchenSinkDemo extends React.Component {
@@ -19,7 +18,7 @@ export default class AccountDropdownKitchenSinkDemo extends React.Component {
 
   renderHighlight() {
     return (
-      <Highlight language="javascript">
+      <Highlight className="javascript">
         {`
     <AccountDropdown
       title={
@@ -45,36 +44,37 @@ export default class AccountDropdownKitchenSinkDemo extends React.Component {
 
   render() {
     return (
-      <>
-        <Card>
-          <CardHeader
-            title="With Reporting Event Types, where clause, and timeRange"
-            className="no-padding-bottom"
-          />
-          <CardBody>
-            <div className="code-result-block">
-              <AccountDropdown
-                title={
-                  this.state.selectedAccount !== null
-                    ? this.state.selectedAccount.name
-                    : 'Select an Account'
+      <div className="example-container">
+        <h3>With Reporting Event Types, where clause, and timeRange</h3>
+        <p>
+          Ut in nulla enim. Phasellus molestie magna non est bibendum non
+          venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.
+          Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit
+          odio. Proin quis tortor orci.
+        </p>
+        <div className="example-container-content">
+          <div className="code-result-block">
+            <AccountDropdown
+              title={
+                this.state.selectedAccount !== null
+                  ? this.state.selectedAccount.name
+                  : 'Select an Account'
+              }
+              onSelect={this.onSelectHandler}
+              withReportingEventTypes={{
+                eventTypes: ['PageAction', 'PageView'],
+                where: ["actionName = 'SubmitLogin'"],
+                timeRange: {
+                  begin_time: 0,
+                  duration: 3600000, // 1 hour in milliseconds
+                  end_time: 0
                 }
-                onSelect={this.onSelectHandler}
-                withReportingEventTypes={{
-                  eventTypes: ['PageAction', 'PageView'],
-                  where: ["actionName = 'SubmitLogin'"],
-                  timeRange: {
-                    begin_time: 0,
-                    duration: 3600000, // 1 hour in milliseconds
-                    end_time: 0
-                  }
-                }}
-              />
-            </div>
-            {this.renderHighlight()}
-          </CardBody>
-        </Card>
-      </>
+              }}
+            />
+          </div>
+          {this.renderHighlight()}
+        </div>
+      </div>
     );
   }
 }
