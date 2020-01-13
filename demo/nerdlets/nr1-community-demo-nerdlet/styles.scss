@@ -139,13 +139,17 @@ ol.empty-state-description {
 }
 
 code {
-  .primary-content p &,
-  .primary-content ol & {
+  .primary-content p &.lowlight,
+  .primary-content ol &.lowlight {
     font-size: 12px;
-    background-color: #edeeee;
+    background-color: #e4f5f7;
     border-radius: 3px;
     padding: 2px 5px;
-    color: #464e4ec7;
+    color: #005054;
+  }
+
+  &.hljs {
+    background-color: #F4F5F5;
   }
 }
 

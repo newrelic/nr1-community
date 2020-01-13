@@ -44,19 +44,15 @@ export default class AccountDropdownDemo extends React.Component {
         <KitchenSinkExample />
 
         {/* Markdown from /components/<component-name>/README.md */}
-        <Card>
-          <CardHeader title="Documentation" subtitle="" />
-          <CardBody>
-            <ReactMarkdown
-              source={markdown}
-              escapeHtml
-              renderers={{
-                inlineCode: codeRenderer,
-                code: codeRenderer
-              }}
-            />
-          </CardBody>
-        </Card>
+        <h2>Description</h2>
+        <ReactMarkdown
+          source={markdown}
+          escapeHtml
+          renderers={{
+            inlineCode: codeRenderer,
+            code: codeRenderer
+          }}
+        />
 
         {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
         <Card>
