@@ -279,7 +279,7 @@ h2:not(.type-heading),
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
-  margin: 8px 0;
+  margin: 32px 0 8px;
   -webkit-font-smoothing: anti-aliased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -327,6 +327,14 @@ p + h3,
 p + h4,
 p + h5 {
   margin-top: 24px;
+}
+
+hr + h1:not(.type-heading),
+hr + h2:not(.type-heading),
+hr + h3:not(.type-heading),
+hr + h4:not(.type-heading),
+hr + h5:not(.type-heading) {
+  margin-top: 8px;
 }
 
 h1 + p,

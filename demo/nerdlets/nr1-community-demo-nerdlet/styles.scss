@@ -140,8 +140,8 @@ ol.empty-state-description {
 }
 
 code {
-  .primary-content p &.lowlight,
-  .primary-content ol &.lowlight {
+  &.lowlight,
+  &.lowlight {
     font-size: 12px;
     background-color: #e4f5f7;
     border-radius: 3px;
@@ -199,4 +199,97 @@ hr {
   code {
     background-color: #f4f5f5;
   }
+}
+
+// Remove the stripes from the table bg
+.react-bootstrap-table table.table th,
+.react-bootstrap-table table.table td {
+  background-color: #fff;
+}
+
+.react-bootstrap-table table.table th {
+  font-size: 11px;
+  color: #464E4E;
+  font-weight: 400;
+}
+
+.react-bootstrap-table table.table th {
+  border-bottom: 1px solid #F4F5F5;
+  border-top: 1px solid #F4F5F5;
+}
+
+.react-bootstrap-table table.table td {
+  border-bottom: 1px solid #F4F5F5;
+  font-size: 12px;
+}
+
+// Set the table width to 100%
+.react-bootstrap-table table.table {
+  width: 100%;
+}
+
+.sortable .dropdown,
+.sortable .dropup {
+  position: relative;
+  width: 10px;
+  height: 6px;
+  display: inline-block;
+}
+
+.react-bootstrap-table th .order {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1px;
+  overflow: visible;
+  position: relative;
+  bottom: 11px;
+  left: 5px;
+}
+
+.react-bootstrap-table-sort-order {
+  position: relative;
+}
+
+.react-bootstrap-table th .caret {
+  border-style: solid;
+	border-width: 0.185em 0.185em 0 0;
+	display: inline-block;
+	height: 0.35em;
+	left: -3px;
+	position: absolute;
+	top: -9px;
+	transform: rotate(-45deg);
+	vertical-align: top;
+  width: 0.35em;
+  color: #B9BDBD;
+}
+
+.react-bootstrap-table th .dropup>.caret {
+	left: 2px;
+	top: -11px;
+	transform: rotate(135deg);
+}
+
+.react-bootstrap-table th .order>.dropup {
+  margin-top: 8px;
+}
+
+th .react-bootstrap-table-sort-order .caret {
+  left: 0;
+  top: -4px;
+  color: #8e9494;
+}
+
+th .react-bootstrap-table-sort-order.dropup .caret {
+  left: 0px;
+  color: #8e9494;
+}
+
+td.prop-name-column {
+  background-color: #e4f5f7;
+  border-radius: 3px;
+  padding: 2px 5px;
+  color: #005054;
+  font-size: 14px;
 }

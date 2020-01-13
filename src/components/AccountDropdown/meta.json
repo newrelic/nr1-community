@@ -4,38 +4,38 @@
     {
       "name": "onSelect",
       "type": "function",
-      "description": "A callback",
-      "default": "required"
+      "default": "required",
+      "description": "A callback"
     },
     {
       "name": "urlState",
       "type": "object",
-      "description": "",
-      "default": ""
+      "default": "",
+      "description": ""
     },
     {
       "name": "className",
       "type": "string",
-      "description": "",
-      "default": ""
+      "default": "",
+      "description": ""
     },
     {
       "name": "style",
       "type": "object",
-      "description": "",
-      "default": ""
+      "default": "",
+      "description": ""
     },
     {
       "name": "title",
       "type": "string",
-      "description": "",
-      "default": "\"Select account...\""
+      "default": "\"Select account...\"",
+      "description": ""
     },
     {
       "name": "withReportingEventTypes",
       "type": "object",
-      "description": "",
-      "default": ""
+      "default": "",
+      "description": ""
     }
   ]
 }

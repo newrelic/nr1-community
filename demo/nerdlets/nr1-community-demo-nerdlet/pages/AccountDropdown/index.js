@@ -46,11 +46,18 @@ export default class AccountDropdownDemo extends React.Component {
     Object.keys(meta.props[0]).map((key, index) => {
       return (columns[index] = {
         dataField: key,
-        text: key
+        text: key,
+        sort: true
       });
     });
 
+    columns[0].classes = 'prop-name-column';
+    columns[0].formatter = this.tablePropNameFormatter;
     return columns;
+  }
+
+  tablePropNameFormatter(cell) {
+    return <code className="lowlight">{cell}</code>;
   }
 
   render() {
