@@ -1,6 +1,7 @@
 @import "./nrds.scss";
 @import "../../node_modules/highlight.js/styles/monokai-sublime.css";
 @import '../../../dist/index.css';
+@import "../../node_modules/highlight.js/styles/arduino-light.css";
 
 /* -------------------- */
 // Utility Classes
@@ -183,5 +184,9 @@ hr {
 
   p + & {
     margin-top: -4px;
+  }
+
+  code {
+    background-color: #f4f5f5;
   }
 }

@@ -18,7 +18,7 @@ export default class AccountDropdownBasicDemo extends React.Component {
 
   renderHighlight() {
     return (
-      <Highlight language="javascript">
+      <Highlight className="javascript">
         {`
   <AccountDropdown
     title={

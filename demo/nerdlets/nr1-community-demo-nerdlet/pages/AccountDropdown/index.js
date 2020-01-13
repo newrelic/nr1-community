@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { BlockText, Card, CardHeader, CardBody } from 'nr1';
+import { Card, CardHeader, CardBody } from 'nr1';
 
 import codeRenderer from '../../shared/code-renderer';
 import meta from '@/components/AccountDropdown/meta.json';
