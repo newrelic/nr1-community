@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
+import { Grid, GridItem } from 'nr1';
+
 import BootstrapTable from 'react-bootstrap-table-next';
 
 import codeRenderer from '../../shared/code-renderer';
@@ -62,40 +64,43 @@ export default class AccountDropdownDemo extends React.Component {
 
   render() {
     this.propsTableData();
+
     return (
-      <>
-        <h1>{page.title}</h1>
-        <p className="lead-paragraph">{page.subtitle}</p>
+      <Grid>
+        <GridItem columnSpan={9}>
+          <h1>{page.title}</h1>
+          <p className="lead-paragraph">{page.subtitle}</p>
 
-        <hr />
+          <hr />
 
-        <h2>Examples</h2>
-        <p>{page.examplesText}</p>
+          <h2>Examples</h2>
+          <p>{page.examplesText}</p>
 
-        {/* Code Samples */}
-        <BasicExample />
-        <AdvancedExample />
-        <KitchenSinkExample />
+          {/* Code Samples */}
+          <BasicExample />
+          <AdvancedExample />
+          <KitchenSinkExample />
 
-        {/* Markdown from /components/<component-name>/README.md */}
-        <h2>Description</h2>
-        <ReactMarkdown
-          source={markdown}
-          escapeHtml
-          renderers={{
-            inlineCode: codeRenderer,
-            code: codeRenderer
-          }}
-        />
+          {/* Markdown from /components/<component-name>/README.md */}
+          <h2>Description</h2>
+          <ReactMarkdown
+            source={markdown}
+            escapeHtml
+            renderers={{
+              inlineCode: codeRenderer,
+              code: codeRenderer
+            }}
+          />
 
-        {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
-        <h2>Properties</h2>
-        <BootstrapTable
-          keyField="name"
-          data={this.propsTableData()}
-          columns={this.propsColumns()}
-        />
-      </>
+          {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
+          <h2>Properties</h2>
+          <BootstrapTable
+            keyField="name"
+            data={this.propsTableData()}
+            columns={this.propsColumns()}
+          />
+        </GridItem>
+      </Grid>
     );
   }
 }
