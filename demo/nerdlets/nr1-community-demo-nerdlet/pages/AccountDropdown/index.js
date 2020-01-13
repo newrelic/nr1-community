@@ -5,6 +5,7 @@ import { Grid, GridItem } from 'nr1';
 
 import BootstrapTable from 'react-bootstrap-table-next';
 
+import withVisibilityHoc from '../../shared/withVisibilityHoc';
 import codeRenderer from '../../shared/code-renderer';
 import meta from '@/components/AccountDropdown/meta.json';
 import markdown from '@/components/AccountDropdown/README.md';
@@ -21,12 +22,24 @@ const page = {
     'This component provides a common interface for choosing an account with a callback (onSelect allows for integration in to the rest of your application).'
 };
 
+const {
+  heading: Heading
+} = require('@/../demo/node_modules/react-markdown/lib/renderers');
+
 export default class AccountDropdownDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // Local state, ex - if we use tabs for each code sample
     };
+    this.visibilityHandler = this.visibilityHandler.bind(this);
+  }
+
+  visibilityHandler({ isVisible, props }) {
+    if (isVisible) {
+      console.log('Capturing event from visibility renderer');
+      console.log(JSON.stringify(props));
+    }
   }
 
   propsTableData() {
@@ -88,7 +101,8 @@ export default class AccountDropdownDemo extends React.Component {
             escapeHtml
             renderers={{
               inlineCode: codeRenderer,
-              code: codeRenderer
+              code: codeRenderer,
+              heading: withVisibilityHoc(Heading, this.visibilityHandler)
             }}
           />
 
