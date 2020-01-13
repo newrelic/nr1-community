@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { Card, CardHeader, CardBody } from 'nr1';
+import BootstrapTable from 'react-bootstrap-table-next';
 
 import codeRenderer from '../../shared/code-renderer';
 import meta from '@/components/AccountDropdown/meta.json';
@@ -27,7 +27,34 @@ export default class AccountDropdownDemo extends React.Component {
     };
   }
 
+  propsTableData() {
+    let tableData = [];
+
+    return (tableData = meta.props.map(prop => {
+      return {
+        name: prop.name,
+        type: prop.type,
+        default: prop.default,
+        description: prop.description
+      };
+    }));
+  }
+
+  propsColumns() {
+    const columns = [];
+
+    Object.keys(meta.props[0]).map((key, index) => {
+      return (columns[index] = {
+        dataField: key,
+        text: key
+      });
+    });
+
+    return columns;
+  }
+
   render() {
+    this.propsTableData();
     return (
       <>
         <h1>{page.title}</h1>
@@ -55,16 +82,12 @@ export default class AccountDropdownDemo extends React.Component {
         />
 
         {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
-        <Card>
-          <CardHeader title="Component Props Reference" subtitle="" />
-          <CardBody>
-            <ul>
-              {meta.props.map((prop, index) => {
-                return <li key={index}>{prop.name}</li>;
-              })}
-            </ul>
-          </CardBody>
-        </Card>
+        <h2>Properties</h2>
+        <BootstrapTable
+          keyField="name"
+          data={this.propsTableData()}
+          columns={this.propsColumns()}
+        />
       </>
     );
   }

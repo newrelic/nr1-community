@@ -3,26 +3,37 @@
   "props": [
     {
       "name": "onSelect",
+      "type": "function",
       "description": "A callback",
       "default": "required"
     },
     {
       "name": "urlState",
+      "type": "object",
       "description": "",
       "default": ""
     },
     {
       "name": "className",
+      "type": "string",
       "description": "",
       "default": ""
     },
     {
       "name": "style",
+      "type": "object",
       "description": "",
       "default": ""
     },
     {
       "name": "title",
+      "type": "string",
+      "description": "",
+      "default": "\"Select account...\""
+    },
+    {
+      "name": "withReportingEventTypes",
+      "type": "object",
       "description": "",
       "default": ""
     }
