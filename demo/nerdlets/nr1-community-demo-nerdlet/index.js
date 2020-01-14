@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, GridItem, Stack, StackItem, TextField, Button } from 'nr1';
+import { Grid, GridItem, TextField } from 'nr1';
 import * as PAGES from './pages';
 
 // TO DO - glob from /components and /utilities
@@ -46,7 +46,7 @@ export default class NerdpackLayoutStandard extends React.Component {
       const categoryItems = categoryMap[value];
       return (
         <React.Fragment key={index}>
-          <h2>{categoryName}</h2>
+          <h5>{categoryName}</h5>
           <ul className="sidebar-list">
             {this.renderCategoryItems(categoryItems)}
           </ul>
@@ -83,6 +83,9 @@ export default class NerdpackLayoutStandard extends React.Component {
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <GridItem className="sidebar-container" columnSpan={3}>
+            <div className="search-container">
+              <TextField placeholder="Search the docs..." />
+            </div>
             {this.renderByCategories()}
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={9}>
