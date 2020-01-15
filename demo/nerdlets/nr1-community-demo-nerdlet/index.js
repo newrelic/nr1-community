@@ -46,7 +46,7 @@ export default class NerdpackLayoutStandard extends React.Component {
       const categoryItems = categoryMap[value];
       return (
         <React.Fragment key={index}>
-          <h5>{categoryName}</h5>
+          <h5 className="primary-nav-category">{categoryName}</h5>
           <ul className="sidebar-list">
             {this.renderCategoryItems(categoryItems)}
           </ul>
@@ -59,7 +59,7 @@ export default class NerdpackLayoutStandard extends React.Component {
     return items.map((item, index) => {
       return (
         <li
-          className="sidebar-list-item"
+          className="primary-nav-item"
           key={index}
           onClick={() => this.handleListItemClick(item)}
         >
@@ -86,7 +86,9 @@ export default class NerdpackLayoutStandard extends React.Component {
             <div className="search-container">
               <TextField placeholder="Search the docs..." />
             </div>
-            {this.renderByCategories()}
+            <div className="primary-nav-container">
+              {this.renderByCategories()}
+            </div>
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={9}>
             <main className="primary-content full-height">

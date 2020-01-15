@@ -52,7 +52,7 @@
 .sidebar-container {
   height: 100%;
   overflow: scroll;
-  background-color: #F4F5F5;
+  background-color: #f7f7f8;
   border-right: 1px solid #e3e4e4;
 }
 
@@ -157,7 +157,7 @@ code {
   }
 
   &.hljs {
-    background-color: #F4F5F5;
+    background-color: #fafbfb;
   }
 }
 
@@ -204,7 +204,8 @@ hr {
   }
 
   code {
-    background-color: #f4f5f5;
+    background-color: #fafbfb;
+    border: 1px solid #e3e4e4;
   }
 }
 
@@ -319,5 +320,45 @@ td.prop-name-column {
   
   input[class*='TextField-input'] {
     padding: 6.5px 27px 6.5px 8px;
+  }
+}
+
+
+.primary-nav-container {
+  padding: 8px 24px 24px;
+
+  .primary-nav-category {
+    display: flex;
+    align-items: flex-end;
+    height: 30px;
+    padding-bottom: 4px;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #2A3434;
+  }
+  
+  .primary-nav-item {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #464e4e;
+    opacity: .7;
+
+    &.active {
+      color: #007E8A;
+      font-weight: 600;
+      opacity: 1;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
