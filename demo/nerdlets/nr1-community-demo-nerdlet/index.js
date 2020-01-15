@@ -16,6 +16,7 @@ export default class NerdpackLayoutStandard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentSearchQuery: '',
       currentPage: componentList[0],
       categoryMap: componentList.reduce((previousValue, currentValue) => {
         const category = currentValue.category;
@@ -31,6 +32,7 @@ export default class NerdpackLayoutStandard extends React.Component {
     };
 
     this.handleListItemClick = this.handleListItemClick.bind(this);
+    this.searchDocs = this.searchDocs.bind(this);
   }
 
   handleListItemClick(page) {
@@ -55,6 +57,57 @@ export default class NerdpackLayoutStandard extends React.Component {
     });
   }
 
+  renderSearchResults(currentPage) {
+    const { categoryMap, currentSearchQuery } = this.state;
+    const categories = Object.keys(categoryMap);
+
+    const menuOutput = categories.map((value, index) => {
+      const categoryName = value;
+      const categoryItems = categoryMap[value];
+
+      // Do any of the items from this category match the search term?
+      // If so, store those matching items in a new array (queryResults).
+      const queryResults = categoryMap[categoryName].filter(item => {
+        if (item.name !== undefined) {
+          return item.name.toLowerCase().includes(currentSearchQuery);
+        }
+
+        return undefined;
+      });
+
+      // If the search query matches any results from this category return
+      // those items and their category header.
+      if (queryResults.some(result => result.category === categoryName)) {
+        return (
+          <React.Fragment key={index}>
+            <h5 className="primary-nav-category">{categoryName}</h5>
+            <ul className="sidebar-list">
+              {this.renderCategoryItems(
+                categoryItems.filter(item =>
+                  item.name.toLowerCase().includes(currentSearchQuery)
+                ),
+                currentPage
+              )}
+            </ul>
+          </React.Fragment>
+        );
+      }
+    });
+
+    // if the search returned results, return them. If not return a
+    // an explanation of why nothing is showing up
+    if (menuOutput.some(item => item !== undefined)) {
+      return menuOutput;
+    } else {
+      return (
+        <div className="no-search-results">
+          <h5>No components or utilites found that match:</h5>
+          <strong>"{currentSearchQuery}"</strong>
+        </div>
+      );
+    }
+  }
+
   renderCategoryItems(items, currentPage) {
     return items.map((item, index) => {
       return (
@@ -71,8 +124,14 @@ export default class NerdpackLayoutStandard extends React.Component {
     });
   }
 
+  searchDocs(e) {
+    this.setState({
+      currentSearchQuery: e.target.value.toLowerCase()
+    });
+  }
+
   render() {
-    const { currentPage } = this.state;
+    const { currentPage, currentSearchQuery } = this.state;
 
     const componentName = currentPage ? currentPage.name : '';
     const Page =
@@ -86,10 +145,15 @@ export default class NerdpackLayoutStandard extends React.Component {
         >
           <GridItem className="sidebar-container" columnSpan={3}>
             <div className="search-container">
-              <TextField placeholder="Search the docs..." />
+              <TextField
+                placeholder="Search the docs..."
+                onChange={this.searchDocs}
+              />
             </div>
             <div className="primary-nav-container">
-              {this.renderByCategories(currentPage)}
+              {currentSearchQuery === ''
+                ? this.renderByCategories(currentPage)
+                : this.renderSearchResults(currentPage)}
             </div>
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={9}>

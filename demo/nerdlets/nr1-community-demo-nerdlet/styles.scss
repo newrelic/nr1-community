@@ -362,3 +362,21 @@ td.prop-name-column {
     }
   }
 }
+
+.no-search-results h5 {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  text-align: center;
+  font-weight: normal;
+  color: #8e9494;
+  font-size: 14px;
+}
+
+.no-search-results strong {
+  text-align: center;
+  display: block;
+  color: #464e4e;
+  font-size: 16px;
+  /*! font-family: monospace; */
+  font-weight: 600;
+}
