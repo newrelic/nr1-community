@@ -5,7 +5,13 @@
       "name": "onSelect",
       "type": "function",
       "default": "required",
-      "description": "A callback"
+      "description": "A callback giving you access to the Account (object) selected by the User"
+    },
+    {
+      "name": "onError",
+      "type": "function",
+      "default": "",
+      "description": "A callback giving you access to the any errors occurring during account-fetching"
     },
     {
       "name": "urlState",

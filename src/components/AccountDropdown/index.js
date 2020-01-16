@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  navigation,
-  UserStorageQuery,
-  UserStorageMutation,
   AccountsQuery,
   Dropdown,
   DropdownItem,
-  Spinner
+  Icon,
+  navigation,
+  Spinner,
+  Tooltip,
+  UserStorageQuery,
+  UserStorageMutation
 } from 'nr1';
 
 import accountsWithData from './reporting-event-types';
 import findRelatedAccountsWith from './find-related-accounts-with';
-
-import styles from './styles.scss';
 
 const collection = 'nr1-community:AccountDropdown';
 const documentId = 'default-account';
@@ -21,6 +21,7 @@ const documentId = 'default-account';
 export class AccountDropdown extends React.Component {
   static propTypes = {
     onSelect: PropTypes.func,
+    onError: PropTypes.func,
     urlState: PropTypes.object,
     className: PropTypes.string,
     style: PropTypes.object,
@@ -38,7 +39,8 @@ export class AccountDropdown extends React.Component {
     this.state = {
       accounts: null,
       defaultAccount: undefined,
-      selected: null
+      selected: null,
+      loadingErrors: []
     };
 
     this.select = this.select.bind(this);
@@ -109,36 +111,65 @@ export class AccountDropdown extends React.Component {
     }));
   }
 
+  /*
+   * 3 scenarios
+   *   - All Accounts
+   *   - Accounts with reportingEvents
+   *   - Accounts with specific NRQL where clause in a given timeRange
+   */
   async loadAccounts() {
     const { withReportingEventTypes } = this.props;
-    let accounts = [];
 
+    // All Accounts
+    if (!withReportingEventTypes) {
+      await this.loadAccountsWithAccountsQuery();
+    }
+
+    // reportingEvents and/or more specifically filtered by a given where/timeRange
     if (withReportingEventTypes) {
       const { eventTypes, where, timeRange } = withReportingEventTypes;
 
       if (!where && !timeRange) {
-        accounts = await accountsWithData({ eventTypes });
+        await this.loadAccountsWithReportingEventTypes({ eventTypes });
+      } else {
+        await this.loadAccountsWith({ withReportingEventTypes });
       }
+    }
+  }
 
-      accounts = await findRelatedAccountsWith(withReportingEventTypes);
-    } else {
-      // eslint-disable-next-line no-unused-vars
-      const { loading, data, errors } = await AccountsQuery.query();
-
-      if (!data) {
-        // TO DO
+  handleLoadAccountsResponse({ accounts, errors }) {
+    const { onError } = this.props;
+    if (errors) {
+      if (onError) {
+        onError({ errors });
+        this.setState({
+          loadingErrors: errors
+        });
       }
-
-      if (errors) {
-        // TO DO
-      }
-
-      accounts = data;
     }
 
     this.setState({
       accounts
     });
+  }
+
+  async loadAccountsWith({ withReportingEventTypes }) {
+    const { accounts = [], errors } = await findRelatedAccountsWith(
+      withReportingEventTypes
+    );
+    this.handleLoadAccountsResponse({ accounts, errors });
+  }
+
+  async loadAccountsWithReportingEventTypes({ eventTypes }) {
+    const { accounts = [], errors } = await accountsWithData({
+      eventTypes
+    });
+    this.handleLoadAccountsResponse({ accounts, errors });
+  }
+
+  async loadAccountsWithAccountsQuery() {
+    const { accounts = [], errors } = await AccountsQuery.query();
+    this.handleLoadAccountsResponse({ accounts, errors });
   }
 
   async updateDefaultAccount(account) {
@@ -167,10 +198,23 @@ export class AccountDropdown extends React.Component {
     });
   }
 
+  renderErrors() {
+    const { loadingErrors } = this.state;
+
+    if (loadingErrors) {
+      return (
+        <Tooltip text={JSON.stringify(loadingErrors)}>
+          <Icon type={Icon.TYPE.INTERFACE__STATE__CRITICAL} />
+        </Tooltip>
+      );
+    }
+    return null;
+  }
+
   render() {
     // eslint-disable-next-line no-unused-vars
     const { className, style, title } = this.props;
-    const { accounts, defaultAccount, selected } = this.state;
+    const { accounts, defaultAccount, loadingErrors, selected } = this.state;
 
     if (!accounts || defaultAccount === undefined) {
       return <Spinner />;
@@ -181,15 +225,20 @@ export class AccountDropdown extends React.Component {
         {account.name}
       </DropdownItem>
     ));
+    const empty = <DropdownItem>No accounts found...</DropdownItem>;
+    const accountItems = items.length > 0 ? items : empty;
 
     return (
-      <Dropdown
-        title={(selected || {}).name || title}
-        className={styles.big}
-        style={style}
-      >
-        {items}
-      </Dropdown>
+      <>
+        {loadingErrors.length > 0 && this.renderErrors()}
+        <Dropdown
+          title={(selected || {}).name || title}
+          className={className}
+          style={style}
+        >
+          {accountItems}
+        </Dropdown>
+      </>
     );
   }
 }

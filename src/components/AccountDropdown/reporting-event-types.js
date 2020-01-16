@@ -16,13 +16,16 @@ export default async function accountsWithData({ eventTypes }) {
   // console.debug(gql);
 
   const result = await NerdGraphQuery.query({ query: gql });
+  const data = result.data.actor.accounts;
+  const errors = result.errors;
 
-  if (result.errors) {
+  if (errors) {
     // eslint-disable-next-line no-console
     console.warn(
       "Can't get reporting event types because NRDB is grumpy at NerdGraph.",
-      result.errors
+      errors
     );
+
     // eslint-disable-next-line no-console
     console.warn(JSON.stringify(result.errors.slice(0, 5), null, 2));
 
@@ -30,16 +33,17 @@ export default async function accountsWithData({ eventTypes }) {
      * Filter out errors tied to the lack of reportingEventTypes since we filter
      * the results below on the presence of reportingEventTypes
      */
-    const filteredErrors = result.errors.filter(
+    const filteredErrors = errors.filter(
       e => e.message === 'Failed to retrieve event types'
     );
 
+    // Simulate a total failure to retrieve if we have any errors
     if (filteredErrors.length > 1) {
       return [];
     }
   }
 
-  return result.data.actor.accounts.filter(
-    a => a.reportingEventTypes.length > 0
-  );
+  const filteredAccounts = data.filter(a => a.reportingEventTypes.length > 0);
+
+  return { accounts: filteredAccounts, errors };
 }

@@ -26,28 +26,41 @@ export default async function findRelatedAccountsWith({
   };
 
   const timeRangeNrql = timeRangeToNrql(timeWindow);
-  const accounts = await accountsWithData({ eventTypes });
+  const { data: accounts = [], errors } = await accountsWithData({
+    eventTypes
+  });
+
+  if (errors) {
+    return { data: accounts, errors };
+  }
+
   const nrql = `SELECT count(*) FROM ${eventTypes.join(
     ','
   )} WHERE ${where} ${timeRangeNrql}`;
 
   const result = [];
-  await Promise.all(
-    accounts.map(async account => {
-      const results = await NrqlQuery.query({
-        accountId: account.id,
-        query: nrql,
-        formatType: NrqlQuery.FORMAT_TYPE.RAW
-      });
+  try {
+    await Promise.all(
+      accounts.map(async account => {
+        const results = await NrqlQuery.query({
+          accountId: account.id,
+          query: nrql,
+          formatType: NrqlQuery.FORMAT_TYPE.RAW
+        });
 
-      const data = results.data.raw.results;
-      const hitCount = data[0].count;
-      if (hitCount > 0) {
-        const accountWithHitCount = { ...account, hitCount };
-        result.push(accountWithHitCount);
-      }
-    })
-  );
+        const data = results.data.raw.results;
+        const hitCount = data[0].count;
+        if (hitCount > 0) {
+          const accountWithHitCount = { ...account, hitCount };
+          result.push(accountWithHitCount);
+        }
+      })
+    );
 
-  return result.sort((a, b) => b.hitCount - a.hitCount);
+    result.sort((a, b) => b.hitCount - a.hitCount);
+
+    return { accounts: result, errors: [] };
+  } catch (e) {
+    return { accounts: [], errors: [e] };
+  }
 }
