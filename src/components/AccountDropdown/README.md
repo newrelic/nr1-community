@@ -13,7 +13,7 @@ This component provides a common interface for choosing an account with a callba
 1. Install nr1-community
 
   ```bash
-    npm i nr1-community
+    npm i @newrelic/nr1-community
   ```
 
 2. Import styles
@@ -29,7 +29,7 @@ This component provides a common interface for choosing an account with a callba
 ## Usage
 
 ```jsx
-import { AccountDropdown } from 'nr1-community';
+import { AccountDropdown } from '@newrelic/nr1-community';
 
 render () {
   <AccountDropdown></AccountDropdown>
