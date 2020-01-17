@@ -12,7 +12,14 @@ export default class EmptyStateBasicDemo extends React.Component {
     return (
       <Highlight className="javascript">
         {`
-  <EmptyState />
+  <EmptyState
+    heading="No content available"
+    description="This is why there's no content available and what you can do you take the next step. Nulla quis tortor orci. Etiam at risus et justo dignissim."
+    buttonText="Take this action"
+    buttonOnClick={() =>
+      console.log('You clicked the empty state buttun!')
+    }
+  />
               `}
       </Highlight>
     );
@@ -25,7 +32,14 @@ export default class EmptyStateBasicDemo extends React.Component {
         <p>The basic, standard empty state. Nothing fancy here.</p>
         <div className="example-container-content">
           <div className="code-result-block">
-            <EmptyState />
+            <EmptyState
+              heading="No content available"
+              description="This is why there's no content available and what you can do you take the next step. Nulla quis tortor orci. Etiam at risus et justo dignissim."
+              buttonText="Take this action"
+              buttonOnClick={() =>
+                console.log('You clicked the empty state buttun!')
+              }
+            />
           </div>
           {this.renderHighlight()}
         </div>
