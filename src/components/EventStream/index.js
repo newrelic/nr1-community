@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, Stack, StackItem } from 'nr1';
-import Moment from 'react-moment';
+import { format as dateFormat } from 'date-fns';
 import EventCategories from './categories';
 
 import styles from './styles.scss';
@@ -94,10 +94,10 @@ export class EventStream extends React.Component {
         >
           <div className={styles['timeline-item-timestamp']}>
             <span className={styles['timeline-timestamp-date']}>
-              <Moment format="MM/DD/YYYY" date={date} />
+              {dateFormat(date, 'MM/dd/yyyy')}
             </span>
             <span className={styles['timeline-timestamp-time']}>
-              <Moment format="h:mm:ss a" date={date} />
+              {dateFormat(date, 'h:mm:ss a')}
             </span>
           </div>
           <div className={styles['timeline-item-dot']} />

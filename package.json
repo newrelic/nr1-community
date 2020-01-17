@@ -62,11 +62,10 @@
   ],
   "dependencies": {
     "crypto-random-string": "^3.1.0",
+    "date-fns": "^2.9.0",
     "funnel-graph-js": "^1.3.9",
     "lodash.get": "^4.4.2",
-    "nice-color-palettes": "^3.0.0",
-    "moment": "^2.24.0",
-    "react-moment": "^0.9.7"
+    "nice-color-palettes": "^3.0.0"
   },
   "nr1": {
     "uuid": "0b39723a-3172-4199-9c5a-d29df63f89df"
