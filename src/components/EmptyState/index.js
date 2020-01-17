@@ -6,11 +6,23 @@ import styles from './style.scss';
 export class EmptyState extends React.Component {
   static propTypes = {
     heading: PropTypes.string,
-    description: PropTypes.string
+    description: PropTypes.string,
+    buttonOnClick: PropTypes.func
   };
 
   constructor(props) {
     super(props);
+
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
+
+  handleButtonClick() {
+    const { buttonOnClick } = this.props;
+    if (buttonOnClick !== undefined) {
+      return buttonOnClick();
+    } else {
+      console.log('You clicked the empty state button!');
+    }
   }
 
   render() {
@@ -26,7 +38,7 @@ export class EmptyState extends React.Component {
         >
           <StackItem>
             <h4 className={styles['empty-state-header']}>
-              {heading || 'Empty state title'}
+              {heading || 'Lorem ipsum dolor'}
             </h4>
           </StackItem>
           <StackItem
@@ -34,11 +46,11 @@ export class EmptyState extends React.Component {
           >
             <p className={styles['empty-state-description']}>
               {description ||
-                'Replace me with a description of the action the user should take in order populate/produce the content they would expect to see here. For example: "Select an account now in order to <the reason the user is here>. You should probably limit the size of this description a brief paragraph."'}
+                'Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis.'}
             </p>
           </StackItem>
           <StackItem>
-            <Button>Call to action</Button>
+            <Button onClick={this.handleButtonClick}>Call to action</Button>
           </StackItem>
         </Stack>
       </>
