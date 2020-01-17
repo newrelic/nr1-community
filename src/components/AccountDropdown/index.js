@@ -168,7 +168,7 @@ export class AccountDropdown extends React.Component {
   }
 
   async loadAccountsWithAccountsQuery() {
-    const { accounts = [], errors } = await AccountsQuery.query();
+    const { data: accounts = [], errors } = await AccountsQuery.query();
     this.handleLoadAccountsResponse({ accounts, errors });
   }
 
