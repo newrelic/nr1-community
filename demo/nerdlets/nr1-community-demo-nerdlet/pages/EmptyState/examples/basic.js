@@ -29,7 +29,12 @@ export default class EmptyStateBasicDemo extends React.Component {
     return (
       <div className="example-container">
         <h3>Basic</h3>
-        <p>The basic, standard empty state. Nothing fancy here.</p>
+        <p>
+          You can customize the heading, description, and button text as well as
+          provide a callback for when the button is clicked. If you want omit
+          the button or description, just provide an empty string as their value
+          (e.g. <code className="lowlight">button=""</code>).
+        </p>
         <div className="example-container-content">
           <div className="code-result-block">
             <EmptyState
