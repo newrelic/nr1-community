@@ -1,0 +1,29 @@
+{
+    "name": "EmptyState",
+    "props": [
+      {
+        "name": "heading",
+        "type": "text",
+        "default": "Empty state title",
+        "description": "A brief 2-5 word description of why no content is being shown"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "default": "",
+        "description": "A description of the action the user should take in order populate/produce the content they would expect to see here."
+      },
+      {
+        "name": "buttonText",
+        "type": "string",
+        "default": "",
+        "description": "The text used to in the call to action button at the bottom of the empty state"
+      },
+      {
+        "name": "button",
+        "type": "boolean",
+        "default": "true",
+        "description": "A button used to call the user to take the action suggested in the empty state heading and description"
+      }
+    ]
+  }

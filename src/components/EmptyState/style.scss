@@ -1,0 +1,35 @@
+.empty-state {
+    box-sizing: border-box;
+    border: 3px dashed #e3e4e4;
+    border-radius: 10px;
+    padding: 24px;
+    margin: 16px;
+    text-align: center;
+    
+    .empty-state-header {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      color: #464e4e;
+      text-transform: none;
+      margin-bottom: 0;
+    }
+  
+    .primary-content > & {
+      margin: 0;
+    }
+    
+    .no-description {
+      display: none;
+    }
+    
+    p.empty-state-description {
+      font-size: 14px;
+      line-height: 20px;
+      color: #8e9494;
+      padding: 0 1%;
+      margin-top: 10px;
+    }
+  }
+
+  
