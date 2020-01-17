@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NrqlQuery, Spinner, Button, Icon, Stack, StackItem } from 'nr1';
+import { Button, Icon, Stack, StackItem } from 'nr1';
 import Moment from 'react-moment';
 import EventCategories from './categories';
 
@@ -8,10 +8,13 @@ import styles from './styles.scss';
 
 export class EventStream extends React.Component {
   static propTypes = {
-    accountId: PropTypes.number,
-    session: PropTypes.string,
     eventType: PropTypes.string,
-    durationInMinutes: PropTypes.number
+    displayAttributes: PropTypes.bool,
+    events: PropTypes.array
+  };
+
+  static defaultProps = {
+    displayAttributes: true
   };
 
   constructor(props) {
@@ -27,6 +30,7 @@ export class EventStream extends React.Component {
     const timelineItemId = e.currentTarget.getAttribute(
       'data-timeline-item-id'
     );
+    console.debug(timelineItemId);
     if (timelineItemId === this.state.expandedTimelineItem) {
       this.setState(() => ({
         expandedTimelineItem: null
@@ -39,38 +43,54 @@ export class EventStream extends React.Component {
   }
 
   _buildStreamTimeline(event) {
+    const { displayAttributes } = this.props;
+
+    if (!displayAttributes) {
+      return null;
+    }
+
     let timeline = Object.keys(event);
     timeline = timeline.sort();
-    const data = [];
-    // console.log(timeline)
-    timeline.forEach((attr, i) => {
+
+    return timeline.map((attr, i) => {
       if (event[attr]) {
-        data.push(
+        return (
           <li key={i} className={styles['timeline-item-contents-item']}>
             <span className={styles.key}>{attr}</span>
             <span className={styles.value}>{event[attr]}</span>
           </li>
         );
       }
+      return null;
     });
-    return data;
   }
 
-  _buildStream(pageAction, data) {
-    const sessionEvents = [];
-    data[0].data.forEach((event, i) => {
-      const sessionCategory = EventCategories.setCategory(pageAction, event);
+  _buildStream({ eventType, events }) {
+    const { expandedTimelineItem } = this.state;
+    return events.map((event, index) => {
+      const sessionCategory = EventCategories.setCategory(eventType, event);
       const date = new Date(event.timestamp);
       const open =
-        this.state.expandedTimelineItem === i ? 'timeline-item-expanded' : '';
+        parseInt(expandedTimelineItem, 10) === index
+          ? styles['timeline-item-expanded']
+          : '';
       const streamTimeline = this._buildStreamTimeline(event);
 
-      sessionEvents.push(
+      const getWrapperClasses = function() {
+        const classes = [styles['timeline-item'], open];
+
+        if (sessionCategory.class) {
+          classes.push(sessionCategory.class);
+        }
+        return classes.join(' ', classes);
+      };
+
+      return (
         <div
-          key={i}
-          data-timeline-item-id={i}
+          key={index}
+          data-timeline-item-id={index}
           onClick={this.handleTimelineItemClick}
-          className={`timeline-item ${sessionCategory.class} ${open}`}
+          className={getWrapperClasses(sessionCategory.class)}
         >
           <div className={styles['timeline-item-timestamp']}>
             <span className={styles['timeline-timestamp-date']}>
@@ -111,28 +131,20 @@ export class EventStream extends React.Component {
         </div>
       );
     });
-    return sessionEvents;
   }
 
   render() {
-    const { accountId, session, eventType, durationInMinutes } = this.props;
-    const query = `SELECT * from ${eventType} WHERE session = '${session}' ORDER BY timestamp ASC LIMIT 1000 since ${durationInMinutes} minutes ago`;
+    const { eventType, events } = this.props;
+    const hasEvents = events.length > 0;
+    const stream = this._buildStream({ eventType, events });
 
     return (
       <div className={styles['eventStreamSectionBase sessionSectionBase']}>
-        {session ? (
-          <NrqlQuery accountId={accountId} query={query}>
-            {({ data, error, loading }) => {
-              if (loading) return <Spinner />;
-              if (error) return 'ERROR';
+        {hasEvents && (
+          <div className={styles['timeline-container']}>{stream}</div>
+        )}
 
-              const stream = this._buildStream(eventType, data);
-              return (
-                <div className={styles['timeline-container']}>{stream}</div>
-              );
-            }}
-          </NrqlQuery>
-        ) : (
+        {!hasEvents && (
           <Stack
             fullWidth
             fullHeight
@@ -142,15 +154,7 @@ export class EventStream extends React.Component {
             verticalType={Stack.VERTICAL_TYPE.CENTER}
           >
             <StackItem>
-              <p className={styles.emptyStateHeader}>
-                Select a session to review a timeline
-              </p>
-            </StackItem>
-            <StackItem>
-              <p className={styles.emptyStateDescription}>
-                When you select a session (in the column on the left) you will
-                be able to review a visual timeline for it here.
-              </p>
+              <p className={styles.emptyStateDescription}>No events provided</p>
             </StackItem>
           </Stack>
         )}

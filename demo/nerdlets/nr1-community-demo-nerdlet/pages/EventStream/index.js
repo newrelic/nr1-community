@@ -2,52 +2,52 @@
 import React from 'react';
 
 import { NrqlQuery } from 'nr1';
-import { EventStream } from '@/../dist';
+import { AccountDropdown, EventStream } from '@/../dist';
 
 export default class EventStreamDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      accountId: 1606862,
-      eventType: 'PageAction',
-      sessions: [],
-      sessionGuid: null
+      selectedAccount: null
     };
+    this.onAccountSelectHandler = this.onAccountSelectHandler.bind(this);
   }
 
   async componentDidMount() {
-    await this.fetchSession();
+    //
   }
 
-  async fetchSession() {
-    const { accountId } = this.state;
-
-    const nrql =
-      'SELECT count(actionName) FROM PageAction SINCE 60 MINUTES AGO FACET session limit 25';
-
-    const results = await NrqlQuery.query({
-      accountId: accountId,
-      query: nrql,
-      formatType: NrqlQuery.FORMAT_TYPE.RAW
-    });
-
-    const facets = results.data.raw.facets;
-    this.setState({
-      sessions: facets,
-      sessionGuid: facets[0].name
-    });
+  onAccountSelectHandler(account) {
+    this.setState({ selectedAccount: account });
   }
 
   render() {
-    const { accountId, eventType, sessions, sessionGuid } = this.state;
-    console.debug(sessions);
+    const { selectedAccount } = this.state;
+    const nrql = 'SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 25';
+
     return (
-      <EventStream
-        accountId={accountId}
-        eventType={eventType}
-        session={sessionGuid}
-        durationInMinutes={60}
-      />
+      <>
+        <AccountDropdown
+          title={
+            selectedAccount !== null
+              ? selectedAccount.name
+              : 'Select an Account'
+          }
+          onSelect={this.onAccountSelectHandler}
+        />
+
+        {selectedAccount && (
+          <NrqlQuery accountId={selectedAccount.id} query={nrql}>
+            {({ data }) => {
+              if (data) {
+                const events = data[0].data;
+                return <EventStream events={events} eventType="PageAction" />;
+              }
+              return null;
+            }}
+          </NrqlQuery>
+        )}
+      </>
     );
   }
 }
