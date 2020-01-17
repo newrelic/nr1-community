@@ -93,7 +93,7 @@
   overflow: scroll;
   align-items: stretch;
 
-  p:not(.lead-paragraph) {
+  p:not(.lead-paragraph):not([class*='empty-state-description']) {
     font-size: 14px;
     color: #464e4e;
     line-height: 21px;
@@ -106,44 +106,6 @@
     color: #464e4e;
     line-height: 21px;
   }
-}
-
-.empty-state {
-  height: 100%;
-  box-sizing: border-box;
-  border: 3px dashed #e3e4e4;
-  border-radius: 10px;
-  padding: 24px;
-  margin: 16px;
-  text-align: center;
-
-  .empty-state-header {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 32px;
-    color: #464e4e;
-    text-transform: none;
-    margin-bottom: 10px;
-  }
-
-  .primary-content > & {
-    margin: 0;
-  }
-}
-
-p.empty-state-description {
-  font-size: 14px;
-  line-height: 20px;
-  color: #8e9494;
-  padding: 0 25%;
-}
-
-ol.empty-state-description {
-  font-size: 14px;
-  line-height: 20px;
-  color: #8e9494;
-  padding: 0 25%;
-  text-align: left;
 }
 
 code {

@@ -7,6 +7,7 @@ const componentList = [
   { name: 'AccountDropdown', category: 'Components' },
   { name: 'EventStream', category: 'Components' },
   { name: 'Funnel', category: 'Components' },
+  { name: 'EmptyState', category: 'Components' },
   { name: 'timeRangeToNrql', category: 'Utilities' }
 ];
 
@@ -92,6 +93,8 @@ export default class NerdpackLayoutStandard extends React.Component {
           </React.Fragment>
         );
       }
+
+      return undefined;
     });
 
     // if the search returned results, return them. If not return a

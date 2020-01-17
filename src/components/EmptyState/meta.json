@@ -1,0 +1,29 @@
+{
+    "name": "EmptyState",
+    "props": [
+      {
+        "name": "heading",
+        "type": "text",
+        "default": "Lorem ipsum dolor",
+        "description": "A brief 2-5 word description of why no content is being shown"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "default": "Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis.",
+        "description": "A description of the action the user should take in order populate/produce the content they would expect to see here."
+      },
+      {
+        "name": "buttonText",
+        "type": "string",
+        "default": "",
+        "description": "The text used to in the call to action button at the bottom of the empty state"
+      },
+      {
+        "name": "buttonOnClick",
+        "type": "function",
+        "default": "`console.log('You clicked the empty state button!')`",
+        "description": "The funtion used to define an action when the call to action button is clicked."
+      }
+    ]
+  }

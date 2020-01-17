@@ -119,6 +119,8 @@ Our goal here is to aggregate helpful information from your component, like the 
 1. Your component's folder should contain the following:
     1. An `index.js`
     1. An `/examples` directory
+1. Export your component's page in `<location-of-repo>/demo/nerdlets/nr1-community-demo-nerdlet/pages/index.js` like: `export { default as FooComponent } from './FooComponent';`
+1. Add your component to the "page list" in `<location-of-repo>/demo/nerdlets/nr1-community-demo-nerdlet/index.js`
 
 > Note: You'll notice us referencing the local components with the `@`, this isn't new JS magic. We've extended the typical Nerdpack's webpack config with an alias `@` for the "src" folder of the library to make imports a little less painful.
 
