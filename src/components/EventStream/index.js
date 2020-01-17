@@ -9,12 +9,12 @@ import styles from './styles.scss';
 export class EventStream extends React.Component {
   static propTypes = {
     eventType: PropTypes.string,
-    displayAttributes: PropTypes.bool,
     events: PropTypes.array
+    showAttributes: PropTypes.bool,
   };
 
   static defaultProps = {
-    displayAttributes: true
+    showAttributes: true,
   };
 
   constructor(props) {
@@ -43,9 +43,9 @@ export class EventStream extends React.Component {
   }
 
   _buildStreamTimeline(event) {
-    const { displayAttributes } = this.props;
+    const { showAttributes } = this.props;
 
-    if (!displayAttributes) {
+    if (!showAttributes) {
       return null;
     }
 
