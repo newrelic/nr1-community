@@ -50,7 +50,7 @@ export default class EventCategories {
     color: '#22222'
   };
 
-  static setCategory(eventType, event) {
+  static setCategory({ eventType, event }) {
     if (eventType === 'PageAction') {
       switch (event.actionName) {
         case 'CONTENT_REQUEST':

@@ -9,12 +9,14 @@ import styles from './styles.scss';
 export class EventStream extends React.Component {
   static propTypes = {
     eventType: PropTypes.string,
-    events: PropTypes.array
     showAttributes: PropTypes.bool,
+    events: PropTypes.array,
+    iconType: PropTypes.func
   };
 
   static defaultProps = {
     showAttributes: true,
+    iconType: EventCategories.setCategory
   };
 
   constructor(props) {
@@ -30,7 +32,6 @@ export class EventStream extends React.Component {
     const timelineItemId = e.currentTarget.getAttribute(
       'data-timeline-item-id'
     );
-    console.debug(timelineItemId);
     if (timelineItemId === this.state.expandedTimelineItem) {
       this.setState(() => ({
         expandedTimelineItem: null
@@ -66,9 +67,11 @@ export class EventStream extends React.Component {
   }
 
   _buildStream({ eventType, events }) {
+    const { iconType, showAttributes } = this.props;
     const { expandedTimelineItem } = this.state;
+
     return events.map((event, index) => {
-      const sessionCategory = EventCategories.setCategory(eventType, event);
+      const sessionCategory = iconType({ eventType, event });
       const date = new Date(event.timestamp);
       const open =
         parseInt(expandedTimelineItem, 10) === index
@@ -113,20 +116,24 @@ export class EventStream extends React.Component {
               <div className={styles['timeline-item-title']}>
                 {sessionCategory.label}
               </div>
-              <Button
-                className={styles['timeline-item-dropdown-arrow']}
-                type={Button.TYPE.PLAIN_NEUTRAL}
-                iconType={
-                  Button.ICON_TYPE
-                    .INTERFACE__CHEVRON__CHEVRON_BOTTOM__V_ALTERNATE
-                }
-              />
+              {showAttributes && (
+                <Button
+                  className={styles['timeline-item-dropdown-arrow']}
+                  type={Button.TYPE.PLAIN_NEUTRAL}
+                  iconType={
+                    Button.ICON_TYPE
+                      .INTERFACE__CHEVRON__CHEVRON_BOTTOM__V_ALTERNATE
+                  }
+                />
+              )}
             </div>
-            <div className={styles['timeline-item-contents-container']}>
-              <ul className={styles['timeline-item-contents']}>
-                {streamTimeline}
-              </ul>
-            </div>
+            {showAttributes && (
+              <div className={styles['timeline-item-contents-container']}>
+                <ul className={styles['timeline-item-contents']}>
+                  {streamTimeline}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       );
