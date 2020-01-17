@@ -20,10 +20,12 @@ const documentId = 'default-account';
 
 export class AccountDropdown extends React.Component {
   static propTypes = {
+    afterAccountsLoaded: PropTypes.func,
+    beforeAccountsLoaded: PropTypes.func,
+    className: PropTypes.string,
     onSelect: PropTypes.func,
     onError: PropTypes.func,
     urlState: PropTypes.object,
-    className: PropTypes.string,
     style: PropTypes.object,
     title: PropTypes.string,
     withReportingEventTypes: PropTypes.object
@@ -138,7 +140,12 @@ export class AccountDropdown extends React.Component {
   }
 
   handleLoadAccountsResponse({ accounts, errors }) {
-    const { onError } = this.props;
+    const {
+      onError = false,
+      beforeAccountsLoaded = false,
+      afterAccountsLoaded = false
+    } = this.props;
+
     if (errors) {
       if (onError) {
         onError({ errors });
@@ -148,9 +155,18 @@ export class AccountDropdown extends React.Component {
       }
     }
 
+    // Allows for additional custom filtering after we've fetched data
+    if (beforeAccountsLoaded) {
+      accounts = beforeAccountsLoaded(accounts);
+    }
+
     this.setState({
       accounts
     });
+
+    if (afterAccountsLoaded) {
+      afterAccountsLoaded(accounts);
+    }
   }
 
   async loadAccountsWith({ withReportingEventTypes }) {
