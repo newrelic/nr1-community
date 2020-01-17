@@ -20,12 +20,6 @@
         "description": "The text used to in the call to action button at the bottom of the empty state"
       },
       {
-        "name": "button",
-        "type": "boolean",
-        "default": "true",
-        "description": "A button used to call the user to take the action suggested in the empty state heading and description"
-      },
-      {
         "name": "buttonOnClick",
         "type": "function",
         "default": "`console.log('You clicked the empty state button!')`",
