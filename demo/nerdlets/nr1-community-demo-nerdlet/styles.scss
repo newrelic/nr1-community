@@ -49,11 +49,27 @@
   border-top: 1px solid #e3e4e4;
 }
 
-.sidebar-container {
+div[class*='Stack'].sidebar-container {
   height: 100%;
   overflow: scroll;
   background-color: #f7f7f8;
-  border-right: 1px solid #e3e4e4;
+  box-shadow: inset -1px 0px 0 0px #e3e4e4;
+  align-items: stretch;
+
+  .footer-info-container {
+    height: 52px;
+    border-top: 1px solid #e3e4e4;
+  }
+
+  .footer-info {
+    box-sizing: border-box;
+    align-items: center;
+    padding: 16px;
+
+    small {
+      color: #8e9494;
+    }
+  }
 }
 
 .primary-content-container {
@@ -341,4 +357,10 @@ td.prop-name-column {
   font-size: 16px;
   /*! font-family: monospace; */
   font-weight: 600;
+}
+
+[class*='Button'].github-button {
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: 9px;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid, GridItem, TextField } from 'nr1';
+import { Grid, GridItem, TextField, Button, Stack, StackItem } from 'nr1';
 import * as PAGES from './pages';
+import GitHubIcon from '../../assets/icon-github.svg';
 
 // TO DO - glob from /components and /utilities
 const componentList = [
@@ -146,18 +147,43 @@ export default class NerdpackLayoutStandard extends React.Component {
           className="primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
-          <GridItem className="sidebar-container" columnSpan={3}>
-            <div className="search-container">
-              <TextField
-                placeholder="Search the docs..."
-                onChange={this.searchDocs}
-              />
-            </div>
-            <div className="primary-nav-container">
-              {currentSearchQuery === ''
-                ? this.renderByCategories(currentPage)
-                : this.renderSearchResults(currentPage)}
-            </div>
+          <GridItem columnSpan={3}>
+            <Stack
+              fullWidth
+              fullHeight
+              directionType={Stack.DIRECTION_TYPE.VERTICAL}
+              className="sidebar-container"
+            >
+              <StackItem className="search-container">
+                <TextField
+                  placeholder="Search the docs..."
+                  onChange={this.searchDocs}
+                />
+              </StackItem>
+              <StackItem grow className="primary-nav-container">
+                {currentSearchQuery === ''
+                  ? this.renderByCategories(currentPage)
+                  : this.renderSearchResults(currentPage)}
+              </StackItem>
+              <StackItem className="footer-info-container">
+                <Stack fullWidth fullHeight className="footer-info">
+                  <StackItem grow>
+                    <small>Notice a bug or have an idea?</small>
+                  </StackItem>
+                  <StackItem>
+                    <Button
+                      sizeType={Button.SIZE_TYPE.SMALL}
+                      type={Button.TYPE.PRIMARY}
+                      style={{ backgroundImage: `url(${GitHubIcon})` }}
+                      to="https://github.com/newrelic/nr1-community/issues/new/choose"
+                      className="github-button"
+                    >
+                      Submit an Issue
+                    </Button>
+                  </StackItem>
+                </Stack>
+              </StackItem>
+            </Stack>
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={9}>
             <main className="primary-content full-height">
