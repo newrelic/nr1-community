@@ -60,6 +60,7 @@ export default class AccountDropdownKitchenSinkDemo extends React.Component {
                   ? this.state.selectedAccount.name
                   : 'Select an Account'
               }
+              label="Custom label"
               onSelect={this.onSelectHandler}
               withReportingEventTypes={{
                 eventTypes: ['PageAction', 'PageView'],

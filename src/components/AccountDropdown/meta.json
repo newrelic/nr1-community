@@ -38,6 +38,12 @@
       "description": ""
     },
     {
+      "name": "label",
+      "type": "string",
+      "default": "\"Account\"",
+      "description": "The text that appears in the label element above the dropdown"
+    },
+    {
       "name": "withReportingEventTypes",
       "type": "object",
       "default": "",

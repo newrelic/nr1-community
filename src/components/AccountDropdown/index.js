@@ -28,11 +28,13 @@ export class AccountDropdown extends React.Component {
     urlState: PropTypes.object,
     style: PropTypes.object,
     title: PropTypes.string,
-    withReportingEventTypes: PropTypes.object
+    withReportingEventTypes: PropTypes.object,
+    label: PropTypes.string
   };
 
   static defaultProps = {
-    title: 'Select account...'
+    title: 'Select account...',
+    label: 'Account'
   };
 
   constructor(props) {
@@ -229,7 +231,7 @@ export class AccountDropdown extends React.Component {
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { className, style, title } = this.props;
+    const { className, style, title, label } = this.props;
     const { accounts, defaultAccount, loadingErrors, selected } = this.state;
 
     if (!accounts || defaultAccount === undefined) {
@@ -251,6 +253,7 @@ export class AccountDropdown extends React.Component {
           title={(selected || {}).name || title}
           className={className}
           style={style}
+          label={label}
         >
           {accountItems}
         </Dropdown>
