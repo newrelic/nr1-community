@@ -27,7 +27,8 @@ export default class AccountDropdownBasicDemo extends React.Component {
         : 'Select an Account'
     }
     onSelect={this.onSelectHandler}
-  </AccountDropdown>
+  />
+
               `}
       </Highlight>
     );
