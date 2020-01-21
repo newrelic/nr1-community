@@ -19,7 +19,7 @@ This component provides a common interface for choosing an account with a callba
 2. Add the styles for the component to the top of your stylesheet (probably named `styles.scss`):
 
   ```scss
-  @import '~nr1-community/dist/index.css';
+  @import '~@newrelic/nr1-community/dist/index.css';
   ```
 
 ## Usage

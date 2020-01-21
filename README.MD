@@ -51,7 +51,7 @@ import { AccountDropdown, timeRangeToNrql } from 'nr1-community';
 Import styles into your styles.scss (or similar):
 
 ```sass
-@import '~nr1-community/dist/index.css';
+@import '~@newrelic/nr1-community/dist/index.css';
 ```
 
 ## Components

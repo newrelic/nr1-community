@@ -21,7 +21,7 @@ This component provides a common interface for choosing an account with a callba
   Add:
 
   ```scss
-  @import '~nr1-community/dist/index.css';
+  @import '~@newrelic/nr1-community/dist/index.css';
   ```
 
   to your `styles.scss`
