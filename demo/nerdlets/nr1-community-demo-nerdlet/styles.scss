@@ -74,7 +74,7 @@ div[class*='Stack'].sidebar-container {
 
 .primary-content-container {
   overflow: scroll;
-  padding: 18px 32px;
+  padding: 0;
   background-color: #fff;
   box-shadow: 
     0px 0.436717px 10.6816px rgba(75, 125, 100, 0.075), 
@@ -105,7 +105,6 @@ div[class*='Stack'].sidebar-container {
 }
 
 .primary-content {
-  padding-bottom: 32px;
   box-sizing: border-box;
   overflow: scroll;
   align-items: stretch;
@@ -364,4 +363,74 @@ td.prop-name-column {
   padding-left: 30px;
   background-repeat: no-repeat;
   background-position: 9px;
+}
+
+.sceondary-nav-container {
+  position: absolute;
+}
+
+ul.secondary-nav {
+  padding: 0 0 0 24px;
+}
+
+.secondary-nav-item {
+  font-size: 14px;
+  line-height: 21px;
+  list-style-type: none;
+  
+  a {
+    color: rgba(#464E4E, .7);
+    
+    &:hover {
+      color: #007e8a;
+      cursor: pointer;
+    }
+  }
+  
+
+  &.active > a {
+    color: #007e8a;
+    font-weight: 600;
+  }
+}
+
+.primary-content ul.secondary-nav-level-2 {
+  padding: 0 0 0 16px;
+  list-style-type: none;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.secondary-nav-item {
+  padding: 2px 0;
+}
+
+.secondary-nav-level-2-item {
+  padding: 2px 0;
+  line-height: 21px;
+}
+
+
+.primary-content ul.secondary-nav-level-2 {
+  padding: 2px 0 0 16px;
+}
+
+.primary-grid-item {
+  padding: 8px 32px 32px;
+}
+
+.secondary-grid-item {
+  border-left: 1px dotted #e3e4e4;
+}
+
+.secondary-nav-container-header {
+  background-color:#fafbfb;
+  padding:12px 20px;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+  color:#8e9494; 
+  font-size: 11px;
+  margin-bottom: 18px;
 }
