@@ -1,10 +1,10 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 
-import { Icon, NrqlQuery } from 'nr1';
+import { NrqlQuery } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
 
-export default class EventStreamAdvancedDemo extends React.Component {
+export default class EventStreamKitchenSinkDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,24 +17,12 @@ export default class EventStreamAdvancedDemo extends React.Component {
     this.setState({ selectedAccount: account });
   }
 
-  beforeAccountsLoaded(accounts) {
-    this.setState({ selectedAccount: accounts[0] });
-    return accounts;
-  }
-
-  // eslint-disable-next-line no-unused-vars
   afterAccountsLoaded(accounts) {
-    //
+    this.setState({ selectedAccount: accounts[0] });
   }
 
   renderHighlight() {
-    return (
-      <Highlight className="javascript">
-        {`
-  
-        `}
-      </Highlight>
-    );
+    return <Highlight className="javascript" />;
   }
 
   render() {
@@ -56,12 +44,27 @@ export default class EventStreamAdvancedDemo extends React.Component {
               : 'Select an Account'
           }
           onSelect={this.onAccountSelectHandler}
-          beforeAccountsLoaded={accounts => this.beforeAccountsLoaded(accounts)}
           afterAccountsLoaded={accounts => this.afterAccountsLoaded(accounts)}
         />
 
         <div className="example-container-content">
-          <div className="code-result-block">{/*  */}</div>
+          <div className="code-result-block">
+            {selectedAccount && (
+              <NrqlQuery
+                accountId={selectedAccount.id}
+                query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
+              >
+                {({ data }) => {
+                  if (data) {
+                    const events = data[0].data; // Get data from NRQL query
+
+                    return <EventStream data={events} />;
+                  }
+                  return null;
+                }}
+              </NrqlQuery>
+            )}
+          </div>
           {this.renderHighlight()}
         </div>
       </div>

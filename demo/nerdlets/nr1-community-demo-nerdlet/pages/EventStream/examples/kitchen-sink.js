@@ -4,6 +4,28 @@ import Highlight from 'react-highlight';
 import { Icon, NrqlQuery } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
 
+/*
+ TO DO's:
+  - Sample custom eventContent function
+    eventContent={({ event }) => {
+      let timeline = Object.keys(event);
+      timeline = timeline.sort();
+
+      return timeline.map((attr, i) => {
+        if (event[attr]) {
+          return (
+            <li key={i}>
+              <span>{attr}</span>
+              <span>{event[attr]}</span>
+            </li>
+          );
+        }
+        return null;
+      });
+    }}
+  - 
+*/
+
 export default class EventStreamKitchenSinkDemo extends React.Component {
   constructor(props) {
     super(props);
@@ -17,60 +39,45 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
     this.setState({ selectedAccount: account });
   }
 
-  beforeAccountsLoaded(accounts) {
-    this.setState({ selectedAccount: accounts[0] });
-    return accounts;
-  }
-
-  // eslint-disable-next-line no-unused-vars
   afterAccountsLoaded(accounts) {
-    //
+    this.setState({ selectedAccount: accounts[0] });
   }
 
   renderHighlight() {
     return (
       <Highlight className="javascript">
         {`<NrqlQuery
-      accountId={selectedAccount.id}
-      query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 25"
-    >
-      {({ data }) => {
-        if (data) {
-          const events = data[0].data; // Get data from NRQL query
-          const iconTypeHandler = function({ eventType, event }) {
-            const defaultOptions = {
-              class: 'timeline-item-type-content',
-              icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
-              label: 'Content',
-              color: '#9C5400'
-            };
+            accountId={selectedAccount.id}
+            query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
+          >
+            {({ data }) => {
+              if (data) {
+                const events = data[0].data; // Get data from NRQL query
 
-            if (
-              eventType === 'PageAction' &&
-              event.actionName.indexOf('CONTENT') > 0
-            ) {
-              return {
-                class: 'timeline-item-type-content',
-                icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
-                label: 'Content',
-                color: '#9C5400'
-              };
-            }
+                return (
+                  <EventStream
+                    data={events}
+                    timestampField="timestamp"
+                    dateFormat="MM/dd/yyyy"
+                    timestampFormat="h:mm:ss a"
+                    labelField="actionName"
+                    labelFormatter={field => field.toUpperCase()}
+                    iconType={data => {
+                      // Use data to determine color/background etc.
+                      console.log(data);
 
-            return defaultOptions;
-          };
-
-          return (
-            <EventStream
-              eventType="PageAction"
-              events={events}
-              iconType={data => iconTypeHandler(data)}
-            />
-          );
-        }
-        return null;
-      }}
-    </NrqlQuery>`}
+                      return {
+                        icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
+                        color: '#9C5400'
+                        // backgroundColor: '' // Default to white
+                      };
+                    }}
+                  />
+                );
+              }
+              return null;
+            }}
+          </NrqlQuery>`}
       </Highlight>
     );
   }
@@ -94,7 +101,6 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
               : 'Select an Account'
           }
           onSelect={this.onAccountSelectHandler}
-          beforeAccountsLoaded={accounts => this.beforeAccountsLoaded(accounts)}
           afterAccountsLoaded={accounts => this.afterAccountsLoaded(accounts)}
         />
 
@@ -108,34 +114,25 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
                 {({ data }) => {
                   if (data) {
                     const events = data[0].data; // Get data from NRQL query
-                    const iconTypeHandler = function({ eventType, event }) {
-                      const defaultOptions = {
-                        class: 'timeline-item-type-content',
-                        icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
-                        label: 'Content',
-                        color: '#9C5400'
-                      };
-
-                      if (
-                        eventType === 'PageAction' &&
-                        event.actionName.indexOf('CONTENT') > 0
-                      ) {
-                        return {
-                          class: 'timeline-item-type-content',
-                          icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
-                          label: 'Content',
-                          color: '#9C5400'
-                        };
-                      }
-
-                      return defaultOptions;
-                    };
 
                     return (
                       <EventStream
-                        eventType="PageAction"
-                        events={events}
-                        iconType={data => iconTypeHandler(data)}
+                        data={events}
+                        timestampField="timestamp"
+                        dateFormat="MM/dd/yyyy"
+                        timestampFormat="h:mm:ss a"
+                        labelField="actionName"
+                        labelFormatter={field => field.toUpperCase()}
+                        iconType={data => {
+                          // Use data to determine color/background etc.
+                          console.log(data);
+
+                          return {
+                            icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
+                            color: '#9C5400'
+                            // backgroundColor: '' // Default to white
+                          };
+                        }}
                       />
                     );
                   }

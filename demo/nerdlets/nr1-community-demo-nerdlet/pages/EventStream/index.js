@@ -71,7 +71,7 @@ export default class EventStreamDemo extends React.Component {
 
           {/* Code Samples */}
           <BasicExample />
-          <AdvancedExample />
+          {/* <AdvancedExample /> */}
           <KitchenSinkExample />
 
           {/* Markdown from /components/<component-name>/README.md */}
