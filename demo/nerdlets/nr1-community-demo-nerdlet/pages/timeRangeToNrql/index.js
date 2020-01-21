@@ -41,7 +41,7 @@ export default class EmptyStateDemo extends React.Component {
   render() {
     return (
       <Grid>
-        <GridItem columnSpan={9}>
+        <GridItem columnSpan={9} collapseGapAfter className="primary-grid-item">
           <h1>{page.title}</h1>
           <p className="lead-paragraph">{page.subtitle}</p>
 
