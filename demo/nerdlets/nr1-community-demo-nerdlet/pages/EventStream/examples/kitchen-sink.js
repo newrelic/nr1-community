@@ -1,30 +1,8 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 
-import { Icon, NrqlQuery } from 'nr1';
+import { Icon, NrqlQuery, Tabs, TabsItem } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
-
-/*
- TO DO's:
-  - Sample custom eventContent function
-    eventContent={({ event }) => {
-      let timeline = Object.keys(event);
-      timeline = timeline.sort();
-
-      return timeline.map((attr, i) => {
-        if (event[attr]) {
-          return (
-            <li key={i}>
-              <span>{attr}</span>
-              <span>{event[attr]}</span>
-            </li>
-          );
-        }
-        return null;
-      });
-    }}
-  - 
-*/
 
 export default class EventStreamKitchenSinkDemo extends React.Component {
   constructor(props) {
@@ -43,42 +21,120 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
     this.setState({ selectedAccount: accounts[0] });
   }
 
+  renderStylesHighlight() {
+    return (
+      <Highlight className="sass">
+        {`.timeline-item-contents {
+  height: 300px;
+  overflow: scroll;
+}
+
+.timeline-item-contents-item {
+  min-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #edeeee;
+  padding: 0 8px;
+
+  .key {
+    margin-right: 8px;
+    font-weight: 600;
+    color: #464e4e;
+  }
+
+  .value {
+    text-align: right;
+    color: #464e4e;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    max-width: 80%;
+    padding: 8px 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: #f4f5f5;
+    cursor: default;
+  }
+}    
+`}
+      </Highlight>
+    );
+  }
+
   renderHighlight() {
     return (
-      <Highlight className="javascript">
-        {`<NrqlQuery
-            accountId={selectedAccount.id}
-            query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
-          >
-            {({ data }) => {
-              if (data) {
-                const events = data[0].data; // Get data from NRQL query
+      <>
+        {/* <Tabs defaultValue="code">
+          <TabsItem value="code" label="Code"> */}
+        <Highlight className="javascript">
+          {`<NrqlQuery
+  accountId={selectedAccount.id}
+  query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
+>
+  {({ data }) => {
+    if (data) {
+      const events = data[0].data; // Get data from NRQL query
 
-                return (
-                  <EventStream
-                    data={events}
-                    timestampField="timestamp"
-                    dateFormat="MM/dd/yyyy"
-                    timestampFormat="h:mm:ss a"
-                    labelField="actionName"
-                    labelFormatter={field => field.toUpperCase()}
-                    iconType={data => {
-                      // Use data to determine color/background etc.
-                      console.log(data);
+      return (
+        <EventStream
+          data={events}
+          timestampField="timestamp"
+          dateFormat="MM/dd/yyyy"
+          timestampFormat="h:mm:ss a"
+          labelField="actionName"
+          labelFormatter={field => field.toUpperCase()}
+          iconType={data => {
+            // Use data to determine icon color/type/background etc.
+            console.log(data);
 
-                      return {
-                        icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
-                        color: '#9C5400'
-                        // backgroundColor: '' // Default to white
-                      };
-                    }}
-                  />
-                );
-              }
-              return null;
-            }}
-          </NrqlQuery>`}
-      </Highlight>
+            return {
+              icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
+              color: '#9C5400'
+            };
+          }}
+          eventContent={({ event }) => {
+            let timeline = Object.keys(event);
+            timeline = timeline.sort();
+
+            return (
+              <ul className="timeline-item-contents">
+                {timeline.map((attr, i) => {
+                  if (event[attr]) {
+                    return (
+                      <li
+                        key={i}
+                        className="timeline-item-contents-item"
+                      >
+                        <span className="key">{attr}</span>
+                        <span className="value">
+                          {event[attr]}
+                        </span>
+                      </li>
+                    );
+                  }
+                  return null;
+                })}
+              </ul>
+            );
+          }}
+        />
+      );
+    }
+    return null;
+  }}
+</NrqlQuery>`}
+        </Highlight>
+        {/* </TabsItem>
+        <TabsItem value="styles" label="Styles"> */}
+
+        {/* </TabsItem>
+        </Tabs> */}
+      </>
     );
   }
 
@@ -105,43 +161,74 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
         />
 
         <div className="example-container-content">
-          <div className="code-result-block">
-            {selectedAccount && (
-              <NrqlQuery
-                accountId={selectedAccount.id}
-                query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
-              >
-                {({ data }) => {
-                  if (data) {
-                    const events = data[0].data; // Get data from NRQL query
+          <Tabs defaultValue="code">
+            <TabsItem value="code" label="Code">
+              <div className="code-result-block">
+                {selectedAccount && (
+                  <NrqlQuery
+                    accountId={selectedAccount.id}
+                    query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
+                  >
+                    {({ data }) => {
+                      if (data) {
+                        const events = data[0].data; // Get data from NRQL query
 
-                    return (
-                      <EventStream
-                        data={events}
-                        timestampField="timestamp"
-                        dateFormat="MM/dd/yyyy"
-                        timestampFormat="h:mm:ss a"
-                        labelField="actionName"
-                        labelFormatter={field => field.toUpperCase()}
-                        iconType={data => {
-                          // Use data to determine color/background etc.
-                          console.log(data);
+                        return (
+                          <EventStream
+                            data={events}
+                            timestampField="timestamp"
+                            dateFormat="MM/dd/yyyy"
+                            timestampFormat="h:mm:ss a"
+                            labelField="actionName"
+                            labelFormatter={field => field.toUpperCase()}
+                            iconType={data => {
+                              // Use data to determine icon color/type/background etc.
+                              console.log(data);
 
-                          return {
-                            icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
-                            color: '#9C5400'
-                            // backgroundColor: '' // Default to white
-                          };
-                        }}
-                      />
-                    );
-                  }
-                  return null;
-                }}
-              </NrqlQuery>
-            )}
-          </div>
-          {this.renderHighlight()}
+                              return {
+                                icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
+                                color: '#9C5400'
+                              };
+                            }}
+                            eventContent={({ event }) => {
+                              let timeline = Object.keys(event);
+                              timeline = timeline.sort();
+
+                              return (
+                                <ul className="timeline-item-contents">
+                                  {timeline.map((attr, i) => {
+                                    if (event[attr]) {
+                                      return (
+                                        <li
+                                          key={i}
+                                          className="timeline-item-contents-item"
+                                        >
+                                          <span className="key">{attr}</span>
+                                          <span className="value">
+                                            {event[attr]}
+                                          </span>
+                                        </li>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </ul>
+                              );
+                            }}
+                          />
+                        );
+                      }
+                      return null;
+                    }}
+                  </NrqlQuery>
+                )}
+              </div>
+              {this.renderHighlight()}
+            </TabsItem>
+            <TabsItem value="sass" label="Styles">
+              {this.renderStylesHighlight()}
+            </TabsItem>
+          </Tabs>
         </div>
       </div>
     );

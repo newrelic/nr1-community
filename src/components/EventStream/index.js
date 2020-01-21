@@ -21,26 +21,27 @@ const _defaultIconType = function({ event }) {
  * Customizable by passing in your own
  */
 const _defaultEventContent = function({ event }) {
-  // const { showAttributes } = this.props;
-
-  // if (!showAttributes) {
-  //   return null;
-  // }
-
   let timeline = Object.keys(event);
   timeline = timeline.sort();
 
-  return timeline.map((attr, i) => {
-    if (event[attr]) {
-      return (
-        <li key={i} className={styles['timeline-item-contents-item']}>
-          <span className={styles.key}>{attr}</span>
-          <span className={styles.value}>{event[attr]}</span>
-        </li>
-      );
-    }
-    return null;
-  });
+  return (
+    <ul className={styles['timeline-item-contents']}>
+      {timeline.map((attr, i) => {
+        if (event[attr]) {
+          return (
+            <li key={i} className={styles['timeline-item-contents-item']}>
+              <span className={styles.key}>{attr}</span>
+              <span className={styles.value}>{event[attr]}</span>
+            </li>
+          );
+        }
+        return null;
+      })}
+    </ul>
+  );
+};
+_defaultEventContent.propTypes = {
+  event: PropTypes.object
 };
 
 export class EventStream extends React.Component {
@@ -175,9 +176,7 @@ export class EventStream extends React.Component {
             </div>
             {eventContent && (
               <div className={styles['timeline-item-contents-container']}>
-                <ul className={styles['timeline-item-contents']}>
-                  {eventBody}
-                </ul>
+                {eventBody}
               </div>
             )}
           </div>

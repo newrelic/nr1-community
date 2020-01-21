@@ -59,8 +59,8 @@ export default class EventStreamDemo extends React.Component {
 
   render() {
     return (
-      <Grid>
-        <GridItem columnSpan={9}>
+      <Grid spacingType={[Grid.SPACING_TYPE.OMIT, Grid.SPACING_TYPE.NONE]}>
+        <GridItem columnSpan={9} collapseGapAfter className="primary-grid-item">
           <h1>{page.title}</h1>
           <p className="lead-paragraph">{page.subtitle}</p>
 
