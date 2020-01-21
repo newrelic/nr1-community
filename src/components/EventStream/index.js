@@ -1,22 +1,76 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, Stack, StackItem } from 'nr1';
-import { format as dateFormat } from 'date-fns';
-import EventCategories from './categories';
+import { format as dateFnsFormat } from 'date-fns';
+// import EventCategories from './categories';
 
 import styles from './styles.scss';
 
+// eslint-disable-next-line no-unused-vars
+const _defaultIconType = function({ event }) {
+  return {
+    icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
+    color: '#9C5400',
+    backgroundColor: '#FFFFFF'
+  };
+};
+
+/*
+ * Default renderer for each data item's body
+ * A key/value map of all of the objects attributes
+ * Customizable by passing in your own
+ */
+const _defaultEventContent = function({ event }) {
+  // const { showAttributes } = this.props;
+
+  // if (!showAttributes) {
+  //   return null;
+  // }
+
+  let timeline = Object.keys(event);
+  timeline = timeline.sort();
+
+  return timeline.map((attr, i) => {
+    if (event[attr]) {
+      return (
+        <li key={i} className={styles['timeline-item-contents-item']}>
+          <span className={styles.key}>{attr}</span>
+          <span className={styles.value}>{event[attr]}</span>
+        </li>
+      );
+    }
+    return null;
+  });
+};
+
 export class EventStream extends React.Component {
+  /*
+   * timestampFormat and dateFormat support any of the date formats found:
+   * https://date-fns.org/v2.9.0/docs/format
+   */
   static propTypes = {
-    eventType: PropTypes.string,
-    showAttributes: PropTypes.bool,
-    events: PropTypes.array,
-    iconType: PropTypes.func
+    data: PropTypes.array,
+    timestampField: PropTypes.string,
+    dateFormat: PropTypes.string,
+    timestampFormat: PropTypes.string,
+    labelField: PropTypes.string,
+    labelFormatter: PropTypes.func,
+    eventContent: PropTypes.func,
+    iconType: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.object,
+      PropTypes.func
+    ])
   };
 
   static defaultProps = {
-    showAttributes: true,
-    iconType: EventCategories.setCategory
+    data: [],
+    timestampField: 'timestamp',
+    dateFormat: 'MM/dd/yyyy',
+    timestampFormat: 'h:mm:ss a',
+    labelField: 'actionName',
+    eventContent: _defaultEventContent,
+    iconType: _defaultIconType
   };
 
   constructor(props) {
@@ -32,6 +86,7 @@ export class EventStream extends React.Component {
     const timelineItemId = e.currentTarget.getAttribute(
       'data-timeline-item-id'
     );
+
     if (timelineItemId === this.state.expandedTimelineItem) {
       this.setState(() => ({
         expandedTimelineItem: null
@@ -43,80 +98,71 @@ export class EventStream extends React.Component {
     }
   }
 
-  _buildStreamTimeline(event) {
-    const { showAttributes } = this.props;
-
-    if (!showAttributes) {
-      return null;
-    }
-
-    let timeline = Object.keys(event);
-    timeline = timeline.sort();
-
-    return timeline.map((attr, i) => {
-      if (event[attr]) {
-        return (
-          <li key={i} className={styles['timeline-item-contents-item']}>
-            <span className={styles.key}>{attr}</span>
-            <span className={styles.value}>{event[attr]}</span>
-          </li>
-        );
-      }
-      return null;
-    });
-  }
-
-  _buildStream({ eventType, events }) {
-    const { iconType, showAttributes } = this.props;
+  // TO DO - Icon backgroundColor
+  _buildStream({ data }) {
+    const {
+      timestampField,
+      timestampFormat,
+      dateFormat,
+      labelField,
+      labelFormatter,
+      eventContent,
+      iconType
+    } = this.props;
     const { expandedTimelineItem } = this.state;
 
-    return events.map((event, index) => {
-      const sessionCategory = iconType({ eventType, event });
-      const date = new Date(event.timestamp);
+    return data.map((event, index) => {
+      const timestamp = event[timestampField]; // TO DO - Default? Error? What do we do if not found?
+      const icon = iconType({ event }) || _defaultIconType({ event });
+      const date = new Date(timestamp);
       const open =
         parseInt(expandedTimelineItem, 10) === index
           ? styles['timeline-item-expanded']
           : '';
-      const streamTimeline = this._buildStreamTimeline(event);
 
-      const getWrapperClasses = function() {
-        const classes = [styles['timeline-item'], open];
+      const label = event[labelField]; // TO DO - Default? Error? What do we do if not found?
+      const formattedLabel = labelFormatter ? labelFormatter(label) : label;
+      const eventBody = eventContent({ event });
 
-        if (sessionCategory.class) {
-          classes.push(sessionCategory.class);
-        }
-        return classes.join(' ', classes);
-      };
+      // TO DO - With styles applied to :after psuedo elements for the background's of the Icons - how do we allow for customization?
+      // const getIconBackgroundColor = function(icon) {
+      //   return icon.backgroundColor
+      //     ? { backgroundColor: icon.backgroundColor }
+      //     : null;
+      // };
 
       return (
         <div
           key={index}
           data-timeline-item-id={index}
           onClick={this.handleTimelineItemClick}
-          className={getWrapperClasses(sessionCategory.class)}
+          className={[styles['timeline-item'], open].join(' ')}
         >
           <div className={styles['timeline-item-timestamp']}>
             <span className={styles['timeline-timestamp-date']}>
-              {dateFormat(date, 'MM/dd/yyyy')}
+              {dateFnsFormat(date, dateFormat)}
             </span>
             <span className={styles['timeline-timestamp-time']}>
-              {dateFormat(date, 'h:mm:ss a')}
+              {dateFnsFormat(date, timestampFormat)}
             </span>
           </div>
           <div className={styles['timeline-item-dot']} />
           <div className={styles['timeline-item-body']}>
             <div className={styles['timeline-item-body-header']}>
-              <div className={styles['timeline-item-symbol']}>
+              <div
+                className={styles['timeline-item-symbol']}
+                // style={getIconBackgroundColor(icon)}
+              >
                 <Icon
                   className={styles['timeline-item-symbol-icon']}
-                  type={sessionCategory.icon}
-                  color={sessionCategory.color}
+                  type={icon.icon}
+                  color={icon.color}
                 />
               </div>
               <div className={styles['timeline-item-title']}>
-                {sessionCategory.label}
+                {formattedLabel}
               </div>
-              {showAttributes && (
+              {eventContent && (
                 <Button
                   className={styles['timeline-item-dropdown-arrow']}
                   type={Button.TYPE.PLAIN_NEUTRAL}
@@ -127,10 +173,10 @@ export class EventStream extends React.Component {
                 />
               )}
             </div>
-            {showAttributes && (
+            {eventContent && (
               <div className={styles['timeline-item-contents-container']}>
                 <ul className={styles['timeline-item-contents']}>
-                  {streamTimeline}
+                  {eventBody}
                 </ul>
               </div>
             )}
@@ -141,9 +187,9 @@ export class EventStream extends React.Component {
   }
 
   render() {
-    const { eventType, events } = this.props;
-    const hasEvents = events.length > 0;
-    const stream = this._buildStream({ eventType, events });
+    const { data } = this.props;
+    const hasEvents = data.length > 0;
+    const stream = this._buildStream({ data });
 
     return (
       <div className={styles['eventStreamSectionBase sessionSectionBase']}>
