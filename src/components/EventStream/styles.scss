@@ -212,16 +212,16 @@
   align-items: center;
   border-right: 1px dotted #b9bdbd;
 
-  &:after {
-    content: '';
-    display: block;
-    width: 23px;
-    height: 23px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    position: absolute;
-    z-index: 0;
-  }
+  // &:after {
+  //   content: '';
+  //   display: block;
+  //   width: 23px;
+  //   height: 23px;
+  //   background-color: rgba(0, 0, 0, 0.1);
+  //   border-radius: 5px;
+  //   position: absolute;
+  //   z-index: 0;
+  // }
 }
 
 .timeline-item-symbol-icon {
