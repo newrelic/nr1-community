@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, Stack, StackItem } from 'nr1';
 import { format as dateFnsFormat } from 'date-fns';
-// import EventCategories from './categories';
 
 import styles from './styles.scss';
 
@@ -52,8 +51,8 @@ export class EventStream extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     timestampField: PropTypes.string,
-    dateFormat: PropTypes.string,
     timestampFormat: PropTypes.string,
+    dateFormat: PropTypes.string,
     labelField: PropTypes.string,
     labelFormatter: PropTypes.func,
     eventContent: PropTypes.func,
@@ -67,8 +66,8 @@ export class EventStream extends React.Component {
   static defaultProps = {
     data: [],
     timestampField: 'timestamp',
-    dateFormat: 'MM/dd/yyyy',
     timestampFormat: 'h:mm:ss a',
+    dateFormat: 'MM/dd/yyyy',
     labelField: 'actionName',
     eventContent: _defaultEventContent,
     iconType: _defaultIconType

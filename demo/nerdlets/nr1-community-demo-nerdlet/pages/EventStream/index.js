@@ -3,16 +3,17 @@ import ReactMarkdown from 'react-markdown';
 
 import { Grid, GridItem } from 'nr1';
 
-import BootstrapTable from 'react-bootstrap-table-next';
 import codeRenderer from '../../shared/code-renderer';
-import meta from '@/components/AccountDropdown/meta.json';
-import markdown from '@/components/AccountDropdown/README.md';
+import PropsTable from '../../shared/components/PropsTable';
+import SideNav from '../../shared/components/SideNavigationPlaceHolder';
+
+import meta from '@/components/EventStream/meta.json';
+import markdown from '@/components/EventStream/README.md';
 
 import BasicExample from './examples/basic';
+// eslint-disable-next-line no-unused-vars
 import AdvancedExample from './examples/advanced';
 import KitchenSinkExample from './examples/kitchen-sink';
-
-// import { AccountDropdown, EventStream } from '@/../dist';
 
 const page = {
   title: 'Event Stream',
@@ -86,12 +87,10 @@ export default class EventStreamDemo extends React.Component {
           />
 
           {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
-          <h2>Properties</h2>
-          <BootstrapTable
-            keyField="name"
-            data={this.propsTableData()}
-            columns={this.propsColumns()}
-          />
+          <PropsTable meta={meta} />
+        </GridItem>
+        <GridItem columnSpan={3} className="secondary-grid-item">
+          <SideNav />
         </GridItem>
       </Grid>
     );

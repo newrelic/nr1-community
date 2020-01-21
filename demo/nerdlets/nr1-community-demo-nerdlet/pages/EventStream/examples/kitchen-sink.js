@@ -69,8 +69,6 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
   renderHighlight() {
     return (
       <>
-        {/* <Tabs defaultValue="code">
-          <TabsItem value="code" label="Code"> */}
         <Highlight className="javascript">
           {`<NrqlQuery
   accountId={selectedAccount.id}
@@ -129,11 +127,6 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
   }}
 </NrqlQuery>`}
         </Highlight>
-        {/* </TabsItem>
-        <TabsItem value="styles" label="Styles"> */}
-
-        {/* </TabsItem>
-        </Tabs> */}
       </>
     );
   }
