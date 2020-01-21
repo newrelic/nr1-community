@@ -1,113 +1,113 @@
 import React from 'react';
-
-import Highlight from 'react-highlight';
 import ReactMarkdown from 'react-markdown';
 
-import { Card, CardHeader, CardBody } from 'nr1';
-import { Funnel } from '@/../dist';
+import { Grid, GridItem } from 'nr1';
+
+import withVisibilityHoc from '../../shared/withVisibilityHoc';
+import codeRenderer from '../../shared/code-renderer';
+import PropsTable from '../../shared/components/PropsTable';
+
 import meta from '@/components/Funnel/meta.json';
 import markdown from '@/components/Funnel/README.md';
 
-const data = {
-  accountId: 1606862,
-  funnel: {
-    event: 'PageView',
-    measure: 'session'
-  },
-  series: [
-    {
-      label: 'All Users',
-      nrqlWhere: "appName = 'WebPortal'"
-    },
-    {
-      label: 'Columbus',
-      nrqlWhere: "appName = 'WebPortal' and city = 'Columbus'"
-    },
-    {
-      label: 'Internet Explorer',
-      nrqlWhere: "appName = 'WebPortal' and userAgentName = 'IE'"
-    }
-  ],
-  steps: [
-    {
-      label: 'Homepage',
-      nrqlWhere:
-        "pageUrl = 'http://webportal.telco.nrdemo.com/' OR pageUrl = 'http://webportal.telco.nrdemo.com/index.html'"
-    },
-    {
-      label: 'Plans',
-      nrqlWhere:
-        "pageUrl like 'http://webportal.telco.nrdemo.com/browse/plans%'"
-    },
-    {
-      label: 'Cart',
-      nrqlWhere: "pageUrl = 'http://webportal.telco.nrdemo.com/shoppingcart'"
-    },
-    {
-      label: 'Checkout',
-      nrqlWhere: "pageUrl = 'http://webportal.telco.nrdemo.com/checkout'"
-    }
-  ]
+import BasicExample from './examples/basic';
+import AdvancedExample from './examples/advanced';
+import KitchenSinkExample from './examples/kitchen-sink';
+
+const page = {
+  title: 'Funnel',
+  subtitle: '',
+  examples: 'Examples',
+  examplesText:
+    'This component provides a common interface for choosing an account with a callback (onSelect allows for integration in to the rest of your application).'
 };
 
-export default class FunnelComponentDemo extends React.Component {
-  render() {
-    const { accountId, funnel, steps, series } = data;
+const {
+  heading: Heading
+} = require('@/../demo/node_modules/react-markdown/lib/renderers');
 
-    // This typically comes from PlatformContext
-    const launcherUrlState = {
-      timeRange: {
-        begin_time: 0,
-        duration: 1800000, // milliseconds for 30 min
-        end_time: 0
-      }
+export default class FunnelDemo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // Local state, ex - if we use tabs for each code sample
     };
+    this.visibilityHandler = this.visibilityHandler.bind(this);
+  }
 
-    const height = 275;
-    const width = 200;
+  visibilityHandler({ isVisible, props }) {
+    if (isVisible) {
+      // console.log('Capturing event from visibility renderer');
+      // console.log(JSON.stringify(props));
+    }
+  }
 
+  render() {
     return (
-      <>
-        <Card>
-          <CardHeader title="Code" subtitle="Simple" />
-          <CardBody>
-            <Funnel
-              accountId={accountId}
-              launcherUrlState={launcherUrlState}
-              height={height}
-              width={width}
-              funnel={funnel}
-              steps={steps}
-              series={series}
-            />
-            <Highlight language="javascript">
-              {`
-                const filterNrql = \`FROM PageAction SELECT name SINCE 30 minutes ago\`;
-                <Funnel
-                </Funnel>
-              `}
-            </Highlight>
-          </CardBody>
-        </Card>
+      <Grid spacingType={[Grid.SPACING_TYPE.OMIT, Grid.SPACING_TYPE.NONE]}>
+        <GridItem columnSpan={9} collapseGapAfter className="primary-grid-item">
+          <h1>{page.title}</h1>
+          <p className="lead-paragraph">{page.subtitle}</p>
 
-        <Card>
-          <CardHeader title="Documentation" subtitle="" />
-          <CardBody>
-            <ReactMarkdown source={markdown} />
-          </CardBody>
-        </Card>
+          <hr />
 
-        <Card>
-          <CardHeader title="Component Props Reference" subtitle="" />
-          <CardBody>
-            <ul>
-              {meta.props.map((prop, index) => {
-                return <li key={index}>{prop.name}</li>;
-              })}
+          <h2>Examples</h2>
+          <p>{page.examplesText}</p>
+
+          {/* Code Samples */}
+          {/* <BasicExample />
+          <AdvancedExample /> */}
+          <KitchenSinkExample />
+
+          {/* Markdown from /components/<component-name>/README.md */}
+          <h2>Description</h2>
+          <ReactMarkdown
+            source={markdown}
+            escapeHtml
+            renderers={{
+              inlineCode: codeRenderer,
+              code: codeRenderer,
+              heading: withVisibilityHoc(Heading, this.visibilityHandler)
+            }}
+          />
+
+          {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
+          <PropsTable meta={meta} />
+        </GridItem>
+        <GridItem columnSpan={3} className="secondary-grid-item">
+          <div className="secondary-nav-container">
+            <h6 className="secondary-nav-container-header">On this page</h6>
+            <ul className="secondary-nav">
+              <li className="secondary-nav-item active">
+                <a href="#">Examples</a>
+                <ul className="secondary-nav-level-2">
+                  <li className="secondary-nav-item secondary-nav-level-2-item">
+                    <a href="#">Basic</a>
+                  </li>
+                  <li className="secondary-nav-item secondary-nav-level-2-item">
+                    <a href="#">Advanced</a>
+                  </li>
+                  <li className="secondary-nav-item secondary-nav-level-2-item">
+                    <a href="#">With even more props</a>
+                  </li>
+                </ul>
+              </li>
+              <li className="secondary-nav-item">
+                <a href="#">Description</a>
+              </li>
+              <li className="secondary-nav-item">
+                <a href="#">Installation</a>
+              </li>
+              <li className="secondary-nav-item">
+                <a href="#">Usage</a>
+              </li>
+              <li className="secondary-nav-item">
+                <a href="#">Properties</a>
+              </li>
             </ul>
-          </CardBody>
-        </Card>
-      </>
+          </div>
+        </GridItem>
+      </Grid>
     );
   }
 }
