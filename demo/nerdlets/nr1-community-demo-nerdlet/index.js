@@ -9,6 +9,7 @@ const componentList = [
   { name: 'EventStream', category: 'Components' },
   { name: 'Funnel', category: 'Components' },
   { name: 'EmptyState', category: 'Components' },
+  { name: 'DetailPanel', category: 'Components' },
   { name: 'timeRangeToNrql', category: 'Utilities' }
 ];
 
