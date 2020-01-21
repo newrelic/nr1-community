@@ -2,28 +2,46 @@
   "name": "EventStream",
   "props": [
     {
-      "name": "eventType",
+      "name": "data",
+      "type": "array",
+      "description": "Ex. The results of a NRQL query like 'SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 100' ",
+      "default": ""
+    },
+    {
+      "name": "timestampField",
       "type": "string",
       "description": "",
-      "default": ""
+      "default": "timestamp"
     },
     {
-      "name": "showAttributes",
-      "type": "boolean",
-      "description": "",
-      "default": ""
+      "name": "timestampFormat",
+      "type": "string",
+      "description": "https://date-fns.org/v2.9.0/docs/format",
+      "default": "h:mm:ss a"
     },
     {
-      "name": "events",
-      "type": "array",
+      "name": "dateFormat",
+      "type": "string",
+      "description": "https://date-fns.org/v2.9.0/docs/format",
+      "default": "MM/dd/yyyy"
+    },
+    {
+      "name": "labelField",
+      "type": "string",
       "description": "",
-      "default": ""
+      "default": "actionName"
+    },
+    {
+      "name": "eventContent",
+      "type": "function",
+      "description": "",
+      "default": "_defaultEventContent"
     },
     {
       "name": "iconType",
-      "type": "function",
+      "type": "boolean|object|function",
       "description": "",
-      "default": ""
+      "default": "_defaultIconType"
     }
   ]
 }
