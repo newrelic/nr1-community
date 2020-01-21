@@ -27,7 +27,24 @@ This component provides a common interface for choosing an account with a callba
 ```jsx
 import { AccountDropdown } from '@newrelic/nr1-community';
 
-render () {
-  <AccountDropdown></AccountDropdown>
+export default class FooComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedAccount: null
+    };
+    this.onSelectHandler = this.onSelectHandler.bind(this);
+  }
+
+  onSelect(account) {
+    this.setState({ selectedAccount: account });
+  }
+
+  render () {
+    return <AccountDropdown
+      title={this.state.selectedAccount.name || 'Select an Account'}
+      onSelect={onSelect}
+    ></AccountDropdown>
+  }
 }
 ```
