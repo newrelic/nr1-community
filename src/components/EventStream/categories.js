@@ -10,7 +10,7 @@ export default class EventCategories {
 
   static HEARTBEAT = {
     class: '',
-    icon: null,
+    icon: Icon.TYPE.INTERFACE__PLACEHOLDERS__ICON_PLACEHOLDER,
     label: 'Heartbeat',
     color: '#222222'
   };
@@ -31,26 +31,26 @@ export default class EventCategories {
 
   static BUFFER = {
     class: '',
-    icon: null,
+    icon: Icon.TYPE.INTERFACE__PLACEHOLDERS__ICON_PLACEHOLDER,
     label: 'Buffer',
     color: '#22222'
   };
 
   static GENERAL = {
     class: 'timeline-item-type-general',
-    icon: null,
+    icon: Icon.TYPE.INTERFACE__PLACEHOLDERS__ICON_PLACEHOLDER,
     label: 'General',
     color: '#22222'
   };
 
   static EXTERNAL = {
     class: '',
-    icon: null,
+    icon: Icon.TYPE.INTERFACE__PLACEHOLDERS__ICON_PLACEHOLDER,
     label: 'External Calls',
     color: '#22222'
   };
 
-  static setCategory(eventType, event) {
+  static setCategory({ eventType, event }) {
     if (eventType === 'PageAction') {
       switch (event.actionName) {
         case 'CONTENT_REQUEST':
