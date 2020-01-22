@@ -5,6 +5,7 @@ import { Grid, GridItem } from 'nr1';
 
 // Local components
 import PropsTable from '../../shared/components/PropsTable';
+import InstallAndUse from '../../shared/components/InstallAndUse';
 import BasicExample from './examples/basic';
 
 // Page data
@@ -20,14 +21,30 @@ export default class EmptyStateDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Local state, ex - if we use tabs for each code sample
+      showSidebar: false
     };
   }
 
+  renderSidebar() {
+    const { showSidebar } = this.state;
+
+    if (showSidebar) {
+      return null;
+    }
+
+    return <GridItem columnSpan={3} className="secondary-grid-item" />;
+  }
+
   render() {
+    const { showSidebar } = this.state;
+
     return (
-      <Grid>
-        <GridItem columnSpan={9} collapseGapAfter className="primary-grid-item">
+      <Grid spacingType={[Grid.SPACING_TYPE.OMIT, Grid.SPACING_TYPE.NONE]}>
+        <GridItem
+          columnSpan={showSidebar ? 9 : 12}
+          collapseGapAfter
+          className="primary-grid-item"
+        >
           <h1>{page.title}</h1>
           <p className="lead-paragraph">{page.subtitle}</p>
 
@@ -39,11 +56,17 @@ export default class EmptyStateDemo extends React.Component {
           {/* Code Samples */}
           <BasicExample />
 
+          {/* Installation/Usage */}
+          <h2>Installation and Usage</h2>
+          <InstallAndUse type="component" name="EmptyState" />
+
           {/* Props */}
+          <h2>Properties</h2>
           <PropsTable meta={meta} />
         </GridItem>
 
         {/* Sidebar */}
+        {this.renderSidebar()}
       </Grid>
     );
   }
