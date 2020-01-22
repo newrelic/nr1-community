@@ -28,7 +28,7 @@ export default class DetailPanelDemo extends React.Component {
   renderSidebar() {
     const { showSidebar } = this.state;
 
-    if (showSidebar) {
+    if (!showSidebar) {
       return null;
     }
 

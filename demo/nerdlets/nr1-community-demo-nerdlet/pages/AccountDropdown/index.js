@@ -29,7 +29,7 @@ export default class AccountDropdownDemo extends React.Component {
   renderSidebar() {
     const { showSidebar } = this.state;
 
-    if (showSidebar) {
+    if (!showSidebar) {
       return null;
     }
 
