@@ -12,28 +12,26 @@ export default class DetailPanelBasicDemo extends React.Component {
   renderHighlight() {
     return (
       <Highlight className="javascript">
-        {`
-  <DetailPanel
-    title="Detail panel title"
-    description="Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis."
-    onClose={() => console.log('You clicked the close button')}
-    onMinimize={() => console.log('You clicked the minimize button')}
-  >
-    <Tabs>
-        <TabsItem value="tab-1" label="Tab 1 label">
-          Tab 1 content. Vestibulum id ligula porta felis euismod
-          semper.
-        </TabsItem>
-        <TabsItem value="tab-2" label="Tab 2 label">
-          Tab 2 content. Nulla vitae elit libero, a pharetra augue
-          ligula.
-        </TabsItem>
-        <TabsItem value="tab-3" label="Tab 3 label">
-          Tab 3 content. Integer posuere erat a ante venenatis dapibus.
-        </TabsItem>
-    </Tabs>
-  </DetailPanel>
-              `}
+        {`<DetailPanel
+  title="Detail panel title"
+  description="Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis."
+  onClose={() => console.log('You clicked the close button')}
+  onMinimize={() => console.log('You clicked the minimize button')}
+>
+  <Tabs>
+      <TabsItem value="tab-1" label="Tab 1 label">
+        Tab 1 content. Vestibulum id ligula porta felis euismod
+        semper.
+      </TabsItem>
+      <TabsItem value="tab-2" label="Tab 2 label">
+        Tab 2 content. Nulla vitae elit libero, a pharetra augue
+        ligula.
+      </TabsItem>
+      <TabsItem value="tab-3" label="Tab 3 label">
+        Tab 3 content. Integer posuere erat a ante venenatis dapibus.
+      </TabsItem>
+  </Tabs>
+</DetailPanel>`}
       </Highlight>
     );
   }

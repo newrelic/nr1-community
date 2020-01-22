@@ -19,19 +19,17 @@ export default class AccountDropdownAdvancedDemo extends React.Component {
   renderHighlight() {
     return (
       <Highlight className="javascript">
-        {`
-  <AccountDropdown
-    title={
-      this.state.selectedAccount !== null
-        ? this.state.selectedAccount.name
-        : 'Select an Account'
-    }
-    onSelect={this.onSelectHandler}
-    withReportingEventTypes={{
-      eventTypes: ['PageAction', 'PageView']
-    }}
-  />
-        `}
+        {`<AccountDropdown
+  title={
+    this.state.selectedAccount !== null
+      ? this.state.selectedAccount.name
+      : 'Select an Account'
+  }
+  onSelect={this.onSelectHandler}
+  withReportingEventTypes={{
+    eventTypes: ['PageAction', 'PageView']
+  }}
+/>`}
       </Highlight>
     );
   }

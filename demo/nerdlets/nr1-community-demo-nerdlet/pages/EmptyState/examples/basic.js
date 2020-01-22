@@ -11,8 +11,7 @@ export default class EmptyStateBasicDemo extends React.Component {
   renderHighlight() {
     return (
       <Highlight className="javascript">
-        {`
-  <EmptyState
+        {`<EmptyState
     heading="No content available"
     description="This is why there's no content available and what you can do 
       you take the next step. Nulla quis tortor orci. Etiam at risus et justo
@@ -21,8 +20,7 @@ export default class EmptyStateBasicDemo extends React.Component {
     buttonOnClick={() =>
       console.log('You clicked the empty state buttun!')
     }
-  />
-              `}
+  />`}
       </Highlight>
     );
   }

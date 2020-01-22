@@ -128,17 +128,18 @@ code {
   &.lowlight,
   &.lowlight {
     font-size: 12px;
-    background-color: #e4f5f7;
+    background-color: #f4f5f5;
     border-radius: 3px;
     padding: 2px 5px;
     color: #005054;
   }
 
   &.hljs {
+    padding: 8px 12px;
     font-family: 'Fira Code', monospace;
     font-size: 14px;
-    border-radius: 2px;
-    background-color: #fafbfb;
+    border-radius: 4px;
+    background-color: #f4f5f5;
   }
 }
 
@@ -185,7 +186,8 @@ hr {
   }
 
   code {
-    background-color: #fafbfb;
+    padding: 16px;
+    background-color: #f4f5f5;
     border-radius: 0 0 4px 4px;
     font-family: 'Fira Code', monospace;
     font-size: 14px;

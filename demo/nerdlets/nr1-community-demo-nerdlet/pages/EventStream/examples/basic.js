@@ -25,20 +25,20 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
     return (
       <Highlight className="javascript">
         {`<NrqlQuery
-            accountId={selectedAccount.id}
-            query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
-          >
-            {({ data }) => {
-              if (data) {
-                const events = data[0].data; // Get data from NRQL query
+  accountId={selectedAccount.id}
+  query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
+>
+  {({ data }) => {
+    if (data) {
+      const events = data[0].data; // Get data from NRQL query
 
-                return (
-                  <EventStream data={events} />
-                );
-              }
-              return null;
-            }}
-          </NrqlQuery>`}
+      return (
+        <EventStream data={events} />
+      );
+    }
+    return null;
+  }}
+</NrqlQuery>`}
       </Highlight>
     );
   }

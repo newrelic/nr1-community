@@ -19,25 +19,23 @@ export default class AccountDropdownKitchenSinkDemo extends React.Component {
   renderHighlight() {
     return (
       <Highlight className="javascript">
-        {`
-    <AccountDropdown
-      title={
-        this.state.selectedAccount !== null
-          ? this.state.selectedAccount.name
-          : 'Select an Account'
-      }
-      onSelect={this.onSelectHandler}
-      withReportingEventTypes={{
-        eventTypes: ['PageAction', 'PageView'],
-        where: ["actionName = 'SubmitLogin'"],
-        timeRange: {
-          begin_time: 0,
-          duration: 3600000, // 1 hour in milliseconds
-          end_time: 0
-        }
-      }}
-    />
-          `}
+        {`<AccountDropdown
+  title={
+    this.state.selectedAccount !== null
+      ? this.state.selectedAccount.name
+      : 'Select an Account'
+  }
+  onSelect={this.onSelectHandler}
+  withReportingEventTypes={{
+    eventTypes: ['PageAction', 'PageView'],
+    where: ["actionName = 'SubmitLogin'"],
+    timeRange: {
+      begin_time: 0,
+      duration: 3600000, // 1 hour in milliseconds
+      end_time: 0
+    }
+  }}
+/>`}
       </Highlight>
     );
   }
