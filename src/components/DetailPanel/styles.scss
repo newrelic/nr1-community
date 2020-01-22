@@ -1,6 +1,67 @@
-.detail-panel-container {
-  overflow: hidden;
+div.container {
   height: 100%;
   min-height: 400px;
+  max-width: 340px;
+  position: relative;
+  overflow: hidden;
   background: #fff;
+  border-left: 1px solid #edeeee;
+  
+  // Some nesting included for specificity
+  // to override platform styles
+  header.header {
+    padding: 16px 16px 0;
+    border-bottom: 1px solid #edeeee;
+    
+    h3.title {
+      max-width: 262px;
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 21px;
+      line-height: 28px;
+      font-weight: 600;
+      color: #000D0D;
+    }
+    
+    p.description {
+      max-width: 262px;
+      font-size: 12px;
+      line-height: 17px;
+      color: #8E9494;
+    }
+  }
+}
+
+.visibility-controls {
+  position: absolute;
+  right: 0;
+  top: 16px;
+}
+
+.close-button {
+  margin-right: 2px;
+}
+
+.minimize-button {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  top: 3px;
+  border-radius: 3px 0 0 3px;
+  background-color: #f4f5f5;
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.minimize-button-icon {
+  position: relative;
+  top: 3px;
+  left: 9px;
+}
+
+.children-container {
+  padding: 16px;
 }

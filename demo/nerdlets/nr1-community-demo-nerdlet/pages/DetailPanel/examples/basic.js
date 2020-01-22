@@ -12,7 +12,7 @@ export default class DetailPanelBasicDemo extends React.Component {
     return (
       <Highlight className="javascript">
         {`
-<DetailPanel title="hI there">hi there</DetailPanel>
+<DetailPanel title="hI there" description="I'm a description">hi there</DetailPanel>
               `}
       </Highlight>
     );
@@ -29,8 +29,21 @@ export default class DetailPanelBasicDemo extends React.Component {
           (e.g. <code className="lowlight">button=""</code>).
         </p>
         <div className="example-container-content">
-          <div className="code-result-block">
-            <DetailPanel title="hI there">hi there</DetailPanel>
+          <div
+            className="code-result-block"
+            style={{
+              padding: 0,
+              backgroundColor: `#fafbfb`,
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <DetailPanel
+              title="Detail panel title"
+              description="Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis."
+            >
+              hi there
+            </DetailPanel>
           </div>
           {this.renderHighlight()}
         </div>
