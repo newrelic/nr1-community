@@ -14,9 +14,7 @@ import meta from '@/components/EventStream/meta.json';
 
 const page = {
   title: 'Event Stream',
-  subtitle: '',
-  examples: 'Examples',
-  examplesText: 'Lorem Ipsum Awesome'
+  subtitle: ''
 };
 
 export default class EventStreamDemo extends React.Component {
@@ -25,37 +23,6 @@ export default class EventStreamDemo extends React.Component {
     this.state = {
       showSidebar: false
     };
-  }
-
-  async componentDidMount() {
-    //
-  }
-
-  propsTableData() {
-    return meta.props.map(prop => {
-      return {
-        name: prop.name,
-        type: prop.type,
-        default: prop.default,
-        description: prop.description
-      };
-    });
-  }
-
-  propsColumns() {
-    const columns = [];
-
-    Object.keys(meta.props[0]).map((key, index) => {
-      return (columns[index] = {
-        dataField: key,
-        text: key,
-        sort: true
-      });
-    });
-
-    columns[0].classes = 'prop-name-column';
-    columns[0].formatter = this.tablePropNameFormatter;
-    return columns;
   }
 
   renderSidebar() {
