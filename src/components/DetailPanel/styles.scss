@@ -38,11 +38,17 @@ div.container {
 }
 
 div.container-minimized {
-  transform: translateX(295px);
+  transform: translateX(100%);
   overflow: visible;
 
+  .visibility-controls {
+    left: 0;
+    right: inherit;
+  }
+
   .minimize-button {
-    right: 294px;
+    position: absolute;
+    right: 100%;
   }
 
   .minimize-button-icon {
