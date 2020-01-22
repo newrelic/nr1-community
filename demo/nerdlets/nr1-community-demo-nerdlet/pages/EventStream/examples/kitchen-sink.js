@@ -8,7 +8,8 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedAccount: null
+      selectedAccount: null,
+      activeCodeExampleTab: 1
     };
     this.onAccountSelectHandler = this.onAccountSelectHandler.bind(this);
   }
@@ -132,7 +133,7 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
   }
 
   render() {
-    const { selectedAccount } = this.state;
+    const { selectedAccount, activeCodeExampleTab } = this.state;
 
     return (
       <div className="example-container">
@@ -154,74 +155,89 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
         />
 
         <div className="example-container-content">
-          <Tabs defaultValue="code">
-            <TabsItem value="code" label="Code">
-              <div className="code-result-block">
-                {selectedAccount && (
-                  <NrqlQuery
-                    accountId={selectedAccount.id}
-                    query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
-                  >
-                    {({ data }) => {
-                      if (data) {
-                        const events = data[0].data; // Get data from NRQL query
+          <div className="code-result-block">
+            {selectedAccount && (
+              <NrqlQuery
+                accountId={selectedAccount.id}
+                query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
+              >
+                {({ data }) => {
+                  if (data) {
+                    const events = data[0].data; // Get data from NRQL query
 
-                        return (
-                          <EventStream
-                            data={events}
-                            timestampField="timestamp"
-                            dateFormat="MM/dd/yyyy"
-                            timestampFormat="h:mm:ss a"
-                            labelField="actionName"
-                            labelFormatter={field => field.toUpperCase()}
-                            iconType={data => {
-                              // Use data to determine icon color/type/background etc.
-                              console.log(data);
+                    return (
+                      <EventStream
+                        data={events}
+                        timestampField="timestamp"
+                        dateFormat="MM/dd/yyyy"
+                        timestampFormat="h:mm:ss a"
+                        labelField="actionName"
+                        labelFormatter={field => field.toUpperCase()}
+                        iconType={data => {
+                          // Use data to determine icon color/type/background etc.
+                          console.log(data);
 
-                              return {
-                                icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
-                                color: '#9C5400'
-                              };
-                            }}
-                            eventContent={({ event }) => {
-                              let timeline = Object.keys(event);
-                              timeline = timeline.sort();
+                          return {
+                            icon: Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES,
+                            color: '#9C5400'
+                          };
+                        }}
+                        eventContent={({ event }) => {
+                          let timeline = Object.keys(event);
+                          timeline = timeline.sort();
 
-                              return (
-                                <ul className="timeline-item-contents">
-                                  {timeline.map((attr, i) => {
-                                    if (event[attr]) {
-                                      return (
-                                        <li
-                                          key={i}
-                                          className="timeline-item-contents-item"
-                                        >
-                                          <span className="key">{attr}</span>
-                                          <span className="value">
-                                            {event[attr]}
-                                          </span>
-                                        </li>
-                                      );
-                                    }
-                                    return null;
-                                  })}
-                                </ul>
-                              );
-                            }}
-                          />
-                        );
-                      }
-                      return null;
-                    }}
-                  </NrqlQuery>
-                )}
+                          return (
+                            <ul className="timeline-item-contents">
+                              {timeline.map((attr, i) => {
+                                if (event[attr]) {
+                                  return (
+                                    <li
+                                      key={i}
+                                      className="timeline-item-contents-item"
+                                    >
+                                      <span className="key">{attr}</span>
+                                      <span className="value">
+                                        {event[attr]}
+                                      </span>
+                                    </li>
+                                  );
+                                }
+                                return null;
+                              })}
+                            </ul>
+                          );
+                        }}
+                      />
+                    );
+                  }
+                  return null;
+                }}
+              </NrqlQuery>
+            )}
+          </div>
+
+          <div className="code-example-tabs-container">
+            <div className="code-example-tabs-header">
+              <div className="button-group">
+                <button
+                  type="button"
+                  className={activeCodeExampleTab === 1 ? 'active' : ''}
+                  onClick={() => this.setState({ activeCodeExampleTab: 1 })}
+                >
+                  JSX
+                </button>
+                <button
+                  type="button"
+                  className={activeCodeExampleTab === 2 ? 'active' : ''}
+                  onClick={() => this.setState({ activeCodeExampleTab: 2 })}
+                >
+                  Styles
+                </button>
               </div>
-              {this.renderHighlight()}
-            </TabsItem>
-            <TabsItem value="sass" label="Styles">
-              {this.renderStylesHighlight()}
-            </TabsItem>
-          </Tabs>
+            </div>
+            {activeCodeExampleTab === 1 && this.renderHighlight()}
+            {activeCodeExampleTab === 2 && this.renderStylesHighlight()}
+          </div>
         </div>
       </div>
     );

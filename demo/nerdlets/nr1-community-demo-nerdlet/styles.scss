@@ -440,3 +440,61 @@ ul.secondary-nav {
   font-size: 11px;
   margin-bottom: 12px;
 }
+
+.button-group {
+  display: inline-block;
+  box-shadow: inset 0 0 0 1px #007E8A;
+  border-radius: 2px;
+  height: 26px;
+}
+
+
+div.button-group button,
+div.button-group button {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  min-height: auto;
+  height: 26px;
+  background-color: transparent;
+  color: #007E8A;
+
+
+  &:first-child {
+    border-radius: 3px 0 0 3px;
+  }
+
+  &:last-child {
+    border-radius: 0 3px 3px 0;
+  }
+
+  &.active {
+    background-color: #007E8A;
+    color: #fff;
+  }
+
+  &:focus {
+    background: transparent;
+    box-shadow: 0 0 0 2px #007e8a3a;
+
+    &.active {
+      background-color: #007E8A
+    }
+  }
+
+  .ic-Icon {
+    display: inline-block;
+    margin-right: 6px;
+  }
+}
+
+.code-example-tabs-header {
+  padding: 16px;
+  background-color: #ebf0f0;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #e3e4e4;
+  border-bottom: none;
+}
