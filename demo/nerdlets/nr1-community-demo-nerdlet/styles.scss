@@ -1,8 +1,8 @@
 @import "./nrds.scss";
-@import "../../node_modules/highlight.js/styles/monokai-sublime.css";
 @import '../../../dist/index.css';
 @import "../../node_modules/highlight.js/styles/atelier-lakeside-light.css";
 @import "../../node_modules/react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
 
 /* -------------------- */
 // Utility Classes
@@ -135,6 +135,9 @@ code {
   }
 
   &.hljs {
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    border-radius: 2px;
     background-color: #fafbfb;
   }
 }
@@ -183,6 +186,9 @@ hr {
 
   code {
     background-color: #fafbfb;
+    border-radius: 0 0 4px 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
     border: 1px solid #e3e4e4;
   }
 }
