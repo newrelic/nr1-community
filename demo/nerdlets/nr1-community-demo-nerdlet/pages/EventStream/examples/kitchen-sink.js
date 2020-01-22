@@ -1,7 +1,7 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 
-import { Icon, NrqlQuery, Tabs, TabsItem } from 'nr1';
+import { Icon, NrqlQuery } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
 
 export default class EventStreamKitchenSinkDemo extends React.Component {
