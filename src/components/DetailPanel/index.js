@@ -5,7 +5,14 @@ import styles from './styles.scss';
 
 class Header extends React.Component {
   render() {
-    const { onClose, title, description, defaultOnClose } = this.props;
+    const {
+      onClose,
+      title,
+      description,
+      defaultOnClose,
+      defaultOnMinimize,
+      onMinimize
+    } = this.props;
 
     return (
       <header className={styles.header}>
@@ -15,13 +22,13 @@ class Header extends React.Component {
           <Button
             size="small"
             type={Button.TYPE.PLAIN}
-            onClick={onClose === undefined && defaultOnClose}
+            onClick={onClose === undefined ? defaultOnClose : onClose}
             className={styles['close-button']}
             iconType={Button.ICON_TYPE.INTERFACE__SIGN__TIMES__V_ALTERNATE}
           />
           <span
             className={styles['minimize-button']}
-            onClick={() => this.toggleDetailPanel()}
+            onClick={onMinimize === undefined ? defaultOnMinimize : onMinimize}
           >
             <Icon
               type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__WEIGHT_BOLD}
@@ -38,10 +45,11 @@ class Header extends React.Component {
 
 export class DetailPanel extends React.Component {
   static propTypes = {
-    onClose: PropTypes.func,
     title: PropTypes.string,
     description: PropTypes.string,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    onClose: PropTypes.func,
+    onMinimize: PropTypes.func
   };
 
   static defaultProps = {
@@ -58,6 +66,7 @@ export class DetailPanel extends React.Component {
     };
 
     this.handleCloseButton = this.handleCloseButton.bind(this);
+    this.handleMinimizeButton = this.handleMinimizeButton.bind(this);
   }
 
   toggleDetailPanel() {
@@ -68,13 +77,29 @@ export class DetailPanel extends React.Component {
     this.setState({ closed: true });
   }
 
+  handleMinimizeButton() {
+    this.setState(prevState => ({
+      minimized: !prevState.minimized
+    }));
+  }
+
   render() {
     const { children } = this.props;
-    const { closed } = this.state;
+    const { closed, minimized } = this.state;
 
     return (
-      <div className={closed ? styles['container-closed'] : styles.container}>
-        <Header {...this.props} defaultOnClose={this.handleCloseButton} />
+      <div
+        className={`
+        ${styles.container}
+        ${closed ? styles['container-closed'] : ''}
+        ${minimized ? styles['container-minimized'] : ''}
+        `}
+      >
+        <Header
+          {...this.props}
+          defaultOnClose={this.handleCloseButton}
+          defaultOnMinimize={this.handleMinimizeButton}
+        />
         <div className={styles['children-container']}>{children}</div>
       </div>
     );

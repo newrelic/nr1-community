@@ -6,6 +6,7 @@ div.container {
   overflow: hidden;
   background: #fff;
   border-left: 1px solid #edeeee;
+  transition: .15s transform cubic-bezier(.25, .46, .45, .94);
   
   // Some nesting included for specificity
   // to override platform styles
@@ -34,6 +35,20 @@ div.container {
 
 .container-closed {
   display: none;
+}
+
+div.container-minimized {
+  transform: translateX(295px);
+  overflow: visible;
+
+  .minimize-button {
+    right: 294px;
+  }
+
+  .minimize-button-icon {
+    transform: rotate(180deg);
+    left: 7px;
+  }
 }
 
 .visibility-controls {
