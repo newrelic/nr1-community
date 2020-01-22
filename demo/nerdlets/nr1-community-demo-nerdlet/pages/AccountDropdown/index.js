@@ -1,30 +1,21 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 
+// NR1
 import { Grid, GridItem } from 'nr1';
 
-import withVisibilityHoc from '../../shared/withVisibilityHoc';
-import codeRenderer from '../../shared/code-renderer';
+// Local components
 import PropsTable from '../../shared/components/PropsTable';
-
-import meta from '@/components/AccountDropdown/meta.json';
-import markdown from '@/components/AccountDropdown/README.md';
-
 import BasicExample from './examples/basic';
 import AdvancedExample from './examples/advanced';
 import KitchenSinkExample from './examples/kitchen-sink';
 
+// Page data
+import meta from '@/components/AccountDropdown/meta.json';
+
 const page = {
   title: 'Account Dropdown',
-  subtitle: 'A common interface for choosing an account',
-  examples: 'Examples',
-  examplesText:
-    'This component provides a common interface for choosing an account with a callback (onSelect allows for integration in to the rest of your application).'
+  subtitle: 'A common interface for choosing an account'
 };
-
-const {
-  heading: Heading
-} = require('@/../demo/node_modules/react-markdown/lib/renderers');
 
 export default class AccountDropdownDemo extends React.Component {
   constructor(props) {
@@ -32,14 +23,6 @@ export default class AccountDropdownDemo extends React.Component {
     this.state = {
       // Local state, ex - if we use tabs for each code sample
     };
-    this.visibilityHandler = this.visibilityHandler.bind(this);
-  }
-
-  visibilityHandler({ isVisible, props }) {
-    if (isVisible) {
-      // console.log('Capturing event from visibility renderer');
-      // console.log(JSON.stringify(props));
-    }
   }
 
   render() {
@@ -52,28 +35,18 @@ export default class AccountDropdownDemo extends React.Component {
           <hr />
 
           <h2>Examples</h2>
-          <p>{page.examplesText}</p>
+          <p>{meta.description}</p>
 
           {/* Code Samples */}
           <BasicExample />
           <AdvancedExample />
           <KitchenSinkExample />
 
-          {/* Markdown from /components/<component-name>/README.md */}
-          <h2>Description</h2>
-          <ReactMarkdown
-            source={markdown}
-            escapeHtml
-            renderers={{
-              inlineCode: codeRenderer,
-              code: codeRenderer,
-              heading: withVisibilityHoc(Heading, this.visibilityHandler)
-            }}
-          />
-
-          {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
+          {/* Props */}
           <PropsTable meta={meta} />
         </GridItem>
+
+        {/* Sidebar */}
         <GridItem columnSpan={3} className="secondary-grid-item">
           <div className="secondary-nav-container">
             <h6 className="secondary-nav-container-header">On this page</h6>

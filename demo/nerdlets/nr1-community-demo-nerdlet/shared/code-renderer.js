@@ -10,6 +10,10 @@ Lowlight.registerLanguage('jsx', js);
 Lowlight.registerLanguage('bash', bash);
 Lowlight.registerLanguage('scss', scss);
 
+/*
+ * Custom syntax highlighting for Markdown code blocks
+ * For use with react-markdown
+ */
 export default class CodeRenderer extends React.Component {
   static propTypes = {
     value: PropTypes.string,

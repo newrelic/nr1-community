@@ -56,7 +56,6 @@ export default class PropsTable extends React.Component {
   render() {
     return (
       <>
-        <h2>Properties</h2>
         <BootstrapTable
           keyField="name"
           data={this.propsTableData()}

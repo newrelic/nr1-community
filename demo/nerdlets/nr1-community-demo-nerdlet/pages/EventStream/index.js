@@ -1,19 +1,15 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 
+// NR1
 import { Grid, GridItem } from 'nr1';
 
-import codeRenderer from '../../shared/code-renderer';
+// Local components
 import PropsTable from '../../shared/components/PropsTable';
-import SideNav from '../../shared/components/SideNavigationPlaceHolder';
-
-import meta from '@/components/EventStream/meta.json';
-import markdown from '@/components/EventStream/README.md';
-
 import BasicExample from './examples/basic';
-// eslint-disable-next-line no-unused-vars
-import AdvancedExample from './examples/advanced';
 import KitchenSinkExample from './examples/kitchen-sink';
+
+// Page data
+import meta from '@/components/EventStream/meta.json';
 
 const page = {
   title: 'Event Stream',
@@ -68,30 +64,17 @@ export default class EventStreamDemo extends React.Component {
           <hr />
 
           <h2>Examples</h2>
-          <p>{page.examplesText}</p>
+          <p>{meta.description}</p>
 
           {/* Code Samples */}
           <BasicExample />
-          {/* <AdvancedExample /> */}
           <KitchenSinkExample />
 
-          {/* Markdown from /components/<component-name>/README.md */}
-          <h2>Description</h2>
-          <ReactMarkdown
-            source={markdown}
-            escapeHtml
-            renderers={{
-              inlineCode: codeRenderer,
-              code: codeRenderer
-            }}
-          />
-
-          {/* Rendering of data (mostly props definitions) from /components/<component-name>/meta.json */}
+          {/* Props */}
           <PropsTable meta={meta} />
         </GridItem>
-        <GridItem columnSpan={3} className="secondary-grid-item">
-          <SideNav />
-        </GridItem>
+
+        {/* Sidebar */}
       </Grid>
     );
   }
