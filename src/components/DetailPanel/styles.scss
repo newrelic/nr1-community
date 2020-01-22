@@ -89,4 +89,27 @@ div.container-minimized {
 
 .children-container {
   padding: 16px;
+
+  & > [class*='wnd-Tabs'] {
+    margin: -16px;
+  }
+
+  [class*='Tabs-navigation'] {
+    background: #FAFBFB;
+    box-shadow: 0px -1px 0px #EDEEEE, inset 0px -1px 0px #EDEEEE;
+    border-bottom: 0;
+    padding: 1px 8px;
+  }
+
+  [class*='Tab-label'] {
+    font-size: 12px;
+    padding: 4px 0;
+  }
+  
+  [class*='TabContent'] {
+    padding: 16px;
+  }
 }
+
+
+

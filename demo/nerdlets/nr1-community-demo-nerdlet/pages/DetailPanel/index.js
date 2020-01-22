@@ -11,6 +11,7 @@ import meta from '@/components/DetailPanel/meta.json';
 import markdown from '@/components/DetailPanel/README.md';
 
 import BasicExample from './examples/basic';
+import AdvancedExample from './examples/advanced';
 
 const page = {
   title: 'Detail Panel',
@@ -54,6 +55,7 @@ export default class DetailPanelDemo extends React.Component {
 
           {/* Code Samples */}
           <BasicExample />
+          <AdvancedExample />
 
           {/* Markdown from /components/<component-name>/README.md */}
           <h2>Description</h2>

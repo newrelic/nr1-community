@@ -2,28 +2,34 @@
     "name": "DetailPanel",
     "props": [
       {
-        "name": "heading",
-        "type": "text",
-        "default": "Lorem ipsum dolor",
-        "description": "A brief 2-5 word description of why no content is being shown"
+        "name": "title",
+        "type": "string",
+        "default": "Detail panel title",
+        "description": "The title of the detail panel"
       },
       {
         "name": "description",
-        "type": "text",
-        "default": "Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis.",
-        "description": "A description of the action the user should take in order populate/produce the content they would expect to see here."
-      },
-      {
-        "name": "buttonText",
         "type": "string",
-        "default": "",
-        "description": "The text used to in the call to action button at the bottom of the empty state"
+        "default": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "description": "A brief description of of the content being shown in the detail panel"
       },
       {
-        "name": "buttonOnClick",
+        "name": "children",
+        "type": "node",
+        "default": "",
+        "description": "Whatever content you place inside of the component tags"
+      },
+      {
+        "name": "onClose",
         "type": "function",
-        "default": "`console.log('You clicked the empty state button!')`",
-        "description": "The funtion used to define an action when the call to action button is clicked."
+        "default": "Sets detail panel to display: none in using css",
+        "description": "A function used triggered when the close button is clicked"
+      },
+      {
+        "name": "onMinimize",
+        "type": "function",
+        "default": "Moves detail panel out of view (to the right) using css.",
+        "description": "A function used triggered when the minimize button is clicked"
       }
     ]
   }
