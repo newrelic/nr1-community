@@ -35,7 +35,8 @@ export default class DetailPanelBasicDemo extends React.Component {
               padding: 0,
               backgroundColor: `#fafbfb`,
               display: 'flex',
-              justifyContent: 'flex-end'
+              justifyContent: 'flex-end',
+              minHeight: `400px`
             }}
           >
             <DetailPanel

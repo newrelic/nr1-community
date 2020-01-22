@@ -5,7 +5,7 @@ import styles from './styles.scss';
 
 class Header extends React.Component {
   render() {
-    const { onClose, title, description } = this.props;
+    const { onClose, title, description, defaultOnClose } = this.props;
 
     return (
       <header className={styles.header}>
@@ -15,7 +15,7 @@ class Header extends React.Component {
           <Button
             size="small"
             type={Button.TYPE.PLAIN}
-            onClick={onClose}
+            onClick={onClose === undefined && defaultOnClose}
             className={styles['close-button']}
             iconType={Button.ICON_TYPE.INTERFACE__SIGN__TIMES__V_ALTERNATE}
           />
@@ -44,20 +44,37 @@ export class DetailPanel extends React.Component {
     children: PropTypes.node.isRequired
   };
 
+  static defaultProps = {
+    title: 'Detail panel title',
+    description: 'Nulla quis tortor orci. Etiam at risus et justo dignissim.'
+  };
+
   constructor(props) {
     super(props);
+
+    this.state = {
+      closed: false,
+      minimized: false
+    };
+
+    this.handleCloseButton = this.handleCloseButton.bind(this);
   }
 
   toggleDetailPanel() {
     console.log('close this');
   }
 
+  handleCloseButton() {
+    this.setState({ closed: true });
+  }
+
   render() {
     const { children } = this.props;
+    const { closed } = this.state;
 
     return (
-      <div className={styles.container}>
-        <Header {...this.props} />
+      <div className={closed ? styles['container-closed'] : styles.container}>
+        <Header {...this.props} defaultOnClose={this.handleCloseButton} />
         <div className={styles['children-container']}>{children}</div>
       </div>
     );
