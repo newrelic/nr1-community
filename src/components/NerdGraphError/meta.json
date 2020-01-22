@@ -7,6 +7,18 @@
       "type": "object",
       "description": "",
       "default": ""
+    },
+    {
+      "name": "showDetails",
+      "type": "boolean",
+      "description": "",
+      "default": "true"
+    },
+    {
+      "name": "errorDetails",
+      "type": "function",
+      "description": "",
+      "default": "yes"
     }
   ]
 }

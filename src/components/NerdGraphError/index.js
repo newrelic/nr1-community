@@ -5,9 +5,44 @@ import { Icon, Button } from 'nr1';
 
 import styles from './styles.scss';
 
+const _defaultDetails = function({ error }) {
+  // eslint-disable-next-line no-unused-vars
+  const { graphQLErrors, message, stack } = error;
+  return (
+    <ul className={styles['ng-error-item-contents']}>
+      <li className={styles['ng-error-item-contents-item']}>
+        <span className={styles.key}>Stack</span>
+        <span className={styles.value}>{JSON.stringify(stack)}</span>
+      </li>
+      {graphQLErrors.length > 0 &&
+        graphQLErrors.map((gqlError, i) => {
+          if (gqlError) {
+            return (
+              <li key={i} className={styles['ng-error-item-contents-item']}>
+                <span className={styles.key}>{`GraphQL Error ${i + 1}`}</span>
+                <span className={styles.value}>{gqlError.message}</span>
+              </li>
+            );
+          }
+          return null;
+        })}
+    </ul>
+  );
+};
+_defaultDetails.propTypes = {
+  error: PropTypes.object
+};
+
 export class NerdGraphError extends React.Component {
   static propTypes = {
-    error: PropTypes.object
+    error: PropTypes.object,
+    showDetails: PropTypes.bool,
+    errorDetails: PropTypes.func
+  };
+
+  static defaultProps = {
+    showDetails: true,
+    errorDetails: _defaultDetails
   };
 
   constructor(props) {
@@ -25,9 +60,10 @@ export class NerdGraphError extends React.Component {
   }
 
   render() {
-    const { error } = this.props;
-
+    const { error, showDetails, errorDetails } = this.props;
     const { expanded } = this.state;
+
+    // eslint-disable-next-line no-unused-vars
     const { graphQLErrors, message, stack } = error;
 
     const open = expanded ? styles['ng-error-item-expanded'] : '';
@@ -46,44 +82,25 @@ export class NerdGraphError extends React.Component {
                   type={Button.ICON_TYPE.INTERFACE__STATE__CRITICAL}
                   color="#ff0000"
                 />
+                {/* TO DO - Display a count of graphql Errors? */}
               </div>
               <div className={styles['ng-error-item-title']}>{message}</div>
-              <Button
-                className={styles['ng-error-item-dropdown-arrow']}
-                type={Button.TYPE.PLAIN_NEUTRAL}
-                iconType={
-                  Button.ICON_TYPE
-                    .INTERFACE__CHEVRON__CHEVRON_BOTTOM__V_ALTERNATE
-                }
-              />
+              {showDetails && (
+                <Button
+                  className={styles['ng-error-item-dropdown-arrow']}
+                  type={Button.TYPE.PLAIN_NEUTRAL}
+                  iconType={
+                    Button.ICON_TYPE
+                      .INTERFACE__CHEVRON__CHEVRON_BOTTOM__V_ALTERNATE
+                  }
+                />
+              )}
             </div>
-            <div className={styles['ng-error-item-contents-container']}>
-              <ul className={styles['ng-error-item-contents']}>
-                <li className={styles['ng-error-item-contents-item']}>
-                  <span className={styles.key}>Stack</span>
-                  <span className={styles.value}>{JSON.stringify(stack)}</span>
-                </li>
-                {graphQLErrors.length > 0 &&
-                  graphQLErrors.map((gqlError, i) => {
-                    if (gqlError) {
-                      return (
-                        <li
-                          key={i}
-                          className={styles['ng-error-item-contents-item']}
-                        >
-                          <span className={styles.key}>
-                            {`GraphQl Error ${i + 1}`}
-                          </span>
-                          <span className={styles.value}>
-                            {gqlError.message}
-                          </span>
-                        </li>
-                      );
-                    }
-                    return null;
-                  })}
-              </ul>
-            </div>
+            {showDetails && (
+              <div className={styles['ng-error-item-contents-container']}>
+                {errorDetails({ error })}
+              </div>
+            )}
           </div>
         </div>
       </div>
