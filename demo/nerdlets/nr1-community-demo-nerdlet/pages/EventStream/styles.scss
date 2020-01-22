@@ -1,0 +1,37 @@
+.timeline-item-contents {
+  height: 300px;
+  overflow: scroll;
+}
+
+.timeline-item-contents-item {
+  min-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #edeeee;
+  padding: 0 8px;
+
+  .key {
+    margin-right: 8px;
+    font-weight: 600;
+    color: #464e4e;
+  }
+
+  .value {
+    text-align: right;
+    color: #464e4e;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    max-width: 80%;
+    padding: 8px 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: #f4f5f5;
+    cursor: default;
+  }
+} 
