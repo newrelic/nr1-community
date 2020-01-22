@@ -29,7 +29,7 @@ const _defaultEventContent = function({ event }) {
         if (event[attr]) {
           return (
             <li key={i} className={styles['timeline-item-contents-item']}>
-              <span className={styles.key}>{attr}</span>
+              <span className={styles.key}>{attr}:</span>
               <span className={styles.value}>{event[attr]}</span>
             </li>
           );

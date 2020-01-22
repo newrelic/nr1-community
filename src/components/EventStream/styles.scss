@@ -117,9 +117,11 @@
   }
 }
 
-.timeline-item-contents {
+// incase of overrides
+.timeline-item ul.timeline-item-contents {
   height: 300px;
   overflow: scroll;
+  padding: 0;
 }
 
 .timeline-item-contents-container {
@@ -142,6 +144,7 @@
     margin-right: 8px;
     font-weight: 600;
     color: #464e4e;
+    font-size: 12px;
   }
 
   .value {
@@ -150,7 +153,8 @@
     overflow-wrap: break-word;
     word-break: break-all;
     max-width: 80%;
-    padding: 8px 0;
+    padding: 6px 0;
+    font-size: 12px;
   }
 
   &:last-child {
