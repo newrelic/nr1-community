@@ -1,5 +1,6 @@
 {
   "name": "AccountDropdown",
+  "description": "This component provides a common interface for choosing an account with a callback (onSelect allows for integration in to the rest of your application).",
   "props": [
     {
       "name": "onSelect",

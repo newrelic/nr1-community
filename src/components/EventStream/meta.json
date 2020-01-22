@@ -1,5 +1,6 @@
 {
   "name": "EventStream",
+  "description": "A vertically oriented timeline showing a series of events in summary with a drilldown for additional detail",
   "props": [
     {
       "name": "data",

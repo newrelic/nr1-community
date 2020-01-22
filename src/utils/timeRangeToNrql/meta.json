@@ -1,0 +1,12 @@
+{
+  "name": "timeRangeToNrql",
+  "description": "When the New Relic One platform timepicker is used, 3 data points are provided inside of it's `timeRange` which are human readable but is not valid NQRL. This utility converts those 3 data points to a string that can be used in a NRQL query.",
+  "props": [
+    {
+      "name": "timeRange",
+      "type": "object",
+      "default": "{ begin_time: 0, end_time: 0, duration: 1800000 }",
+      "description": "Expects an object like { begin_time: 0, end_time: 0, duration: 1800000 }"
+    }
+  ]
+}

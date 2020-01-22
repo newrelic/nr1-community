@@ -1,5 +1,6 @@
 {
     "name": "EmptyState",
+    "description": "An empty state is used to tell users that there is no content to display and explain what action they can take in order to make produce/find the content they're looking for. The empty state call to action button should be action-oriented to encourage users to take the step required to produce and or find the content they're looking for.",
     "props": [
       {
         "name": "heading",
