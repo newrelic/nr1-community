@@ -6,9 +6,10 @@ import GitHubIcon from '../../assets/icon-github.svg';
 // TO DO - glob from /components and /utilities
 const componentList = [
   { name: 'AccountDropdown', category: 'Components' },
-  { name: 'EventStream', category: 'Components' },
-  { name: 'EmptyState', category: 'Components' },
   { name: 'DetailPanel', category: 'Components' },
+  { name: 'EmptyState', category: 'Components' },
+  { name: 'EventStream', category: 'Components' },
+  { name: 'NerdGraphError', category: 'Components' },
   { name: 'timeRangeToNrql', category: 'Utilities' }
 ];
 

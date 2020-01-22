@@ -1,0 +1,12 @@
+{
+  "name": "NerdGraphError",
+  "description": "Display NerdGraph errors with some flare",
+  "props": [
+    {
+      "name": "error",
+      "type": "object",
+      "description": "",
+      "default": ""
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+.ng-error-container {
+  background-color: #fff;
+}
+
+.ng-error-item {
+  display: flex;
+  margin-bottom: 12px;
+
+  &:hover .ng-error-item-dot:after {
+    background-color: #464e4e;
+  }
+
+  &:hover .ng-error-timestamp-date {
+    color: #000d0d;
+  }
+
+  &:hover .ng-error-timestamp-time {
+    color: #464e4e;
+  }
+
+  &:first-child .ng-error-item-dot:before {
+    top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+
+    .ng-error-item-dot:before {
+      bottom: 0;
+    }
+  }
+}
+
+.ng-error-body {
+  width: 100%;
+  border: 1px solid #d5d7d7;
+  border-radius: 3px;
+  height: 38px;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  transition: 0.05s all ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02), 0 4px 6px 0px rgba(0, 0, 0, 0.05);
+    border-color: #b9bdbd;
+  }
+
+  &:hover:before {
+    border-right: 7px solid #b9bdbd;
+  }
+
+  &:active {
+    cursor: pointer;
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+  }
+}
+
+.ng-item-body-header {
+  display: flex;
+  height: 38px;
+}
+
+.ng-error-item-symbol {
+  width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px dotted #b9bdbd;
+}
+
+.ng-error-item-title {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #464e4e;
+}
+
+.ng-error-item-expanded .ng-error-item-contents-container {
+  display: block;
+  border-top: 1px solid #e3e4e4;
+}
+
+.ng-error-item-expanded .ng-error-item-body {
+  height: auto;
+}
+
+.ng-error-item-expanded .ng-error-item-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.ng-error-item-contents {
+  height: 300px;
+  overflow: scroll;
+}
+
+.ng-error-item-contents-container {
+  display: none;
+  box-shadow: inset 0 10px 3px -5px rgba(0, 0, 0, 0.005),
+    inset 0 2px 0 rgba(0, 0, 0, 0.03);
+  background-color: #fafbfb;
+  border-radius: 0 0 3px 3px;
+}
+
+.ng-error-item-contents-item {
+  min-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #edeeee;
+  padding: 0 8px;
+
+  .key {
+    margin-right: 8px;
+    font-weight: 600;
+    color: #464e4e;
+  }
+
+  .value {
+    text-align: right;
+    color: #464e4e;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    max-width: 80%;
+    padding: 8px 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: #f4f5f5;
+    cursor: default;
+  }
+}
