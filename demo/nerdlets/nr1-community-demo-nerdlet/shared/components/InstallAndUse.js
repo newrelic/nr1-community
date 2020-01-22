@@ -10,13 +10,15 @@ const InstallAndUse = ({ type, name }) => {
 
   return (
     <>
-      Install
+      <h3>Install</h3>
       <Highlight className="bash">{`npm i @newrelic/nr1-community`}</Highlight>
-      Import
+
+      <h3>Import</h3>
       <Highlight className="jsx">{importStatement}</Highlight>
+
       {hasStyles && (
         <>
-          Import STyles
+          <h3>Import Styles</h3>
           <Highlight className="sass">
             {`@import '~@newrelic/nr1-community/dist/index.css';`}
           </Highlight>
