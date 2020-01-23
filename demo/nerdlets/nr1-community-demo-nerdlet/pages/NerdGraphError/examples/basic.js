@@ -1,65 +1,63 @@
 import React from 'react';
-import Highlight from 'react-highlight';
 
 import { NerdGraphQuery } from 'nr1';
-import { AccountDropdown, NerdGraphError } from '@/../dist';
+import { NerdGraphError } from '@/../dist';
+import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class NerdGraphErrorBasicDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedAccount: null
+      enableLiveEditing: false
     };
-    this.onAccountSelectHandler = this.onAccountSelectHandler.bind(this);
-  }
-
-  onAccountSelectHandler(account) {
-    this.setState({ selectedAccount: account });
-  }
-
-  afterAccountsLoaded(accounts) {
-    this.setState({ selectedAccount: accounts[0] });
   }
 
   renderHighlight() {
-    return (
-      <Highlight className="javascript">
-        {`<NrqlQuery
-            accountId={selectedAccount.id}
-            query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
-          >
-            {({ data }) => {
-              if (data) {
-                const events = data[0].data; // Get data from NRQL query
+    const { enableLiveEditing } = this.state;
+    const scope = {
+      NerdGraphQuery,
+      NerdGraphError
+    };
+    const code = `
+() => { // Enclosed in an arrow function so we can show you query and variables
+  const query = \`
+    query($id: Int!) {
+      actor {
+          account(id: $id) {
+              name
+          }
+      }
+    }
+  \`;
 
-                return (
-                  <EventStream data={events} />
-                );
-              }
-              return null;
-            }}
-          </NrqlQuery>`}
-      </Highlight>
+  const variables = {
+    id: 1111111111111 // Not a real account id, triggers the error
+  };
+
+  return (
+    <NerdGraphQuery query={query} variables={variables}>
+      {({ loading, data, error }) => {
+        if (error) {
+          return <NerdGraphError error={error} />;
+        }
+        return null;
+      }}
+    </NerdGraphQuery>
+  );
+}
+    `;
+    return (
+      <CodeHighlight
+        scope={scope}
+        code={code}
+        language="jsx"
+        use="react-live"
+        enableLiveEditing={enableLiveEditing}
+      />
     );
   }
 
   render() {
-    const { selectedAccount } = this.state;
-
-    const query = `
-      query($id: Int!) {
-        actor {
-            account(id: $id) {
-                name
-            }
-        }
-      }
-    `;
-
-    const variables = {
-      id: 1111111111111
-    };
-
     return (
       <div className="example-container">
         <h3>Basic</h3>
@@ -69,29 +67,7 @@ export default class NerdGraphErrorBasicDemo extends React.Component {
           bibendum.
         </p>
 
-        <AccountDropdown
-          title={
-            selectedAccount !== null
-              ? selectedAccount.name
-              : 'Select an Account'
-          }
-          onSelect={this.onAccountSelectHandler}
-          afterAccountsLoaded={accounts => this.afterAccountsLoaded(accounts)}
-        />
-
         <div className="example-container-content">
-          <div className="code-result-block">
-            {selectedAccount && (
-              <NerdGraphQuery query={query} variables={variables}>
-                {({ loading, data, error }) => {
-                  if (error) {
-                    return <NerdGraphError error={error} />;
-                  }
-                  return null;
-                }}
-              </NerdGraphQuery>
-            )}
-          </div>
           {this.renderHighlight()}
         </div>
       </div>

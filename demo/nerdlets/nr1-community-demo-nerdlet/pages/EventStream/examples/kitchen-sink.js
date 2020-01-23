@@ -148,7 +148,7 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
   }
 
   render() {
-    const { selectedAccount, activeCodeExampleTab, useReactLive } = this.state;
+    const { selectedAccount, activeCodeExampleTab } = this.state;
 
     return (
       <div className="example-container">
