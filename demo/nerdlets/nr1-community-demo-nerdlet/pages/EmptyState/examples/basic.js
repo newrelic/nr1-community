@@ -1,27 +1,39 @@
 import React from 'react';
-import Highlight from 'react-highlight';
 
 import { EmptyState } from '@/../dist';
+import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class EmptyStateBasicDemo extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      enableLiveEditing: false
+    };
   }
 
   renderHighlight() {
+    const { enableLiveEditing } = this.state;
+    const scope = { EmptyState };
+    const code = `
+<EmptyState
+  heading="No content available"
+  description="This is why there's no content available and what you can do 
+    you take the next step. Nulla quis tortor orci. Etiam at risus et justo
+    dignissim."
+  buttonText="Take this action"
+  buttonOnClick={() =>
+    console.log('You clicked the empty state buttun!')
+  }
+/>
+    `;
     return (
-      <Highlight className="javascript">
-        {`<EmptyState
-    heading="No content available"
-    description="This is why there's no content available and what you can do 
-      you take the next step. Nulla quis tortor orci. Etiam at risus et justo
-      dignissim."
-    buttonText="Take this action"
-    buttonOnClick={() =>
-      console.log('You clicked the empty state buttun!')
-    }
-  />`}
-      </Highlight>
+      <CodeHighlight
+        scope={scope}
+        language="jsx"
+        code={code}
+        use="react-live"
+        enableLiveEditing={enableLiveEditing}
+      />
     );
   }
 
