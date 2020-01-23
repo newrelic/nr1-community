@@ -19,7 +19,7 @@ const _defaultDetails = function({ error }) {
           if (gqlError) {
             return (
               <li key={i} className={styles['ng-error-item-contents-item']}>
-                <span className={styles.key}>{`GraphQL Error ${i + 1}`}</span>
+                <span className={styles.key}>{`GraphQL Error ${i + 1}`}:</span>
                 <span className={styles.value}>{gqlError.message}</span>
               </li>
             );
@@ -69,40 +69,22 @@ export class NerdGraphError extends React.Component {
     const open = expanded ? styles['ng-error-item-expanded'] : '';
 
     return (
-      <div className={styles['ng-error-container']}>
-        <div
-          className={[styles['ng-error-item'], open].join(' ')}
-          onClick={this.onClick}
-        >
-          <div className={styles['ng-error-body']}>
-            <div className={styles['ng-item-body-header']}>
-              <div className={styles['ng-error-item-symbol']}>
-                <Icon
-                  className={styles['ng-error-item-symbol-icon']}
-                  type={Button.ICON_TYPE.INTERFACE__STATE__CRITICAL}
-                  color="#ff0000"
-                />
-                {/* TO DO - Display a count of graphql Errors? */}
-              </div>
-              <div className={styles['ng-error-item-title']}>{message}</div>
-              {showDetails && (
-                <Button
-                  className={styles['ng-error-item-dropdown-arrow']}
-                  type={Button.TYPE.PLAIN_NEUTRAL}
-                  iconType={
-                    Button.ICON_TYPE
-                      .INTERFACE__CHEVRON__CHEVRON_BOTTOM__V_ALTERNATE
-                  }
-                />
-              )}
-            </div>
-            {showDetails && (
-              <div className={styles['ng-error-item-contents-container']}>
-                {errorDetails({ error })}
-              </div>
-            )}
-          </div>
+      <div className={[styles['ng-error-container'], open].join(' ')}>
+        <div className={styles['ng-error-body-header']} onClick={this.onClick}>
+          {/* TO DO - Display a count of graphql Errors? */}
+          <Icon type={Icon.TYPE.INTERFACE__STATE__CRITICAL} color="#bf0015" />
+          <h5 className={styles['ng-error-title']}>{message}</h5>
+          {showDetails && (
+            <a href="#" className={styles['ng-error-details-button']}>
+              {expanded ? 'Hide details' : 'View details'}
+            </a>
+          )}
         </div>
+        {showDetails && (
+          <div className={styles['ng-error-details']}>
+            {errorDetails({ error })}
+          </div>
+        )}
       </div>
     );
   }
