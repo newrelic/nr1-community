@@ -1,7 +1,7 @@
 export default {
   plain: {
     color: '#393A34',
-    backgroundColor: '#fafbfb',
+    backgroundColor: '#f4f5f5',
     fontFamily: ['Fira Code', 'monospace'],
     fontSize: '14px'
   },

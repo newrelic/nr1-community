@@ -16,7 +16,11 @@ const Live = function({ code, scope, enableLiveEditing }) {
       code={code}
       scope={scope}
     >
-      <div className="code-result-block">
+      <div
+        className={
+          enableLiveEditing ? 'live-code-result-block' : 'code-result-block'
+        }
+      >
         <LivePreview />
       </div>
       <LiveError />
