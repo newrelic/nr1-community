@@ -8,18 +8,26 @@ import { default as ReactHighlight } from 'react-highlight';
 // import theme from 'prism-react-renderer/themes/duotoneDark';
 import theme from './theme';
 
-const Live = function({ code, scope }) {
+const Live = function({ code, scope, enableLiveEditing }) {
   return (
-    <LiveProvider theme={theme} code={code} scope={scope}>
-      <LiveEditor />
+    <LiveProvider
+      disabled={!enableLiveEditing}
+      theme={theme}
+      code={code}
+      scope={scope}
+    >
+      <div className="code-result-block">
+        <LivePreview />
+      </div>
       <LiveError />
-      <LivePreview />
+      <LiveEditor />
     </LiveProvider>
   );
 };
 Live.propTypes = {
   code: PropTypes.string,
-  scope: PropTypes.object
+  scope: PropTypes.object,
+  enableLiveEditing: PropTypes.bool
 };
 
 const PrismHighlight = function({ code, language }) {
@@ -46,9 +54,22 @@ PrismHighlight.propTypes = {
   language: PropTypes.string
 };
 
-const CodeHighlight = function({ use, code, language, scope }) {
+const CodeHighlight = function({
+  use,
+  code,
+  language,
+  scope,
+  enableLiveEditing
+}) {
   if (use === 'react-live') {
-    return <Live scope={scope} code={code} language={language} />;
+    return (
+      <Live
+        scope={scope}
+        code={code}
+        language={language}
+        enableLiveEditing={enableLiveEditing}
+      />
+    );
   }
 
   if (use === 'prism') {
@@ -61,7 +82,8 @@ CodeHighlight.propTypes = {
   code: PropTypes.string,
   language: PropTypes.string,
   use: PropTypes.string,
-  scope: PropTypes.object
+  scope: PropTypes.object,
+  enableLiveEditing: PropTypes.bool
 };
 
 export default CodeHighlight;

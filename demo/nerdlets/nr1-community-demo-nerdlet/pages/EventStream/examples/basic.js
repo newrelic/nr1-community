@@ -1,14 +1,15 @@
 import React from 'react';
-import Highlight from 'react-highlight';
 
 import { NrqlQuery } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
+import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class EventStreamKitchenSinkDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedAccount: null
+      selectedAccount: null,
+      enableLiveEditing: false
     };
     this.onAccountSelectHandler = this.onAccountSelectHandler.bind(this);
   }
@@ -22,9 +23,16 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
   }
 
   renderHighlight() {
-    return (
-      <Highlight className="javascript">
-        {`<NrqlQuery
+    const { selectedAccount, enableLiveEditing } = this.state;
+    const scope = {
+      NrqlQuery,
+      EventStream,
+      selectedAccount,
+      onAccountSelectHandler: this.onAccountSelectHandler
+    };
+
+    const code = `
+<NrqlQuery
   accountId={selectedAccount.id}
   query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
 >
@@ -38,8 +46,17 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
     }
     return null;
   }}
-</NrqlQuery>`}
-      </Highlight>
+</NrqlQuery>
+    `;
+
+    return (
+      <CodeHighlight
+        scope={scope}
+        code={code}
+        language="jsx"
+        use="react-live"
+        enableLiveEditing={enableLiveEditing}
+      />
     );
   }
 
@@ -66,23 +83,6 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
         />
 
         <div className="example-container-content">
-          <div className="code-result-block">
-            {selectedAccount && (
-              <NrqlQuery
-                accountId={selectedAccount.id}
-                query="SELECT * FROM PageAction SINCE 60 MINUTES AGO limit 7"
-              >
-                {({ data }) => {
-                  if (data) {
-                    const events = data[0].data; // Get data from NRQL query
-
-                    return <EventStream data={events} />;
-                  }
-                  return null;
-                }}
-              </NrqlQuery>
-            )}
-          </div>
           {this.renderHighlight()}
         </div>
       </div>
