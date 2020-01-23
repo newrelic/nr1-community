@@ -11,7 +11,7 @@ div.container {
   // Some nesting included for specificity
   // to override platform styles
   header.header {
-    padding: 16px 16px 0;
+    padding: 16px;
     border-bottom: 1px solid #edeeee;
     
     h3.title {
@@ -29,6 +29,7 @@ div.container {
       font-size: 12px;
       line-height: 17px;
       color: #8E9494;
+      margin-bottom: 0;
     }
   }
 }
