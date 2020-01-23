@@ -186,7 +186,7 @@ hr {
     margin-top: -4px;
   }
 
-  code {
+  code:not(.lowlight) {
     padding: 16px;
     background-color: #f4f5f5;
     border-radius: 0 0 4px 4px;
