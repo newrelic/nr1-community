@@ -69,7 +69,7 @@ export default class EmptyStateDemo extends React.Component {
 
         <Button
           className="readme-link"
-          to="https://github.com/newrelic/nr1-community/blob/master/src/components/DetailPanel/README.md"
+          to="https://github.com/newrelic/nr1-community/blob/master/src/components/EmptyState/README.md"
         >
           View {pageHeaders.title.text} README
         </Button>
