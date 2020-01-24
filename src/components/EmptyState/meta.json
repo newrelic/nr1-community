@@ -24,7 +24,7 @@
         "name": "buttonOnClick",
         "type": "function",
         "default": "`console.log('You clicked the empty state button!')`",
-        "description": "The funtion used to define an action when the call to action button is clicked."
+        "description": "The function used to define an action when the call to action button is clicked."
       }
     ]
   }
