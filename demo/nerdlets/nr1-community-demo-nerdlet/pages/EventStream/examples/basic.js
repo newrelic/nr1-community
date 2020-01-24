@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { NrqlQuery } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class EventStreamKitchenSinkDemo extends React.Component {
+  static propTypes = {
+    header: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -62,10 +67,11 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
 
   render() {
     const { selectedAccount } = this.state;
+    const { header } = this.props;
 
     return (
       <div className="example-container">
-        <h3>Basic</h3>
+        <h3 id={header.id}>{header.text}</h3>
         <p>
           Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis
           quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat
