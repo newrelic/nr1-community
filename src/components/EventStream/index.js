@@ -113,7 +113,20 @@ export class EventStream extends React.Component {
 
     return data.map((event, index) => {
       const timestamp = event[timestampField]; // TO DO - Default? Error? What do we do if not found?
-      const icon = iconType({ event }) || _defaultIconType({ event });
+      let icon = false;
+      if (iconType == null) {
+        icon = _defaultIconType({ event });
+      } else if (typeof iconType == "boolean") {
+        if (iconType) {
+          icon = _defaultIconType({ event });
+        }
+        //else remains false and we'll not display
+      } else if (typeof iconType == "object") {
+        //we passed in an icon
+        icon = iconType;
+      } else if (typeof iconType == "function") {
+        icon = iconType({ event });
+      }
       const date = new Date(timestamp);
       const open =
         parseInt(expandedTimelineItem, 10) === index
@@ -149,7 +162,7 @@ export class EventStream extends React.Component {
           <div className={styles['timeline-item-dot']} />
           <div className={styles['timeline-item-body']}>
             <div className={styles['timeline-item-body-header']}>
-              <div
+              {icon && <div
                 className={styles['timeline-item-symbol']}
                 // style={getIconBackgroundColor(icon)}
               >
@@ -158,7 +171,7 @@ export class EventStream extends React.Component {
                   type={icon.icon}
                   color={icon.color}
                 />
-              </div>
+              </div>}
               <div className={styles['timeline-item-title']}>
                 {formattedLabel}
               </div>
