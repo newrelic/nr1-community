@@ -1,24 +1,24 @@
 {
   "name": "NerdGraphError",
-  "description": "Display NerdGraph errors with some flare",
+  "description": "Display NerdGraph errors in a more consumable, useful pattern.",
   "props": [
     {
       "name": "error",
       "type": "object",
-      "description": "",
-      "default": ""
+      "description": "Error object from the underlying Apollo GraphQL model.",
+      "default": "null"
     },
     {
       "name": "showDetails",
       "type": "boolean",
-      "description": "",
+      "description": "If true, the details are available/readable in the component.",
       "default": "true"
     },
     {
       "name": "errorDetails",
       "type": "function",
-      "description": "",
-      "default": "yes"
+      "description": "If set, override the default output logic for the details of the error.",
+      "default": "_defaultDetails"
     }
   ]
 }
