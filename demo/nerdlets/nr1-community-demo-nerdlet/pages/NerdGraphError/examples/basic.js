@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { NerdGraphQuery } from 'nr1';
 import { NerdGraphError } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class NerdGraphErrorBasicDemo extends React.Component {
+  static propTypes = {
+    header: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -58,9 +63,11 @@ export default class NerdGraphErrorBasicDemo extends React.Component {
   }
 
   render() {
+    const { header } = this.props;
+
     return (
       <div className="example-container">
-        <h3>Basic</h3>
+        <h3 id={header.id}>{header.text}</h3>
         <p>
           Demonstrate the default behavior of displaying captured errors in an Apollo-based GraphQL error.
         </p>
