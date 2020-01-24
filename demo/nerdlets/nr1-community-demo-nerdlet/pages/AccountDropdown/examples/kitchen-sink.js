@@ -1,9 +1,14 @@
 import React from 'react';
 import Highlight from 'react-highlight';
+import PropTypes from 'prop-types';
 
 import { AccountDropdown } from '@/../dist';
 
 export default class AccountDropdownKitchenSinkDemo extends React.Component {
+  static propTypes = {
+    headerRef: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -41,9 +46,12 @@ export default class AccountDropdownKitchenSinkDemo extends React.Component {
   }
 
   render() {
+    const { headerRef } = this.props;
     return (
       <div className="example-container">
-        <h3>With Reporting Event Types, where clause, and timeRange</h3>
+        <h3 ref={headerRef()}>
+          With Reporting Event Types, where clause, and timeRange
+        </h3>
         <p>
           Ut in nulla enim. Phasellus molestie magna non est bibendum non
           venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.

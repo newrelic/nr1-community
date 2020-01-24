@@ -1,9 +1,14 @@
 import React from 'react';
 import Highlight from 'react-highlight';
+import PropTypes from 'prop-types';
 
 import { AccountDropdown } from '@/../dist';
 
 export default class AccountDropdownBasicDemo extends React.Component {
+  static propTypes = {
+    headerRef: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,9 +37,11 @@ export default class AccountDropdownBasicDemo extends React.Component {
   }
 
   render() {
+    const { headerRef } = this.props;
+
     return (
       <div className="example-container">
-        <h3>Basic</h3>
+        <h3 ref={headerRef()}>Basic</h3>
         <p>
           Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis
           quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat

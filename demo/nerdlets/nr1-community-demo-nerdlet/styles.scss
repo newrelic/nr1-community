@@ -400,20 +400,20 @@ ul.secondary-nav {
   font-size: 14px;
   line-height: 21px;
   list-style-type: none;
-  
-  a {
-    color: rgba(#464E4E, .7);
+  color: rgba(#464E4E, .7);
     
-    &:hover {
-      color: #007e8a;
-      cursor: pointer;
-    }
+  &:hover {
+    color: #007e8a;
+    cursor: pointer;
   }
-  
 
-  &.active > a {
+  &.active {
     color: #007e8a;
     font-weight: 600;
+  }
+
+  &.child-header {
+    padding-left: 16px;
   }
 }
 
