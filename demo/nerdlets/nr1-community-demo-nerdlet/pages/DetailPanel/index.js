@@ -120,7 +120,7 @@ export default class DetailPanelDemo extends React.Component {
 
           {/* Installation/Usage */}
           <h2 id={pageHeaders.installationAndUsage.id}>
-            {pageHeaders.installationAndUsage.id}
+            {pageHeaders.installationAndUsage.text}
           </h2>
           <InstallAndUse type="component" name="DetailPanel" />
 
