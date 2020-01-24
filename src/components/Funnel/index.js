@@ -18,7 +18,7 @@ function get_color_set() {
 export class Funnel extends React.Component {
   static propTypes = {
     accountId: PropTypes.number.isRequired,
-    launcherUrlState: PropTypes.object.isRequired,
+    platformUrlState: PropTypes.object.isRequired,
     height: PropTypes.number,
     width: PropTypes.number,
     funnel: PropTypes.shape({
@@ -85,11 +85,11 @@ export class Funnel extends React.Component {
       series: this.props.series,
       steps: this.props.steps
     });
-    const nextRange = nextProps.launcherUrlState
-      ? nextProps.launcherUrlState.timeRange.duration
+    const nextRange = nextProps.platformUrlState
+      ? nextProps.platformUrlState.timeRange.duration
       : null;
-    const currentRange = this.props.launcherUrlState
-      ? this.props.launcherUrlState.timeRange.duration
+    const currentRange = this.props.platformUrlState
+      ? this.props.platformUrlState.timeRange.duration
       : null;
     if (next !== current || nextRange !== currentRange) {
       this._getData().then(data => {
@@ -118,7 +118,7 @@ export class Funnel extends React.Component {
 
   _constructFunnelNrql(series) {
     const { funnel, steps } = this.props;
-    const { duration } = this.props.launcherUrlState.timeRange;
+    const { duration } = this.props..timeRange;
     const since = `SINCE ${duration / 1000 / 60} MINUTES AGO`;
     return `FROM ${funnel.event} SELECT funnel(${funnel.measure} ${steps
       .map(step => `, WHERE ${step.nrqlWhere} as '${step.label}'`)

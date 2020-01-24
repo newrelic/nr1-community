@@ -4,10 +4,10 @@
     {
       "name": "accountId",
       "description": "",
-      "default": ""
+      "default": "none"
     },
     {
-      "name": "launcherUrlState",
+      "name": "platformUrlState",
       "description": "",
       "default": ""
     },
