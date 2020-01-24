@@ -14,7 +14,7 @@ import meta from '@/components/EmptyState/meta.json';
 const page = {
   title: 'Empty State',
   subtitle:
-    "Tells users that there's no content to display—and what they can do next"
+    "Tells users that there's no content to display as well as what they can do next."
 };
 
 const pageHeaders = {

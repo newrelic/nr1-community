@@ -14,7 +14,7 @@ import meta from '@/utils/timeRangeToNrql/meta.json';
 const page = {
   title: 'timeRangeToNRQL',
   subtitle:
-    'Converts the 3 data points from the New Relic One time picker (begin time, end time, and duration) to NRQL.'
+    'Converts the three data points from the New Relic One time picker (begin time, end time, and duration) to a NRQL SINCE statement.'
 };
 
 const pageHeaders = {

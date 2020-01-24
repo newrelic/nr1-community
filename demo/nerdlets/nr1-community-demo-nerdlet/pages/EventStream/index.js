@@ -14,7 +14,7 @@ import meta from '@/components/EventStream/meta.json';
 
 const page = {
   title: 'Event Stream',
-  subtitle: ''
+  subtitle: 'A component to list a series of timestamped events in both a summary and detail format.'
 };
 
 const pageHeaders = {
