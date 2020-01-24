@@ -17,11 +17,39 @@ const page = {
     'Converts the 3 data points from the New Relic One time picker (begin time, end time, and duration) to NRQL.'
 };
 
+const pageHeaders = {
+  title: {
+    text: 'timeRangetoNrql',
+    id: 'title',
+    hierarchy: 0
+  },
+  examples: {
+    text: 'Example',
+    id: 'example',
+    hierarchy: 0
+  },
+  basicExample: {
+    text: 'Basic',
+    id: 'basic',
+    hierarchy: 1
+  },
+  installationAndUsage: {
+    text: 'Installation and Usage',
+    id: 'installation-and-usage',
+    hierarchy: 0
+  },
+  properties: {
+    text: 'Properties',
+    id: 'properties',
+    hierarchy: 0
+  }
+};
+
 export default class EmptyStateDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSidebar: false
+      showSidebar: true
     };
   }
 
@@ -32,7 +60,35 @@ export default class EmptyStateDemo extends React.Component {
       return null;
     }
 
-    return <GridItem columnSpan={3} className="secondary-grid-item" />;
+    return (
+      <GridItem columnSpan={3} className="secondary-grid-item">
+        <div className="secondary-nav-container">
+          <h6 className="secondary-nav-container-header">On this page</h6>
+          <ul className="secondary-nav">{this.renderHeaders()}</ul>
+        </div>
+      </GridItem>
+    );
+  }
+
+  renderHeaders() {
+    const pageHeaderIds = Object.keys(pageHeaders);
+
+    return pageHeaderIds.map(pageHeaderId => {
+      const hierarchy = pageHeaders[pageHeaderId].hierarchy;
+      const id = pageHeaders[pageHeaderId].id;
+      const text = pageHeaders[pageHeaderId].text;
+
+      return (
+        <li
+          key={pageHeaderId}
+          className={`secondary-nav-item ${
+            hierarchy === 1 ? 'child-header' : ''
+          }`}
+        >
+          <a href={`#${id}`}>{text}</a>
+        </li>
+      );
+    });
   }
 
   render() {
@@ -45,28 +101,34 @@ export default class EmptyStateDemo extends React.Component {
           collapseGapAfter
           className="primary-grid-item"
         >
-          <h1>{page.title}</h1>
-          <p className="lead-paragraph">{page.subtitle}</p>
+          <>
+            <h1 id={pageHeaders.title.id}>{pageHeaders.title.text}</h1>
+            <p className="lead-paragraph">{page.subtitle}</p>
 
-          <hr />
+            <hr />
 
-          <h2>Example</h2>
-          <p>{meta.description}</p>
+            <h2 id={pageHeaders.examples.id}>{pageHeaders.examples.text}</h2>
+            <p>{meta.description}</p>
 
-          {/* Code Samples */}
-          <BasicExample />
+            {/* Code Samples */}
+            <BasicExample />
 
-          {/* Installation/Usage */}
-          <h2>Installation and Usage</h2>
-          <InstallAndUse type="util" name="timeRangeToNrql" />
+            {/* Installation/Usage */}
+            <h2 id={pageHeaders.installationAndUsage.id}>
+              {pageHeaders.installationAndUsage.text}
+            </h2>
+            <InstallAndUse type="util" name="timeRangeToNrql" />
 
-          {/* Props */}
-          <h2>Properties</h2>
-          <PropsTable meta={meta} />
+            {/* Props */}
+            <h2 id={pageHeaders.properties.id}>
+              {pageHeaders.properties.text}
+            </h2>
+            <PropsTable meta={meta} />
+          </>
         </GridItem>
 
         {/* Sidebar */}
-        {this.renderSidebar}
+        {this.renderSidebar()}
       </Grid>
     );
   }
