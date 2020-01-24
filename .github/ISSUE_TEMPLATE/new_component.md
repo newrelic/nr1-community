@@ -1,6 +1,6 @@
 ---
-name: New component request
-about: Suggest a new component for the community library
+name: New component or utility request
+about: Suggest a new component or utility for the community library
 title: ''
 labels: enhancement, needs-triage
 assignees: ''
