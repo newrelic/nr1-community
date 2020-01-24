@@ -19,29 +19,52 @@ const page = {
   subtitle: 'A common interface for choosing an account'
 };
 
+const pageHeaders = {
+  title: {
+    text: 'Account Dropdown',
+    id: 'account-dropdown',
+    hierarchy: 0
+  },
+  examples: {
+    text: 'Examples',
+    id: 'examples',
+    hierarchy: 0
+  },
+  basicExample: {
+    text: 'Basic',
+    id: 'basic',
+    hierarchy: 1
+  },
+  advancedExample: {
+    text: 'With Reporting Event Types',
+    id: 'advanced-example',
+    hierarchy: 1
+  },
+  kitchenSinkExample: {
+    text: 'With Reporting Event Types, where clause, and timeRange',
+    id: 'kitchen-sink-example',
+    hierarchy: 1
+  },
+  installationAndUsage: {
+    text: 'Installation and Usage',
+    id: 'installation-and-usage',
+    hierarchy: 0
+  },
+  properties: {
+    text: 'Properties',
+    id: 'properties',
+    hierarchy: 0
+  }
+};
+
 export default class AccountDropdownDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSidebar: true,
-      headerRefs: undefined
+      showSidebar: true
     };
 
-    this.setHeaderRef = this.setHeaderRef.bind(this);
     this.renderHeaders = this.renderHeaders.bind(this);
-  }
-
-  setHeaderRef(node) {
-    const nodeText = camelCase(node.innerText);
-
-    this.headerRefs = {
-      ...this.headerRefs,
-      [nodeText]: node
-    };
-
-    this.setState(() => ({
-      headerRefs: this.headerRefs
-    }));
   }
 
   renderSidebar() {
@@ -62,30 +85,24 @@ export default class AccountDropdownDemo extends React.Component {
   }
 
   renderHeaders() {
-    if (this.state.headerRefs !== undefined) {
-      const headerRefsKeys = Object.keys(this.state.headerRefs);
-      const headers = headerRefsKeys.map(header => {
-        return this.state.headerRefs[header].innerText;
-      });
+    const pageHeaderIds = Object.keys(pageHeaders);
 
-      return headers.map((header, index) => (
+    return pageHeaderIds.map(pageHeaderId => {
+      const hierarchy = pageHeaders[pageHeaderId].hierarchy;
+      const id = pageHeaders[pageHeaderId].id;
+      const text = pageHeaders[pageHeaderId].text;
+
+      return (
         <li
-          key={index}
+          key={pageHeaderId}
           className={`secondary-nav-item ${
-            this.state.headerRefs[headerRefsKeys[index]].nodeName === 'H3'
-              ? 'child-header'
-              : ''
+            hierarchy === 1 ? 'child-header' : ''
           }`}
-          onClick={() =>
-            this.state.headerRefs[headerRefsKeys[index]].scrollIntoView({
-              behavior: 'smooth'
-            })
-          }
         >
-          {header}
+          <a href={`#${id}`}>{text}</a>
         </li>
-      ));
-    }
+      );
+    });
   }
 
   render() {
@@ -98,25 +115,27 @@ export default class AccountDropdownDemo extends React.Component {
           collapseGapAfter
           className="primary-grid-item"
         >
-          <h1 ref={this.setHeaderRef}>{page.title}</h1>
+          <h1 id={pageHeaders.title.id}>{pageHeaders.title.text}</h1>
           <p className="lead-paragraph">{page.subtitle}</p>
 
           <hr />
 
-          <h2 ref={this.setHeaderRef}>Examples</h2>
+          <h2 id={pageHeaders.examples.id}>{pageHeaders.examples.text}</h2>
           <p>{meta.description}</p>
 
           {/* Code Samples */}
-          <BasicExample headerRef={() => this.setHeaderRef} />
-          <AdvancedExample headerRef={() => this.setHeaderRef} />
-          <KitchenSinkExample headerRef={() => this.setHeaderRef} />
+          <BasicExample header={pageHeaders.basicExample} />
+          <AdvancedExample header={pageHeaders.advancedExample} />
+          <KitchenSinkExample header={pageHeaders.kitchenSinkExample} />
 
           {/* Installation/Usage */}
-          <h2 ref={this.setHeaderRef}>Installation and Usage</h2>
+          <h2 id={pageHeaders.installationAndUsage.id}>
+            {pageHeaders.installationAndUsage.text}
+          </h2>
           <InstallAndUse type="component" name="AccountDropdown" />
 
           {/* Props */}
-          <h2 ref={this.setHeaderRef}>Properties</h2>
+          <h2 id={pageHeaders.properties.id}>{pageHeaders.properties.text}</h2>
           <PropsTable meta={meta} />
         </GridItem>
 

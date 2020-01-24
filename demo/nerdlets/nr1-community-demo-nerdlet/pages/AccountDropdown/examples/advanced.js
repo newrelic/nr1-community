@@ -6,7 +6,7 @@ import { AccountDropdown } from '@/../dist';
 
 export default class AccountDropdownAdvancedDemo extends React.Component {
   static propTypes = {
-    headerRef: PropTypes.func
+    header: PropTypes.object
   };
 
   constructor(props) {
@@ -40,11 +40,11 @@ export default class AccountDropdownAdvancedDemo extends React.Component {
   }
 
   render() {
-    const { headerRef } = this.props;
+    const { header } = this.props;
 
     return (
       <div className="example-container">
-        <h3 ref={headerRef()}>With Reporting Event Types</h3>
+        <h3 id={header.id}>{header.text}</h3>
         <p>Nulla quis tortor orci. Etiam at risus et justo dignissim.</p>
         <div className="example-container-content">
           <div className="code-result-block">

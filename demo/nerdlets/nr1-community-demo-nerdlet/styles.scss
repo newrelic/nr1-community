@@ -75,6 +75,7 @@ div[class*='Stack'].sidebar-container {
 
 .primary-content-container {
   overflow: scroll;
+  scroll-behavior: smooth;
   padding: 0;
   background-color: #fff;
   box-shadow: 
@@ -397,21 +398,28 @@ ul.secondary-nav {
 }
 
 .secondary-nav-item {
-  font-size: 14px;
-  line-height: 21px;
   list-style-type: none;
-  color: rgba(#464E4E, .7);
+  line-height: 21px;
+
+  a { 
+    font-size: 14px;
+    color: rgba(#464E4E, .7);
     
-  &:hover {
-    color: #007e8a;
-    cursor: pointer;
-  }
+    &:hover {
+      color: #007e8a;
+      text-decoration: none;
+    }
 
-  &.active {
-    color: #007e8a;
-    font-weight: 600;
+    &:active {
+      background-color: transparent;
+    }
+    
+    &.active {
+      color: #007e8a;
+      font-weight: 600;
+    }
   }
-
+    
   &.child-header {
     padding-left: 16px;
   }
@@ -449,7 +457,7 @@ ul.secondary-nav {
 }
 
 .secondary-nav-container-header {
-  background-color:#fafbfb;
+  background-color:#f4f5f5;
   padding:12px 20px;
   letter-spacing:0.03em;
   text-transform:uppercase;

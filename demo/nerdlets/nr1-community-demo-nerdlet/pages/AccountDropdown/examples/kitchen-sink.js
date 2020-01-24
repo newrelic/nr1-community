@@ -6,7 +6,7 @@ import { AccountDropdown } from '@/../dist';
 
 export default class AccountDropdownKitchenSinkDemo extends React.Component {
   static propTypes = {
-    headerRef: PropTypes.func
+    header: PropTypes.object
   };
 
   constructor(props) {
@@ -46,12 +46,10 @@ export default class AccountDropdownKitchenSinkDemo extends React.Component {
   }
 
   render() {
-    const { headerRef } = this.props;
+    const { header } = this.props;
     return (
       <div className="example-container">
-        <h3 ref={headerRef()}>
-          With Reporting Event Types, where clause, and timeRange
-        </h3>
+        <h3 id={header.id}>{header.text}</h3>
         <p>
           Ut in nulla enim. Phasellus molestie magna non est bibendum non
           venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.
