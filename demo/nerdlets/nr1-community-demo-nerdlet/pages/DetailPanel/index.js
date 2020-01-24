@@ -1,7 +1,7 @@
 import React from 'react';
 
 // NR1
-import { Grid, GridItem } from 'nr1';
+import { Grid, GridItem, Button } from 'nr1';
 
 // Local components
 import PropsTable from '../../shared/components/PropsTable';
@@ -71,6 +71,12 @@ export default class DetailPanelDemo extends React.Component {
           <h6 className="secondary-nav-container-header">On this page</h6>
           <ul className="secondary-nav">{this.renderHeaders()}</ul>
         </div>
+        <Button
+          className="readme-link"
+          to="https://github.com/newrelic/nr1-community/blob/master/src/components/DetailPanel/README.md"
+        >
+          View {pageHeaders.title.text} README
+        </Button>
       </GridItem>
     );
   }
