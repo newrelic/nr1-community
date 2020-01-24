@@ -17,11 +17,39 @@ const page = {
     "Tells users that there's no content to display—and what they can do next"
 };
 
+const pageHeaders = {
+  title: {
+    text: 'Account Dropdown',
+    id: 'account-dropdown',
+    hierarchy: 0
+  },
+  examples: {
+    text: 'Examples',
+    id: 'examples',
+    hierarchy: 0
+  },
+  basicExample: {
+    text: 'Basic',
+    id: 'basic',
+    hierarchy: 1
+  },
+  installationAndUsage: {
+    text: 'Installation and Usage',
+    id: 'installation-and-usage',
+    hierarchy: 0
+  },
+  properties: {
+    text: 'Properties',
+    id: 'properties',
+    hierarchy: 0
+  }
+};
+
 export default class EmptyStateDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSidebar: false
+      showSidebar: true
     };
   }
 
@@ -32,7 +60,35 @@ export default class EmptyStateDemo extends React.Component {
       return null;
     }
 
-    return <GridItem columnSpan={3} className="secondary-grid-item" />;
+    return (
+      <GridItem columnSpan={3} className="secondary-grid-item">
+        <div className="secondary-nav-container">
+          <h6 className="secondary-nav-container-header">On this page</h6>
+          <ul className="secondary-nav">{this.renderHeaders()}</ul>
+        </div>
+      </GridItem>
+    );
+  }
+
+  renderHeaders() {
+    const pageHeaderIds = Object.keys(pageHeaders);
+
+    return pageHeaderIds.map(pageHeaderId => {
+      const hierarchy = pageHeaders[pageHeaderId].hierarchy;
+      const id = pageHeaders[pageHeaderId].id;
+      const text = pageHeaders[pageHeaderId].text;
+
+      return (
+        <li
+          key={pageHeaderId}
+          className={`secondary-nav-item ${
+            hierarchy === 1 ? 'child-header' : ''
+          }`}
+        >
+          <a href={`#${id}`}>{text}</a>
+        </li>
+      );
+    });
   }
 
   render() {
@@ -45,23 +101,25 @@ export default class EmptyStateDemo extends React.Component {
           collapseGapAfter
           className="primary-grid-item"
         >
-          <h1>{page.title}</h1>
+          <h1 id={pageHeaders.title.id}>{pageHeaders.title.text}</h1>
           <p className="lead-paragraph">{page.subtitle}</p>
 
           <hr />
 
-          <h2>Examples</h2>
+          <h2 id={pageHeaders.examples.id}>{pageHeaders.examples.text}</h2>
           <p>{meta.description}</p>
 
           {/* Code Samples */}
-          <BasicExample />
+          <BasicExample header={pageHeaders.basicExample} />
 
           {/* Installation/Usage */}
-          <h2>Installation and Usage</h2>
+          <h2 id={pageHeaders.installationAndUsage.id}>
+            {pageHeaders.installationAndUsage.text}
+          </h2>
           <InstallAndUse type="component" name="EmptyState" />
 
           {/* Props */}
-          <h2>Properties</h2>
+          <h2 id={pageHeaders.properties.id}>{pageHeaders.properties.text}</h2>
           <PropsTable meta={meta} />
         </GridItem>
 
