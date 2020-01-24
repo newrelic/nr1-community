@@ -45,7 +45,7 @@ npm install --save @newrelic/nr1-community
 Import the component/utils into your nerdlet:
 
 ```js
-import { AccountDropdown, timeRangeToNrql } from 'nr1-community';
+import { DetailPanel, EmptyState, EventStream, NerdGraphError, timeRangeToNrql } from 'nr1-community';
 ```
 
 Import styles into your styles.scss (or similar):
@@ -58,17 +58,25 @@ Import styles into your styles.scss (or similar):
 
 For complete documentation and a demo, please visit [Demo](demo/README.md) and follow the instructions for viewing.
 
-- [AccountDropdown](src/components/AccountDropdown/README.md)
+- [DetailPanel](src/components/DetailPanel/README.md)
 
-![Screenshot #1](screenshots/screenshot_AccountDropdown.png)
+![Screenshot #1](screenshots/screenshot_DetailPanel.png)
+
+- [EmptyState](src/components/EmptyState/README.md)
+
+![Screenshot #1](screenshots/screenshot_EmptyState.png)
 
 - [EventStream](src/components/EventStream/README.md)
 
-![Screenshot #2](screenshots/screenshot_EventStream.png)
+![Screenshot #1](screenshots/screenshot_EventStream.png)
 
-- [Funnel](src/components/Funnel/README.md)
+- [Funnel (coming soon)](src/components/Funnel/README.md)
 
 ![Screenshot #1](screenshots/screenshot_Funnel.png)
+
+- [NerdGraphError](src/components/NerdGraphError/README.md)
+
+![Screenshot #1](screenshots/screenshot_NerdGraphError.png)
 
 ## Utilities
 
