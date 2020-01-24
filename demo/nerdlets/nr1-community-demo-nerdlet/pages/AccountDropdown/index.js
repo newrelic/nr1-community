@@ -2,7 +2,6 @@ import React from 'react';
 
 // NR1
 import { Grid, GridItem } from 'nr1';
-import { camelCase } from 'lodash';
 
 // Local components
 import PropsTable from '../../shared/components/PropsTable';
