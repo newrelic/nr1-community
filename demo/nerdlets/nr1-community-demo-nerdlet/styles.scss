@@ -392,6 +392,8 @@ td.prop-name-column {
 .secondary-nav-container {
   width: 100%;
   position: absolute;
+  right: 0;
+  left: 0;
 }
 
 ul.secondary-nav {
@@ -454,6 +456,7 @@ ul.secondary-nav {
 }
 
 .secondary-grid-item {
+  position: relative;
   border-left: 1px dotted #e3e4e4;
 }
 
