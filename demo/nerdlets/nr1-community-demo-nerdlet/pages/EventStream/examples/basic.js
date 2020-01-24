@@ -4,7 +4,7 @@ import { NrqlQuery } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
-export default class EventStreamKitchenSinkDemo extends React.Component {
+export default class BasicExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,9 +67,7 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
       <div className="example-container">
         <h3>Basic</h3>
         <p>
-          Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis
-          quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat
-          bibendum.
+          The simplest example involves passing the results on a NrqlQuery to the component as a data prop.
         </p>
 
         <AccountDropdown

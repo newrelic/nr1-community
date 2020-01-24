@@ -61,7 +61,7 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
           background-color: #f4f5f5;
           cursor: default;
         }
-      }    
+      }
     `;
 
     return <CodeHighlight code={styles} language="scss" use="prism" />;
@@ -154,9 +154,7 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
       <div className="example-container">
         <h3>Kitchen Sink</h3>
         <p>
-          Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis
-          quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat
-          bibendum.
+          The advanced example demonstrates customization of everything from the icon and output format to the selection of fields for the labels and timestamps.
         </p>
 
         <AccountDropdown
