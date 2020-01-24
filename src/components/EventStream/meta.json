@@ -11,7 +11,7 @@
     {
       "name": "timestampField",
       "type": "string",
-      "description": "",
+      "description": "The Unix timestamp of an event in the timeline.",
       "default": "timestamp"
     },
     {
@@ -29,19 +29,19 @@
     {
       "name": "labelField",
       "type": "string",
-      "description": "",
+      "description": "What field in the array of events should be used as the label value for a Timeline event/row?",
       "default": "actionName"
     },
     {
       "name": "eventContent",
       "type": "function",
-      "description": "",
+      "description": "Overriding this function allows you to specify the output format of the event content. The input parameter is an object containing an event attribute. (i.e. { event } )",
       "default": "_defaultEventContent"
     },
     {
       "name": "iconType",
       "type": "boolean|object|function",
-      "description": "",
+      "description": "If false, the icon will not render. If an object, the component assumes the object to be an NR1 Icon object. If a function, the event is passed in an object of inputs ( { event } ) and the function is expected to return an NR1 Icon.",
       "default": "_defaultIconType"
     }
   ]
