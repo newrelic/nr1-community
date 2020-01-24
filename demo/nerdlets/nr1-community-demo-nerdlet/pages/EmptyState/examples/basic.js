@@ -17,13 +17,11 @@ export default class EmptyStateBasicDemo extends React.Component {
     const code = `
 <EmptyState
   heading="No content available"
-  description="This is why there's no content available and what you can do 
-    you take the next step. Nulla quis tortor orci. Etiam at risus et justo
-    dignissim."
+  description="This is why there's no content available and what you can do you take the next step. For instance, you could direct users to another navigation path."
   buttonText="Take this action"
-  buttonOnClick={() =>
-    console.log('You clicked the empty state buttun!')
-  }
+  buttonOnClick={() => {
+    console.log('You clicked the empty state buttun!');
+  }}
 />
     `;
     return (
@@ -48,16 +46,6 @@ export default class EmptyStateBasicDemo extends React.Component {
           (e.g. <code className="lowlight">button=""</code>).
         </p>
         <div className="example-container-content">
-          <div className="code-result-block">
-            <EmptyState
-              heading="No content available"
-              description="This is why there's no content available and what you can do you take the next step. Nulla quis tortor orci. Etiam at risus et justo dignissim."
-              buttonText="Take this action"
-              buttonOnClick={() =>
-                console.log('You clicked the empty state buttun!')
-              }
-            />
-          </div>
           {this.renderHighlight()}
         </div>
       </div>
