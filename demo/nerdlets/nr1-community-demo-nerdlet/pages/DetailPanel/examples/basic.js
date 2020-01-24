@@ -57,17 +57,7 @@ export default class DetailPanelBasicDemo extends React.Component {
           (e.g. <code className="lowlight">button=""</code>).
         </p>
         <div className="example-container-content">
-          <div
-            className="code-result-block"
-            style={{
-              padding: 0,
-              display: 'flex',
-              justifyContent: 'flex-end',
-              minHeight: `400px`
-            }}
-          >
-            {this.renderHighlight()}
-          </div>
+          {this.renderHighlight()}
         </div>
       </div>
     );

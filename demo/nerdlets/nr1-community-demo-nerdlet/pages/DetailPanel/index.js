@@ -104,7 +104,7 @@ export default class DetailPanelDemo extends React.Component {
         <GridItem
           columnSpan={showSidebar ? 9 : 12}
           collapseGapAfter
-          className="primary-grid-item"
+          className="primary-grid-item detail-pane-grid-item"
         >
           <h1 id={pageHeaders.title.id}>{pageHeaders.title.text}</h1>
           <p className="lead-paragraph">{page.subtitle}</p>

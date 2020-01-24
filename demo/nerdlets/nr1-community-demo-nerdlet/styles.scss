@@ -211,6 +211,13 @@ hr {
   }
 }
 
+.detail-pane-grid-item .code-result-block {
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 400px;
+}
+
 // Remove the stripes from the table bg
 .react-bootstrap-table table.table th,
 .react-bootstrap-table table.table td {
