@@ -18,8 +18,8 @@ const page = {
 
 const pageHeaders = {
   title: {
-    text: 'NerdGraphError',
-    id: 'account-dropdown',
+    text: 'Nerd Graph Error',
+    id: 'title',
     hierarchy: 0
   },
   examples: {

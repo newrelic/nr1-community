@@ -19,8 +19,8 @@ const page = {
 
 const pageHeaders = {
   title: {
-    text: 'Account Dropdown',
-    id: 'account-dropdown',
+    text: 'Empty State',
+    id: 'title',
     hierarchy: 0
   },
   examples: {
