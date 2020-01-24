@@ -13,7 +13,7 @@ import meta from '@/components/NerdGraphError/meta.json';
 
 const page = {
   title: 'NerdGraph Error',
-  subtitle: ''
+  subtitle: 'A helper component for formatting and displaying GraphQL errors.'
 };
 
 const pageHeaders = {
