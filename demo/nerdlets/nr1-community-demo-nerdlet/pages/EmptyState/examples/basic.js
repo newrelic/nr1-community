@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { EmptyState } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class EmptyStateBasicDemo extends React.Component {
+  static propTypes = {
+    header: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,9 +41,11 @@ export default class EmptyStateBasicDemo extends React.Component {
   }
 
   render() {
+    const { header } = this.props;
+
     return (
       <div className="example-container">
-        <h3>Basic</h3>
+        <h3 id={header.id}>{header.text}</h3>
         <p>
           You can customize the heading, description, and button text as well as
           provide a callback for when the button is clicked. If you want omit

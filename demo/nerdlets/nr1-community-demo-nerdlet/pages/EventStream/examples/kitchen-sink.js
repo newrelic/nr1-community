@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Icon, NrqlQuery } from 'nr1';
 import { AccountDropdown, EventStream } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
-export default class EventStreamKitchenSinkDemo extends React.Component {
+export default class KitchenSinkExample extends React.Component {
+  static propTypes = {
+    header: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -149,10 +154,11 @@ export default class EventStreamKitchenSinkDemo extends React.Component {
 
   render() {
     const { selectedAccount, activeCodeExampleTab } = this.state;
+    const { header } = this.props;
 
     return (
       <div className="example-container">
-        <h3>Kitchen Sink</h3>
+        <h3 id={header.id}>{header.text}</h3>
         <p>
           The advanced example demonstrates customization of everything from the icon and output format to the selection of fields for the labels and timestamps.
         </p>

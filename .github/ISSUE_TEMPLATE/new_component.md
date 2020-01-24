@@ -1,6 +1,6 @@
 ---
-name: Component enhancement request
-about: Suggest an idea for a future version of this project
+name: New component request
+about: Suggest a new component for the community library
 title: ''
 labels: enhancement, needs-triage
 assignees: ''
@@ -11,7 +11,7 @@ assignees: ''
 
 ## Summary
 
-[NOTE]: # ( Provide a brief overview of what the new feature is all about. )
+[NOTE]: # ( Provide a brief overview of what the new component does and what problem(s) it solves. )
 
 ## Desired Behaviour
 
