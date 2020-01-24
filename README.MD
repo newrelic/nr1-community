@@ -51,7 +51,7 @@ import { DetailPanel, EmptyState, EventStream, NerdGraphError, timeRangeToNrql }
 Import styles into your styles.scss (or similar):
 
 ```sass
-@import '~@newrelic/nr1-community/dist/index.css';
+@import '~@newrelic/nr1-community/dist/index.css'
 ```
 
 ## Components
@@ -81,6 +81,8 @@ For complete documentation and a demo, please visit [Demo](demo/README.md) and f
 ## Utilities
 
 - [timeRangeToNrql](src/utils/timeRangeToNrql/README.md)
+![Screenshot #1](screenshots/screenshot_timeRangeToNrql.png)
+
 - [bytesToSize](src/utils/bytesToSize/README.md)
 
 ## Local Development
