@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import { NerdGraphQuery } from 'nr1';
+import {timeRangeToNrql} from '../../utils/timeRangeToNrql';
 
 import styles from './styles.scss';
 
@@ -117,9 +118,8 @@ export class Funnel extends React.Component {
   }
 
   _constructFunnelNrql(series) {
-    const { funnel, steps } = this.props;
-    const { duration } = this.props..timeRange;
-    const since = `SINCE ${duration / 1000 / 60} MINUTES AGO`;
+    const { funnel, steps, platformUrlState } = this.props;
+    const since  = timeRangeToNrql(platformUrlState);
     return `FROM ${funnel.event} SELECT funnel(${funnel.measure} ${steps
       .map(step => `, WHERE ${step.nrqlWhere} as '${step.label}'`)
       .join(' ')}) WHERE ${series.nrqlWhere} ${since}`;
