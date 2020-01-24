@@ -1,6 +1,6 @@
 {
     "name": "DetailPanel",
-    "description": "Detail panels are a way to provide additional detailed information about a specific visualization (tables, chart, map, etc.) on the current screen.",
+    "description": "Detail panels are a way to provide additional drill-down information about a specific visualization (tables, chart, map, etc.) on the current screen.",
     "props": [
       {
         "name": "title",
