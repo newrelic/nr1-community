@@ -62,9 +62,7 @@ export default class NerdGraphErrorBasicDemo extends React.Component {
       <div className="example-container">
         <h3>Basic</h3>
         <p>
-          Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis
-          quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat
-          bibendum.
+          Demonstrate the default behavior of displaying captured errors in an Apollo-based GraphQL error.
         </p>
 
         <div className="example-container-content">
