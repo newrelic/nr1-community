@@ -45,7 +45,7 @@ npm install --save @newrelic/nr1-community
 Import the component/utils into your nerdlet:
 
 ```js
-import { DetailPanel, EmptyState, EventStream, NerdGraphError, timeRangeToNrql } from 'nr1-community';
+import { DetailPanel, EmptyState, Timeline, NerdGraphError, timeRangeToNrql } from 'nr1-community';
 ```
 
 Import styles into your styles.scss (or similar):
@@ -66,9 +66,9 @@ For complete documentation and a demo, please visit [Demo](demo/README.md) and f
 
 ![Screenshot #1](screenshots/screenshot_EmptyState.png)
 
-- [EventStream](src/components/EventStream/README.md)
+- [Timeline](src/components/Timeline/README.md)
 
-![Screenshot #1](screenshots/screenshot_EventStream.png)
+![Screenshot #1](screenshots/screenshot_Timeline.png)
 
 - [Funnel (coming soon)](src/components/Funnel/README.md)
 

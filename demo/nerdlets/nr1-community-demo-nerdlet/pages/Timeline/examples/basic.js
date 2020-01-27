@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { NrqlQuery } from 'nr1';
-import { AccountDropdown, EventStream } from '@/../dist';
+import { AccountDropdown, Timeline } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class BasicExample extends React.Component {
@@ -31,7 +31,7 @@ export default class BasicExample extends React.Component {
     const { selectedAccount, enableLiveEditing } = this.state;
     const scope = {
       NrqlQuery,
-      EventStream,
+      Timeline,
       selectedAccount,
       onAccountSelectHandler: this.onAccountSelectHandler
     };
@@ -46,7 +46,7 @@ export default class BasicExample extends React.Component {
       const events = data[0].data; // Get data from NRQL query
 
       return (
-        <EventStream data={events} />
+        <Timeline data={events} />
       );
     }
     return null;
@@ -73,7 +73,8 @@ export default class BasicExample extends React.Component {
       <div className="example-container">
         <h3 id={header.id}>{header.text}</h3>
         <p>
-          The simplest example involves passing the results on a NrqlQuery to the component as a data prop.
+          The simplest example involves passing the results on a NrqlQuery to
+          the component as a data prop.
         </p>
 
         <AccountDropdown

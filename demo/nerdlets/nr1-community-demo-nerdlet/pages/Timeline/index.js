@@ -10,7 +10,7 @@ import BasicExample from './examples/basic';
 import KitchenSinkExample from './examples/kitchen-sink';
 
 // Page data
-import meta from '@/components/EventStream/meta.json';
+import meta from '@/components/Timeline/meta.json';
 
 const page = {
   title: 'Event Stream',
@@ -51,7 +51,7 @@ const pageHeaders = {
   }
 };
 
-export default class EventStreamDemo extends React.Component {
+export default class TimelineDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,7 +74,7 @@ export default class EventStreamDemo extends React.Component {
         </div>
         <Button
           className="readme-link"
-          to="https://github.com/newrelic/nr1-community/blob/master/src/components/EventStream/README.md"
+          to="https://github.com/newrelic/nr1-community/blob/master/src/components/Timeline/README.md"
         >
           View {pageHeaders.title.text} README
         </Button>
@@ -129,7 +129,7 @@ export default class EventStreamDemo extends React.Component {
           <h2 id={pageHeaders.installationAndUsage.id}>
             {pageHeaders.installationAndUsage.text}
           </h2>
-          <InstallAndUse type="component" name="EventStream" />
+          <InstallAndUse type="component" name="Timeline" />
 
           {/* Props */}
           <h2 id={pageHeaders.properties.id}>{pageHeaders.properties.text}</h2>

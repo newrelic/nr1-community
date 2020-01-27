@@ -43,7 +43,7 @@ _defaultEventContent.propTypes = {
   event: PropTypes.object
 };
 
-export class EventStream extends React.Component {
+export class Timeline extends React.Component {
   /*
    * timestampFormat and dateFormat support any of the date formats found:
    * https://date-fns.org/v2.9.0/docs/format
@@ -116,15 +116,15 @@ export class EventStream extends React.Component {
       let icon = false;
       if (iconType == null) {
         icon = _defaultIconType({ event });
-      } else if (typeof iconType == "boolean") {
+      } else if (typeof iconType === 'boolean') {
         if (iconType) {
           icon = _defaultIconType({ event });
         }
-        //else remains false and we'll not display
-      } else if (typeof iconType == "object") {
-        //we passed in an icon
+        // else remains false and we'll not display
+      } else if (typeof iconType === 'object') {
+        // we passed in an icon
         icon = iconType;
-      } else if (typeof iconType == "function") {
+      } else if (typeof iconType === 'function') {
         icon = iconType({ event });
       }
       const date = new Date(timestamp);
@@ -162,16 +162,18 @@ export class EventStream extends React.Component {
           <div className={styles['timeline-item-dot']} />
           <div className={styles['timeline-item-body']}>
             <div className={styles['timeline-item-body-header']}>
-              {icon && <div
-                className={styles['timeline-item-symbol']}
-                // style={getIconBackgroundColor(icon)}
-              >
-                <Icon
-                  className={styles['timeline-item-symbol-icon']}
-                  type={icon.icon}
-                  color={icon.color}
-                />
-              </div>}
+              {icon && (
+                <div
+                  className={styles['timeline-item-symbol']}
+                  // style={getIconBackgroundColor(icon)}
+                >
+                  <Icon
+                    className={styles['timeline-item-symbol-icon']}
+                    type={icon.icon}
+                    color={icon.color}
+                  />
+                </div>
+              )}
               <div className={styles['timeline-item-title']}>
                 {formattedLabel}
               </div>
@@ -203,7 +205,7 @@ export class EventStream extends React.Component {
     const stream = this._buildStream({ data });
 
     return (
-      <div className={styles['eventStreamSectionBase sessionSectionBase']}>
+      <div className={styles['TimelineSectionBase sessionSectionBase']}>
         {hasEvents && (
           <div className={styles['timeline-container']}>{stream}</div>
         )}
@@ -212,7 +214,7 @@ export class EventStream extends React.Component {
           <Stack
             fullWidth
             fullHeight
-            className={styles['emptyState eventStreamEmptyState']}
+            className={styles['emptyState TimelineEmptyState']}
             directionType={Stack.DIRECTION_TYPE.VERTICAL}
             horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
             verticalType={Stack.VERTICAL_TYPE.CENTER}
