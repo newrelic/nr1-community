@@ -1,8 +1,8 @@
-# EventStream
+# Timeline
 
 ## Description
 
-EventStream is a vertically oriented timeline showing a series of events in a summary but with a drilldown for additional detail.
+Timeline is a vertically oriented timeline showing a series of events in a summary but with a drilldown for additional detail.
 
 ## Installation
 
@@ -22,7 +22,7 @@ EventStream is a vertically oriented timeline showing a series of events in a su
 
 ```jsx
 
-import { EventStream } from '@newrelic/nr1-community';
+import { Timeline } from '@newrelic/nr1-community';
 
 <NrqlQuery
   accountId={"your account id"}
@@ -32,7 +32,7 @@ import { EventStream } from '@newrelic/nr1-community';
     if (data) {
       const events = data[0].data;
 
-      return <EventStream data={events} />;
+      return <Timeline data={events} />;
     }
     return null;
   }}

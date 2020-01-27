@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Icon, NrqlQuery } from 'nr1';
-import { AccountDropdown, EventStream } from '@/../dist';
+import { AccountDropdown, Timeline } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
 export default class KitchenSinkExample extends React.Component {
@@ -76,7 +76,7 @@ export default class KitchenSinkExample extends React.Component {
     const { selectedAccount, enableLiveEditing } = this.state;
     const scope = {
       NrqlQuery,
-      EventStream,
+      Timeline,
       Icon,
       selectedAccount,
       onAccountSelectHandler: this.onAccountSelectHandler
@@ -92,7 +92,7 @@ export default class KitchenSinkExample extends React.Component {
       const events = data[0].data; // Get data from NRQL query
 
       return (
-        <EventStream
+        <Timeline
           data={events}
           timestampField="timestamp"
           dateFormat="MM/dd/yyyy"
@@ -160,7 +160,9 @@ export default class KitchenSinkExample extends React.Component {
       <div className="example-container">
         <h3 id={header.id}>{header.text}</h3>
         <p>
-          The advanced example demonstrates customization of everything from the icon and output format to the selection of fields for the labels and timestamps.
+          The advanced example demonstrates customization of everything from the
+          icon and output format to the selection of fields for the labels and
+          timestamps.
         </p>
 
         <AccountDropdown
