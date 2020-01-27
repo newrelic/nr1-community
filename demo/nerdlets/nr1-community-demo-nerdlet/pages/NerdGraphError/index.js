@@ -44,7 +44,7 @@ const pageHeaders = {
   }
 };
 
-export default class EventStreamDemo extends React.Component {
+export default class TimelineDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

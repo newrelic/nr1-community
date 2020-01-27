@@ -13,9 +13,18 @@ This library is built on top of and requires the 'nr1' core library available to
 - [Links](#links)
 - [Usage](#usage)
 - [Components](#components)
+  - [DetailPanel](#detailpanel)
+  - [EmptyState](#emptystate)
+  - [Timeline](#timeline)
+  - [Funnel (coming soon)](#funnel-coming-soon)
+  - [NerdGraphError](#nerdgrapherror)
 - [Utilities](#utilities)
+  - [timeRangeToNrql](#timerangetonrql)
+  - [bytesToSize (coming soon)](#bytestosize-coming-soon)
 - [Local Development](#local-development)
 - [How do I add my component?](#how-do-i-add-my-component)
+  - [Add to component library](#add-to-component-library)
+  - [Add to demo/examples](#add-to-demoexamples)
 - [Related work](#related-work)
   - [New Relic One SDK](#new-relic-one-sdk)
   - [NewRelic Developer Site](#newrelic-developer-site)
@@ -58,32 +67,32 @@ Import styles into your styles.scss (or similar):
 
 For complete documentation and a demo, please visit [Demo](demo/README.md) and follow the instructions for viewing.
 
-- [DetailPanel](src/components/DetailPanel/README.md)
+### [DetailPanel](src/components/DetailPanel/README.md)
 
 ![Screenshot #1](screenshots/screenshot_DetailPanel.png)
 
-- [EmptyState](src/components/EmptyState/README.md)
+### [EmptyState](src/components/EmptyState/README.md)
 
 ![Screenshot #1](screenshots/screenshot_EmptyState.png)
 
-- [Timeline](src/components/Timeline/README.md)
+### [Timeline](src/components/Timeline/README.md)
 
 ![Screenshot #1](screenshots/screenshot_Timeline.png)
 
-- [Funnel (coming soon)](src/components/Funnel/README.md)
+### [Funnel (coming soon)](src/components/Funnel/README.md)
 
 ![Screenshot #1](screenshots/screenshot_Funnel.png)
 
-- [NerdGraphError](src/components/NerdGraphError/README.md)
+### [NerdGraphError](src/components/NerdGraphError/README.md)
 
 ![Screenshot #1](screenshots/screenshot_NerdGraphError.png)
 
 ## Utilities
 
-- [timeRangeToNrql](src/utils/timeRangeToNrql/README.md)
+### [timeRangeToNrql](src/utils/timeRangeToNrql/README.md)
 ![Screenshot #1](screenshots/screenshot_timeRangeToNrql.png)
 
-- [bytesToSize](src/utils/bytesToSize/README.md)
+### [bytesToSize (coming soon)](src/utils/bytesToSize/README.md)
 
 ## Local Development
 
