@@ -1,6 +1,6 @@
 {
   "name": "@newrelic/nr1-community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "New Relic One Community Library",
   "author": "newrelic",
   "license": "Apache-2.0",
