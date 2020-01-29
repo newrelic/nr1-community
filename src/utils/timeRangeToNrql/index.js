@@ -9,6 +9,8 @@ export const timeRangeToNrql = function({ timeRange = false }) {
 
   if (timeRange.beginTime && timeRange.endTime) {
     return `SINCE ${timeRange.beginTime} UNTIL ${timeRange.endTime}`;
+  } else if (timeRange.begin_time && timeRange.end_time) {
+    return `SINCE ${timeRange.begin_time} UNTIL ${timeRange.end_time}`;
   } else if (timeRange.duration <= HOUR) {
     return `SINCE ${timeRange.duration / MINUTE} MINUTES AGO`;
   } else if (timeRange.duration <= DAY) {
