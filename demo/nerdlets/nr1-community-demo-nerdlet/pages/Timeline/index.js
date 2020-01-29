@@ -13,14 +13,14 @@ import KitchenSinkExample from './examples/kitchen-sink';
 import meta from '@/components/Timeline/meta.json';
 
 const page = {
-  title: 'Event Stream',
+  title: 'Timeline',
   subtitle:
     'A component to list a series of timestamped events in both a summary and detail format.'
 };
 
 const pageHeaders = {
   title: {
-    text: 'Event Stream',
+    text: 'Timeline',
     id: 'title',
     hierarchy: 0
   },
