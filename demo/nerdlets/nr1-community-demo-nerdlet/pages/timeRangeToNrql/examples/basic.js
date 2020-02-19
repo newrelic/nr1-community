@@ -18,7 +18,7 @@ export default class EmptyStateBasicDemo extends React.Component {
     end_time: 3600
   };
 
-  timeRangeToNrql(timeRange);
+  timeRangeToNrql({ timeRange });
               `}
       </Highlight>
     );
@@ -35,7 +35,7 @@ export default class EmptyStateBasicDemo extends React.Component {
       <div className="example-container">
         <div className="example-container-content">
           <div className="code-result-block">
-            <code className="lowlight">{timeRangeToNrql(timeRange)}</code>
+            <code className="lowlight">{timeRangeToNrql({ timeRange })}</code>
           </div>
           {this.renderHighlight()}
         </div>

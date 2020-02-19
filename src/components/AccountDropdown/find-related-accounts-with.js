@@ -25,7 +25,7 @@ export default async function findRelatedAccountsWith({
     end_time: 0
   };
 
-  const timeRangeNrql = timeRangeToNrql(timeWindow);
+  const timeRangeNrql = timeRangeToNrql({ timeRange: timeWindow });
   const { data: accounts = [], errors } = await accountsWithData({
     eventTypes
   });
