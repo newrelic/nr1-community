@@ -8,7 +8,8 @@ export class EmptyState extends React.Component {
     heading: PropTypes.string,
     description: PropTypes.string,
     buttonText: PropTypes.string,
-    buttonOnClick: PropTypes.func
+    buttonOnClick: PropTypes.func,
+    buttonUrl: PropTypes.string
   };
 
   constructor(props) {
@@ -27,7 +28,7 @@ export class EmptyState extends React.Component {
   }
 
   render() {
-    const { heading, description, buttonText } = this.props;
+    const { heading, description, buttonText, buttonUrl } = this.props;
     return (
       <>
         <Stack
@@ -49,7 +50,7 @@ export class EmptyState extends React.Component {
             </p>
           </StackItem>
           <StackItem className={buttonText === '' ? styles.hidden : ''}>
-            <Button onClick={this.handleButtonClick}>
+            <Button onClick={this.handleButtonClick} to={buttonUrl}>
               {buttonText || 'Call to action'}
             </Button>
           </StackItem>
