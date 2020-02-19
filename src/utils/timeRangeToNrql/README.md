@@ -18,7 +18,7 @@ import { timeRangeToNrql } from '@newrelic/nr1-community';
 // Often provided by the PlatformState provider
 const timeRange = {
   begin_time: 0,
-  duration: 0,
+  duration: 1800000, // 30 minutes
   end_time: 0
 };
 

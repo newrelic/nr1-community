@@ -14,8 +14,8 @@ export default class EmptyStateBasicDemo extends React.Component {
         {`
   const timeRange = {
     begin_time: 0,
-    duration: 30,
-    end_time: 3600
+    duration: 1800000, // 30 minutes
+    end_time: 0
   };
 
   timeRangeToNrql({ timeRange });
@@ -27,8 +27,8 @@ export default class EmptyStateBasicDemo extends React.Component {
   render() {
     const timeRange = {
       begin_time: 0,
-      duration: 30,
-      end_time: 3600
+      duration: 1800000, // 30 minutes
+      end_time: 0
     };
 
     return (
