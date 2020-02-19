@@ -14,11 +14,11 @@ export default class EmptyStateBasicDemo extends React.Component {
         {`
   const timeRange = {
     begin_time: 0,
-    duration: 30,
-    end_time: 3600
+    duration: 1800000, // 30 minutes
+    end_time: 0
   };
 
-  timeRangeToNrql(timeRange);
+  timeRangeToNrql({ timeRange });
               `}
       </Highlight>
     );
@@ -27,15 +27,15 @@ export default class EmptyStateBasicDemo extends React.Component {
   render() {
     const timeRange = {
       begin_time: 0,
-      duration: 30,
-      end_time: 3600
+      duration: 1800000, // 30 minutes
+      end_time: 0
     };
 
     return (
       <div className="example-container">
         <div className="example-container-content">
           <div className="code-result-block">
-            <code className="lowlight">{timeRangeToNrql(timeRange)}</code>
+            <code className="lowlight">{timeRangeToNrql({ timeRange })}</code>
           </div>
           {this.renderHighlight()}
         </div>
