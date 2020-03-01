@@ -28,6 +28,8 @@ export default class EmptyStateBasicDemo extends React.Component {
     console.log('You clicked the empty state buttun!');
   }}
   buttonUrl="https://google.com/"
+  className=""
+
 />
     `;
     return (

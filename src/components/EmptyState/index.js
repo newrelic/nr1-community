@@ -9,7 +9,9 @@ export class EmptyState extends React.Component {
     description: PropTypes.string,
     buttonText: PropTypes.string,
     buttonOnClick: PropTypes.func,
-    buttonUrl: PropTypes.string
+    buttonUrl: PropTypes.string,
+    className: PropTypes.string
+
   };
 
   constructor(props) {
@@ -28,11 +30,11 @@ export class EmptyState extends React.Component {
   }
 
   render() {
-    const { heading, description, buttonText, buttonUrl } = this.props;
+    const { heading, description, buttonText, buttonUrl, className} = this.props;
     return (
       <>
         <Stack
-          className={styles['empty-state']}
+          className={styles['empty-state'] + ' ' + className}
           verticalType={Stack.VERTICAL_TYPE.CENTER}
           horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
