@@ -9,7 +9,8 @@ export class EmptyState extends React.Component {
     description: PropTypes.string,
     buttonText: PropTypes.string,
     buttonOnClick: PropTypes.func,
-    buttonUrl: PropTypes.string
+    buttonUrl: PropTypes.string,
+    featuredImage: PropTypes.string
   };
 
   constructor(props) {
@@ -28,7 +29,7 @@ export class EmptyState extends React.Component {
   }
 
   render() {
-    const { heading, description, buttonText, buttonUrl } = this.props;
+    const { heading, description, buttonText, buttonUrl, featuredImage} = this.props;
     return (
       <>
         <Stack
@@ -38,6 +39,9 @@ export class EmptyState extends React.Component {
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
           gapType={Stack.GAP_TYPE.NONE}
         >
+          <StackItem>
+              <img src={featuredImage} className={styles['empty-state-img']}/>
+          </StackItem>
           <StackItem>
             <h4 className={styles['empty-state-header']}>
               {heading || 'Lorem ipsum dolor'}
