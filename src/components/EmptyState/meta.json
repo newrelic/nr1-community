@@ -31,6 +31,12 @@
         "type": "string",
         "default": "",
         "description": "A way to access the 'to' property inside the empty state component" 
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "default": "",
+        "description": "Allows for style overrides in component" 
       }
     ]
   }
