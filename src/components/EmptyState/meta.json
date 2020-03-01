@@ -31,6 +31,12 @@
         "type": "string",
         "default": "",
         "description": "A way to access the 'to' property inside the empty state component" 
+      },
+      {
+        "name": "footer",
+        "type": "function",
+        "default": "",
+        "description": "Allows users to render whatever they want in place of the Button in the empty state component" 
       }
     ]
   }
