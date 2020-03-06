@@ -11,7 +11,6 @@ export class EmptyState extends React.Component {
     buttonOnClick: PropTypes.func,
     buttonUrl: PropTypes.string,
     className: PropTypes.string
-
   };
 
   constructor(props) {
