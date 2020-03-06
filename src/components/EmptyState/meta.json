@@ -37,6 +37,12 @@
         "type": "string",
         "default": "",
         "description": "Allows for style overrides in component" 
+      },
+      {
+        "name": "featuredImage",
+        "type": "string",
+        "default": "",
+        "description": "Allows for illustration/icon at the top of the EmptyState component" 
       }
     ]
   }
