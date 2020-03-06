@@ -33,6 +33,18 @@
         "description": "A way to access the 'to' property inside the empty state component" 
       },
       {
+        "name": "className",
+        "type": "string",
+        "default": "",
+        "description": "Allows for style overrides in component" 
+      },
+      {
+        "name": "featuredImage",
+        "type": "string",
+        "default": "",
+        "description": "Allows for illustration/icon at the top of the EmptyState component" 
+      },
+      {
         "name": "footer",
         "type": "function",
         "default": "",
