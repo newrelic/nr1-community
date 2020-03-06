@@ -36,7 +36,7 @@
         "name": "footer",
         "type": "function",
         "default": "",
-        "description": "Allows users to render whatever they want in place of the Button in the empty state component" 
+        "description": "Replace the button with whatever content you'd like to render" 
       }
     ]
   }

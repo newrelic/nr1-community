@@ -50,13 +50,15 @@ export class EmptyState extends React.Component {
                 'Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis.'}
             </p>
           </StackItem>
-          {footer ? 
-          footer() :
-          <StackItem className={buttonText === '' ? styles.hidden : ''}>
-            <Button onClick={this.handleButtonClick} to={buttonUrl}>
-              {buttonText || 'Call to action'}
-            </Button>
-          </StackItem>}
+          {footer ? (
+            <StackItem>{footer()}</StackItem>
+          ) : (
+            <StackItem className={buttonText === '' ? styles.hidden : ''}>
+              <Button onClick={this.handleButtonClick} to={buttonUrl}>
+                {buttonText || 'Call to action'}
+              </Button>
+            </StackItem>
+          )}
         </Stack>
       </>
     );
