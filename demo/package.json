@@ -9,9 +9,6 @@
     "eslint-check": "eslint nerdlets/",
     "eslint-fix": "eslint nerdlets/ --fix"
   },
-  "nr1": {
-    "uuid": "b1ec85b5-c8c4-41f4-bfa1-f1618fb1b48e"
-  },
   "bugs": {
     "email": "opensource+nr1-community@newrelic.com"
   },
@@ -36,7 +33,7 @@
     "@newrelic/eslint-plugin-newrelic": "^0.3.0",
     "@semantic-release/changelog": "^3.0.5",
     "@semantic-release/git": "^7.0.18",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "prettier": "^1.19.1"
   }
 }

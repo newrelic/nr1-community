@@ -1,3 +1,5 @@
+[![Community Project header](https://github.com/newrelic/open-source-office/raw/master/examples/categories/images/Community_Project.png)](https://github.com/newrelic/open-source-office/blob/master/examples/categories/index.md#community-project)
+
 # nr1-community
 
 ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/newrelic/nr1-community?include_prereleases&sort=semver) [![Snyk](https://snyk.io/test/github/newrelic/nr1-community/badge.svg)](https://snyk.io/test/github/newrelic/nr1-community)
@@ -188,6 +190,6 @@ Issues and enhancement requests can be submitted in the [Issues tab of this repo
 
 ## Contributing
 
-Contributions are welcome (and if you submit a Enhancement Request, expect to be invited to contribute it yourself :grin:). Please review our [Contributors Guide](CONTRIBUTING.md).
+Contributions are welcome (and if you submit a Enhancement Request, expect to be invited to contribute it yourself :grin:). Please review our [Contribution Guide](CONTRIBUTING.md).
 
 Keep in mind that when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. If you'd like to execute our corporate CLA, or if you have any questions, please drop us an email at opensource+nr1-community@newrelic.com.

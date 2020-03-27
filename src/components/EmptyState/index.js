@@ -8,7 +8,11 @@ export class EmptyState extends React.Component {
     heading: PropTypes.string,
     description: PropTypes.string,
     buttonText: PropTypes.string,
-    buttonOnClick: PropTypes.func
+    buttonOnClick: PropTypes.func,
+    buttonUrl: PropTypes.string,
+    className: PropTypes.string,
+    featuredImage: PropTypes.string,
+    footer: PropTypes.func
   };
 
   constructor(props) {
@@ -27,16 +31,21 @@ export class EmptyState extends React.Component {
   }
 
   render() {
-    const { heading, description, buttonText } = this.props;
+    const { heading, description, buttonText, buttonUrl, className, featuredImage, footer } = this.props;
+
     return (
       <>
         <Stack
-          className={styles['empty-state']}
+          className={styles['empty-state'] + ' ' + className}
           verticalType={Stack.VERTICAL_TYPE.CENTER}
           horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
           gapType={Stack.GAP_TYPE.NONE}
         >
+          {featuredImage && 
+            <StackItem>
+                <img src={featuredImage} className={styles['empty-state-img']}/>
+            </StackItem>}
           <StackItem>
             <h4 className={styles['empty-state-header']}>
               {heading || 'Lorem ipsum dolor'}
@@ -48,11 +57,15 @@ export class EmptyState extends React.Component {
                 'Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis.'}
             </p>
           </StackItem>
-          <StackItem className={buttonText === '' ? styles.hidden : ''}>
-            <Button onClick={this.handleButtonClick}>
-              {buttonText || 'Call to action'}
-            </Button>
-          </StackItem>
+          {footer ? (
+            <StackItem>{footer()}</StackItem>
+          ) : (
+            <StackItem className={buttonText === '' ? styles.hidden : ''}>
+              <Button onClick={this.handleButtonClick} to={buttonUrl}>
+                {buttonText || 'Call to action'}
+              </Button>
+            </StackItem>
+          )}
         </Stack>
       </>
     );
