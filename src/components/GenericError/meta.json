@@ -1,0 +1,12 @@
+{
+  "name": "NerdGraphError",
+  "description": "Display generic errors in a more consumable, useful pattern.",
+  "props": [
+    {
+      "name": "error",
+      "type": "object",
+      "description": "Error object from the underlying generic error.",
+      "default": "null"
+    }
+  ]
+}
