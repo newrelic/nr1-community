@@ -26,10 +26,21 @@
 
 .ng-error-title {
   display: inline-block;
-  flex-grow: 1;
   margin-left: 8px;
   font-size: 14px;
   color: #bf0015;
+}
+div.ng-error-container div.ng-error-body-header p.ng-error-description {
+    text-align: left;
+    flex-grow: 1;
+    margin: 2px 0 0 5px;
+    font-size: 14px;
+    color: rgba(#bf0015, .5);
+    font-weight: normal;
+  }
+
+.ng-no-icon {
+  margin-left: 0;
 }
 
 .ng-error-details-button {

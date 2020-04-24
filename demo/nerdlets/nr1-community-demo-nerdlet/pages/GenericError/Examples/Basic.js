@@ -20,36 +20,14 @@ export default class GenericErrorBasicDemo extends React.Component {
   renderHighlight() {
     const { enableLiveEditing } = this.state;
     const scope = {
-      NerdGraphQuery,
       GenericError
     };
     const code = `
-() => { // Enclosed in an arrow function so we can show you query and variables
-  const query = \`
-    query($id: Int!) {
-      actor {
-          account(id: $id) {
-              name
-          }
-      }
-    }
-  \`;
-
-  const variables = {
-    id: 1111111111111 // Not a real account id, triggers the error
-  };
-
-  return (
-    <NerdGraphQuery query={query} variables={variables}>
-      {({ loading, data, error }) => {
-        if (error) {
-          return <GenericError error={error} />;
-        }
-        return null;
-      }}
-    </NerdGraphQuery>
-  );
-}
+    <GenericError
+    error="Generic Error"
+    hideIcon
+    errorDescription="This is a description of the error"
+  />
     `;
     return (
       <CodeHighlight
