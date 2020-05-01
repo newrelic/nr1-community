@@ -56,7 +56,7 @@ npm install --save @newrelic/nr1-community
 Import the component/utils into your nerdlet:
 
 ```js
-import { DetailPanel, EmptyState, Timeline, NerdGraphError, timeRangeToNrql } from 'nr1-community';
+import { DetailPanel, EmptyState, Timeline, NerdGraphError, timeRangeToNrql } from '@newrelic/nr1-community';
 ```
 
 Import styles into your styles.scss (or similar):
