@@ -6,7 +6,7 @@ import styles from './style.scss';
 export class EmptyState extends React.Component {
   static propTypes = {
     heading: PropTypes.string,
-    description: PropTypes.string,
+    description: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     buttonText: PropTypes.string,
     buttonOnClick: PropTypes.func,
     buttonUrl: PropTypes.string,
@@ -31,21 +31,30 @@ export class EmptyState extends React.Component {
   }
 
   render() {
-    const { heading, description, buttonText, buttonUrl, className, featuredImage, footer } = this.props;
+    const {
+      heading,
+      description,
+      buttonText,
+      buttonUrl,
+      className,
+      featuredImage,
+      footer
+    } = this.props;
 
     return (
       <>
         <Stack
-          className={styles['empty-state'] + ' ' + className}
+          className={`${styles['empty-state']} ${className}`}
           verticalType={Stack.VERTICAL_TYPE.CENTER}
           horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
           gapType={Stack.GAP_TYPE.NONE}
         >
-          {featuredImage && 
+          {featuredImage && (
             <StackItem>
-                <img src={featuredImage} className={styles['empty-state-img']}/>
-            </StackItem>}
+              <img src={featuredImage} className={styles['empty-state-img']} />
+            </StackItem>
+          )}
           <StackItem>
             <h4 className={styles['empty-state-header']}>
               {heading || 'Lorem ipsum dolor'}
