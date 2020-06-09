@@ -1,0 +1,24 @@
+{
+  "name": "GenericError",
+  "description": "Display generic errors in a more consumable, useful pattern.",
+  "props": [
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error title for the generic error.",
+      "default": "Error"
+    },
+    {
+      "name": "hideIcon",
+      "type": "boolean",
+      "description": "Controls whether the icon is shown or hidden for the generic error",
+      "default": "false"
+    },
+    {
+      "name": "errorDescription",
+      "type": "string",
+      "description": "Error description for the generic error",
+      "default": "null"
+    }
+  ]
+}

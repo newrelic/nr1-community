@@ -8,6 +8,7 @@ const componentList = [
   // { name: 'AccountDropdown', category: 'Components' },
   { name: 'DetailPanel', category: 'Components' },
   { name: 'EmptyState', category: 'Components' },
+  { name: 'GenericError', category: 'Components' },
   { name: 'Timeline', category: 'Components' },
   { name: 'NerdGraphError', category: 'Components' },
   { name: 'timeRangeToNrql', category: 'Utilities' }
