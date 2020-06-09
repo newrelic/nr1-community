@@ -25,7 +25,9 @@ export default class KitchenSinkExample extends React.Component {
   }
 
   afterAccountsLoaded(accounts) {
-    this.setState({ selectedAccount: accounts[0] });
+    if (accounts && accounts.length) {
+      this.setState({ selectedAccount: accounts[0] });
+    }
   }
 
   renderStylesHighlight() {

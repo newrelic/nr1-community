@@ -24,7 +24,9 @@ export default class BasicExample extends React.Component {
   }
 
   afterAccountsLoaded(accounts) {
-    this.setState({ selectedAccount: accounts[0] });
+    if (accounts && accounts.length) {
+      this.setState({ selectedAccount: accounts[0] });
+    }
   }
 
   renderHighlight() {
