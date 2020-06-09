@@ -9,7 +9,7 @@
   ```bash
   npm i @newrelic/nr1-community
   ```
-  
+
 2. Add the styles for the component to the top of your stylesheet (probably named `styles.scss`):
 
   ```scss
@@ -19,5 +19,5 @@
 ## Usage
 
 ```jsx
-import { NerdGraphError } from '@newrelic/nr1-community';
+import { GenericError } from '@newrelic/nr1-community';
 ```
