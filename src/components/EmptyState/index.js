@@ -5,12 +5,12 @@ import styles from './style.scss';
 
 export class EmptyState extends React.Component {
   static propTypes = {
-    heading: PropTypes.string,
+    heading: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    buttonText: PropTypes.string,
+    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     buttonOnClick: PropTypes.func,
-    buttonUrl: PropTypes.string,
-    className: PropTypes.string,
+    buttonUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     featuredImage: PropTypes.string,
     footer: PropTypes.func
   };
