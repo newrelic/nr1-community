@@ -41,6 +41,7 @@ export class EmptyState extends React.Component {
       footer
     } = this.props;
 
+
     return (
       <>
         <Stack
