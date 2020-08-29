@@ -21,7 +21,9 @@ export default class EmptyStateBasicDemo extends React.Component {
     const scope = { EmptyState };
     const code = `
 <EmptyState
-  heading="No content available"
+  heading={() => {
+    return 'This is the title';
+  }}
   description="This is why there's no content available and what you can do you take the next step. For instance, you could direct users to another navigation path."
   buttonText="Take this action"
   buttonOnClick={() => {
