@@ -5,12 +5,12 @@ import styles from './style.scss';
 
 export class EmptyState extends React.Component {
   static propTypes = {
-    heading: PropTypes.string,
+    heading: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    buttonText: PropTypes.string,
+    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     buttonOnClick: PropTypes.func,
-    buttonUrl: PropTypes.string,
-    className: PropTypes.string,
+    buttonUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     featuredImage: PropTypes.string,
     footer: PropTypes.func
   };
@@ -19,6 +19,7 @@ export class EmptyState extends React.Component {
     super(props);
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.componentPropType = this.componentPropType.bind(this);
   }
 
   handleButtonClick() {
@@ -27,6 +28,15 @@ export class EmptyState extends React.Component {
       return buttonOnClick();
     } else {
       console.log('You clicked the empty state button!');
+    }
+  }
+
+  componentPropType(prop) {
+    if (typeof prop === 'string') {
+      return prop;
+    } 
+    else if (typeof prop === 'function') {
+      return prop();
     }
   }
 
@@ -44,7 +54,7 @@ export class EmptyState extends React.Component {
     return (
       <>
         <Stack
-          className={`${styles['empty-state']} ${className}`}
+          className={`${styles['empty-state']} ${this.componentPropType(className)}`}
           verticalType={Stack.VERTICAL_TYPE.CENTER}
           horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
@@ -57,12 +67,12 @@ export class EmptyState extends React.Component {
           )}
           <StackItem>
             <h4 className={styles['empty-state-header']}>
-              {heading || 'Lorem ipsum dolor'}
+              {this.componentPropType(heading) || 'Lorem ipsum dolor'}
             </h4>
           </StackItem>
           <StackItem className={description === '' ? styles.hidden : ''}>
             <p className={styles['empty-state-description']}>
-              {description ||
+              {this.componentPropType(description) ||
                 'Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis.'}
             </p>
           </StackItem>
@@ -70,8 +80,8 @@ export class EmptyState extends React.Component {
             <StackItem>{footer()}</StackItem>
           ) : (
             <StackItem className={buttonText === '' ? styles.hidden : ''}>
-              <Button onClick={this.handleButtonClick} to={buttonUrl}>
-                {buttonText || 'Call to action'}
+              <Button onClick={this.handleButtonClick} to={this.componentPropType(buttonUrl)}>
+                {this.componentPropType(buttonText) || 'Call to action'}
               </Button>
             </StackItem>
           )}
