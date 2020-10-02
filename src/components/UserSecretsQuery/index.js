@@ -8,8 +8,8 @@ import get from 'lodash.get';
 const QUERY_SECRET = `
   query userSecret ($name: String!) {
     actor {
-      nerdVault {
-        nerdVaultSecret(name: $name, scope: "USER") {
+      nerdStorageVault {
+        secret(name: $name) {
           name
           value
           createdAt
@@ -23,10 +23,9 @@ const QUERY_SECRET = `
 const QUERY_SECRETS = `
   query userSecrets {
     actor {
-      nerdVault {
-        nerdVaultSecrets {
+      nerdStorageVault {
+        secrets {
           name
-          value
           createdAt
         }
       }

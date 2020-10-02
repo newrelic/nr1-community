@@ -9,26 +9,52 @@ const MUTATION_TYPES = {
   WRITE_SECRET: 'write-secret'
 };
 
+// TO DO
+// const MUTATION_DELETE_SECRET = `
+//   mutation DeleteUserSecret($name: String!) {
+//     nerdStorageVaultDeleteSecret(
+//       scope: { actor: CURRENT_USER }
+//       name: $name
+//     ) {
+//       status
+//     }
+//   }
+// `;
+
 const MUTATION_DELETE_SECRET = `
-  mutation userSecretDelete($name: String!) {
-    actor {
-      nerdvault {
-        result: userSecretDelete(name: $name) {
-          deletedAt
-        }
-      }
+  mutation DeleteUserSecret($name: String!, $userId: ID!) {
+    nerdStorageVaultDeleteSecret(
+      scope: ACTOR
+      scopeId: $userId
+      name: $name
+    ) {
+      status
     }
   }
 `;
 
+// TO DO
+// const MUTATION_WRITE_SECRET = `
+//   mutation StoreUserSecret($name: String!, $value: SecureValue!) {
+//     nerdStorageVaultWriteSecret(
+//       scope: { actor: CURRENT_USER }
+//       name: $name
+//       value: $value
+//     ) {
+//       status
+//     }
+//   }
+// `;
+
 const MUTATION_WRITE_SECRET = `
-  mutation userSecretWrite($name: String!) {
-    actor {
-      nerdvault {
-        result: userSecretWrite(name: $name) {
-          updatedAt
-        }
-      }
+  mutation StoreUserSecret($name: String!, $value: SecureValue!, $userId: ID!) {
+    nerdStorageVaultWriteSecret(
+      scope: ACTOR
+      scopeId: $userId
+      name: $name
+      value: $value
+    ) {
+      status
     }
   }
 `;
