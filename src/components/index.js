@@ -5,3 +5,5 @@ export { GenericError } from './GenericError';
 export { Timeline } from './Timeline';
 export { Funnel } from './Funnel';
 export { NerdGraphError } from './NerdGraphError';
+export { UserSecretsQuery } from './UserSecretsQuery';
+export { UserSecretsMutation } from './UserSecretsMutation';

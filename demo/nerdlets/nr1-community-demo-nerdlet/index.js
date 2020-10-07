@@ -11,7 +11,8 @@ const componentList = [
   { name: 'GenericError', category: 'Components' },
   { name: 'Timeline', category: 'Components' },
   { name: 'NerdGraphError', category: 'Components' },
-  { name: 'timeRangeToNrql', category: 'Utilities' }
+  { name: 'timeRangeToNrql', category: 'Utilities' },
+  { name: 'UserSecrets', category: 'Components' }
 ];
 
 export default class NerdpackLayoutStandard extends React.Component {

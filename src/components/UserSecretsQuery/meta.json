@@ -1,0 +1,12 @@
+{
+  "name": "UserSecretsQuery",
+  "description": "",
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "",
+      "default": ""
+    }
+  ]
+}

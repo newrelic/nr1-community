@@ -1,8 +1,18 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { NerdGraphMutation } from 'nr1';
+import { NerdGraphQuery, NerdGraphMutation } from 'nr1';
 import get from 'lodash.get';
+
+const USER_ID_QUERY = `
+  query {
+    actor {
+      user {
+        id
+      }
+    }
+  }
+`;
 
 const MUTATION_TYPES = {
   DELETE_SECRET: 'delete-secret',
@@ -67,12 +77,14 @@ function getMutation({ actionType }) {
 }
 
 function getMutationOptions(props) {
-  const { secret } = this.props;
+  const { name, value } = props;
 
   return {
     mutation: getMutation(props),
     variables: {
-      secret
+      name,
+      value,
+      userId: props.userId
     }
   };
 }
@@ -85,20 +97,20 @@ const proxyResponse = children => (loading, error, data) =>
   });
 
 export class UserSecretsMutation extends PureComponent {
-  static query(props) {
-    return NerdGraphMutation.mutate(getMutationOptions(props));
+  static async mutate(props) {
+    const { data } = await NerdGraphQuery.query({
+      query: USER_ID_QUERY
+    });
+    const userId = data.actor.user.id;
+    return NerdGraphMutation.mutate(getMutationOptions({ ...props, userId }));
   }
 
   static propTypes = {
     children: PropTypes.element,
-    actionType: PropTypes.oneOf(Object.values(UserSecretsMutation.ACTION_TYPE))
-      .isRequired,
-    secret: PropTypes.string.isRequired,
+    actionType: PropTypes.oneOf(Object.values(MUTATION_TYPES)).isRequired,
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     fetchPolicyType: PropTypes.string
-  };
-
-  static defaultProps = {
-    //
   };
 
   static ACTION_TYPE = MUTATION_TYPES;
@@ -108,9 +120,18 @@ export class UserSecretsMutation extends PureComponent {
     const mutationOptions = getMutationOptions(this.props);
 
     return (
-      <NerdGraphMutation {...mutationOptions}>
-        {proxyResponse(children)}
-      </NerdGraphMutation>
+      <NerdGraphQuery query={USER_ID_QUERY}>
+        {({ data }) => {
+          const userId = data.actor.user.id;
+          mutationOptions.userId = userId;
+
+          return (
+            <NerdGraphMutation {...mutationOptions}>
+              {proxyResponse(children)}
+            </NerdGraphMutation>
+          );
+        }}
+      </NerdGraphQuery>
     );
   }
 }
