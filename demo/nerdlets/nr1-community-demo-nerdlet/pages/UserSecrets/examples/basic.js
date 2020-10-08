@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Grid, GridItem, TextField } from 'nr1';
+import { Button, Grid, GridItem, Stack, StackItem, TextField } from 'nr1';
 import { UserSecretsQuery, UserSecretsMutation } from '@/../dist';
 import CodeHighlight from '../../../shared/components/CodeHighlight';
 
@@ -33,6 +33,13 @@ export default class BasicExample extends React.Component {
       actionType: UserSecretsMutation.ACTION_TYPE.WRITE_SECRET,
       name: userSecretName,
       value: userSecretValue
+    });
+  }
+
+  async onDelete(key) {
+    const { data, loading, error } = await UserSecretsMutation.mutate({
+      actionType: UserSecretsMutation.ACTION_TYPE.DELETE_SECRET,
+      name: key
     });
   }
 
@@ -94,6 +101,31 @@ export default class BasicExample extends React.Component {
         <div className="example-container-content">
           {/* {this.renderHighlight()} */}
           <Grid>
+            <GridItem columnSpan={12}>
+              <Stack>
+                <UserSecretsQuery>
+                  {({ data, loading, error }) => {
+                    if (loading) {
+                      return null;
+                    }
+
+                    return data.map((s, index) => {
+                      return (
+                        <StackItem key={index}>
+                          <pre>{JSON.stringify(s, null, 2)}</pre>
+                          <Button
+                            onClick={() => this.onDelete(s.key)}
+                            type={Button.TYPE.PRIMARY}
+                          >
+                            Delete
+                          </Button>
+                        </StackItem>
+                      );
+                    });
+                  }}
+                </UserSecretsQuery>
+              </Stack>
+            </GridItem>
             <GridItem columnSpan={6}>
               <TextField
                 label="User Secret Name"

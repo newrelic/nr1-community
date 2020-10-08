@@ -6,13 +6,12 @@ import get from 'lodash.get';
 
 // Singular
 const QUERY_SECRET = `
-  query userSecret ($name: String!) {
+  query userSecret ($key: String!) {
     actor {
       nerdStorageVault {
-        secret(name: $name) {
-          name
+        secret(key: $key) {
+          key
           value
-          createdAt
         }
       }
     }
@@ -25,8 +24,8 @@ const QUERY_SECRETS = `
     actor {
       nerdStorageVault {
         secrets {
-          name
-          createdAt
+          key
+          value
         }
       }
     }
@@ -53,21 +52,26 @@ function getQueryOptions(props) {
   return options;
 }
 
-const proxyResponse = children => (loading, error, data) =>
-  children({
+// {"data":{"actor":{"__typename":"Actor","nerdStorageVault":{"__typename":"NerdStorageVaultActorStitchedFields","secrets":[{"__typename":"NerdStorageVaultSecret","key":"foo","value":"password"}]}}}}
+const proxyChildren = children => ({ loading, error, data }) => {
+  return children({
     loading,
-    data: get(data, 'actor.nerdVault.nerdVaultSecrets'),
+    data: get(data, 'actor.nerdStorageVault.secrets'),
     error
   });
+};
+
+const proxyQueryResult = ({ loading, error, data }) =>
+  get(data, 'actor.nerdStorageVault.secrets');
 
 export class UserSecretsQuery extends PureComponent {
   static query(props) {
     const options = this.getQueryOptions(props);
-    return NerdGraphQuery.query(...options);
+    return NerdGraphQuery.query(...options).then(proxyQueryResult);
   }
 
   static propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.func,
     secret: PropTypes.string,
     fetchPolicyType: PropTypes.string
   };
@@ -82,7 +86,7 @@ export class UserSecretsQuery extends PureComponent {
 
     return (
       <NerdGraphQuery {...queryOptions}>
-        {proxyResponse(children)}
+        {proxyChildren(children)}
       </NerdGraphQuery>
     );
   }

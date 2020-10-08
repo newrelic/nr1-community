@@ -1,69 +1,28 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { NerdGraphQuery, NerdGraphMutation } from 'nr1';
+import { NerdGraphMutation } from 'nr1';
 import get from 'lodash.get';
-
-const USER_ID_QUERY = `
-  query {
-    actor {
-      user {
-        id
-      }
-    }
-  }
-`;
 
 const MUTATION_TYPES = {
   DELETE_SECRET: 'delete-secret',
   WRITE_SECRET: 'write-secret'
 };
 
-// TO DO
-// const MUTATION_DELETE_SECRET = `
-//   mutation DeleteUserSecret($name: String!) {
-//     nerdStorageVaultDeleteSecret(
-//       scope: { actor: CURRENT_USER }
-//       name: $name
-//     ) {
-//       status
-//     }
-//   }
-// `;
-
 const MUTATION_DELETE_SECRET = `
-  mutation DeleteUserSecret($name: String!, $userId: ID!) {
-    nerdStorageVaultDeleteSecret(
-      scope: ACTOR
-      scopeId: $userId
-      name: $name
-    ) {
+  mutation DeleteUserSecret($key: String!) {
+    nerdStorageVaultDeleteSecret(key: $key, scope: {actor: CURRENT_USER}) {
+      errors {
+        message
+      }
       status
     }
   }
 `;
 
-// TO DO
-// const MUTATION_WRITE_SECRET = `
-//   mutation StoreUserSecret($name: String!, $value: SecureValue!) {
-//     nerdStorageVaultWriteSecret(
-//       scope: { actor: CURRENT_USER }
-//       name: $name
-//       value: $value
-//     ) {
-//       status
-//     }
-//   }
-// `;
-
 const MUTATION_WRITE_SECRET = `
-  mutation StoreUserSecret($name: String!, $value: SecureValue!, $userId: ID!) {
-    nerdStorageVaultWriteSecret(
-      scope: ACTOR
-      scopeId: $userId
-      name: $name
-      value: $value
-    ) {
+  mutation StoreUserSecret($key: String!, $value: SecureValue!) {
+    nerdStorageVaultWriteSecret(key: $key, value: $value, scope: {actor: CURRENT_USER}) {
       status
     }
   }
@@ -82,27 +41,30 @@ function getMutationOptions(props) {
   return {
     mutation: getMutation(props),
     variables: {
-      name,
-      value,
-      userId: props.userId
+      key: name,
+      value
     }
   };
 }
 
-const proxyResponse = children => (loading, error, data) =>
-  children({
+// {"data":{"nerdStorageVaultWriteSecret":{"__typename":"NerdStorageVaultResult","status":"SUCCESS"}}}
+// {"data":{"nerdStorageVaultDeleteSecret":{"__typename":"NerdStorageVaultResult","errors":null,"status":"SUCCESS"}}}
+const proxyResponse = (children, actionType) => (loading, error, data) => {
+  const path =
+    actionType === UserSecretsMutation.ACTION_TYPE.WRITE_SECRET
+      ? 'nerdStorageVaultWriteSecret.status'
+      : 'nerdStorageVaultDeleteSecret.status';
+
+  return children({
     loading,
-    data: get(data, 'actor.nerdVault.result'),
+    data: get(data, path),
     error
   });
+};
 
 export class UserSecretsMutation extends PureComponent {
   static async mutate(props) {
-    const { data } = await NerdGraphQuery.query({
-      query: USER_ID_QUERY
-    });
-    const userId = data.actor.user.id;
-    return NerdGraphMutation.mutate(getMutationOptions({ ...props, userId }));
+    return NerdGraphMutation.mutate(getMutationOptions({ ...props }));
   }
 
   static propTypes = {
@@ -116,22 +78,13 @@ export class UserSecretsMutation extends PureComponent {
   static ACTION_TYPE = MUTATION_TYPES;
 
   render() {
-    const { children } = this.props;
+    const { actionType, children } = this.props;
     const mutationOptions = getMutationOptions(this.props);
 
     return (
-      <NerdGraphQuery query={USER_ID_QUERY}>
-        {({ data }) => {
-          const userId = data.actor.user.id;
-          mutationOptions.userId = userId;
-
-          return (
-            <NerdGraphMutation {...mutationOptions}>
-              {proxyResponse(children)}
-            </NerdGraphMutation>
-          );
-        }}
-      </NerdGraphQuery>
+      <NerdGraphMutation {...mutationOptions}>
+        {proxyResponse(children, actionType)}
+      </NerdGraphMutation>
     );
   }
 }
