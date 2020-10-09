@@ -36,12 +36,12 @@ function getMutation({ actionType }) {
 }
 
 function getMutationOptions(props) {
-  const { name, value } = props;
+  const { secret, value } = props;
 
   return {
     mutation: getMutation(props),
     variables: {
-      key: name,
+      key: secret,
       value
     }
   };
@@ -70,7 +70,7 @@ export class UserSecretsMutation extends PureComponent {
   static propTypes = {
     children: PropTypes.element,
     actionType: PropTypes.oneOf(Object.values(MUTATION_TYPES)).isRequired,
-    name: PropTypes.string.isRequired,
+    secret: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     fetchPolicyType: PropTypes.string
   };
