@@ -40,12 +40,12 @@ function getQuery({ secret }) {
 }
 
 function getQueryOptions(props) {
-  const { secret, fetchPolicyType } = props;
+  const { key, fetchPolicyType } = props;
   const query = getQuery(props);
 
   const options = {
     query,
-    variables: secret ? { key: secret } : {},
+    variables: key ? { key } : {},
     fetchPolicyType
   };
 
@@ -53,8 +53,8 @@ function getQueryOptions(props) {
 }
 
 function getPath(props) {
-  const { secret } = props;
-  return secret
+  const { key } = props;
+  return key
     ? 'actor.nerdStorageVault.secret'
     : 'actor.nerdStorageVault.secrets';
 }
@@ -81,7 +81,7 @@ export class UserSecretsQuery extends PureComponent {
 
   static propTypes = {
     children: PropTypes.func,
-    secret: PropTypes.string,
+    key: PropTypes.string,
     fetchPolicyType: PropTypes.string
   };
 
