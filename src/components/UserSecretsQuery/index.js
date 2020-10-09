@@ -45,29 +45,38 @@ function getQueryOptions(props) {
 
   const options = {
     query,
-    variables: secret ? { secret } : {},
+    variables: secret ? { key: secret } : {},
     fetchPolicyType
   };
 
   return options;
 }
 
-// {"data":{"actor":{"__typename":"Actor","nerdStorageVault":{"__typename":"NerdStorageVaultActorStitchedFields","secrets":[{"__typename":"NerdStorageVaultSecret","key":"foo","value":"password"}]}}}}
-const proxyChildren = children => ({ loading, error, data }) => {
+function getPath(props) {
+  const { secret } = props;
+  return secret
+    ? 'actor.nerdStorageVault.secret'
+    : 'actor.nerdStorageVault.secrets';
+}
+
+const proxyChildren = (children, path) => ({ loading, error, data }) => {
   return children({
     loading,
-    data: get(data, 'actor.nerdStorageVault.secrets'),
+    data: get(data, path, data),
     error
   });
 };
 
-const proxyQueryResult = ({ loading, error, data }) =>
-  get(data, 'actor.nerdStorageVault.secrets');
+const proxyQueryResult = path => ({ loading, error, data }) => ({
+  loading,
+  data: get(data, path, data),
+  error
+});
 
 export class UserSecretsQuery extends PureComponent {
-  static query(props) {
-    const options = this.getQueryOptions(props);
-    return NerdGraphQuery.query(...options).then(proxyQueryResult);
+  static query(props = {}) {
+    const options = getQueryOptions(props);
+    return NerdGraphQuery.query(options).then(proxyQueryResult(getPath(props)));
   }
 
   static propTypes = {
@@ -86,7 +95,7 @@ export class UserSecretsQuery extends PureComponent {
 
     return (
       <NerdGraphQuery {...queryOptions}>
-        {proxyChildren(children)}
+        {proxyChildren(children, getPath(this.props))}
       </NerdGraphQuery>
     );
   }
