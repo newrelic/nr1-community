@@ -36,19 +36,17 @@ function getMutation({ actionType }) {
 }
 
 function getMutationOptions(props) {
-  const { key, value } = props;
+  const { name, value } = props;
 
   return {
     mutation: getMutation(props),
     variables: {
-      key,
+      key: name,
       value
     }
   };
 }
 
-// {"data":{"nerdStorageVaultWriteSecret":{"__typename":"NerdStorageVaultResult","status":"SUCCESS"}}}
-// {"data":{"nerdStorageVaultDeleteSecret":{"__typename":"NerdStorageVaultResult","errors":null,"status":"SUCCESS"}}}
 const proxyResponse = (children, actionType) => (loading, error, data) => {
   const path =
     actionType === UserSecretsMutation.ACTION_TYPE.WRITE_SECRET
@@ -70,7 +68,7 @@ export class UserSecretsMutation extends PureComponent {
   static propTypes = {
     children: PropTypes.element,
     actionType: PropTypes.oneOf(Object.values(MUTATION_TYPES)).isRequired,
-    key: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     fetchPolicyType: PropTypes.string
   };

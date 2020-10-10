@@ -36,10 +36,10 @@ export default class BasicExample extends React.Component {
     });
   }
 
-  async onDelete(key) {
+  async onDelete(name) {
     const { data, loading, error } = await UserSecretsMutation.mutate({
       actionType: UserSecretsMutation.ACTION_TYPE.DELETE_SECRET,
-      name: key
+      name
     });
   }
 
