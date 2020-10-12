@@ -22,7 +22,10 @@ const MUTATION_DELETE_SECRET = `
 
 const MUTATION_WRITE_SECRET = `
   mutation StoreUserSecret($key: String!, $value: SecureValue!) {
-    nerdStorageVaultWriteSecret(key: $key, value: $value, scope: {actor: CURRENT_USER}) {
+    nerdStorageVaultWriteSecret(
+      secret: { key: $key, value: $value },
+      scope: {actor: CURRENT_USER}
+    ) {
       status
     }
   }
