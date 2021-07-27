@@ -11,7 +11,7 @@ class Header extends React.Component {
       description,
       defaultOnClose,
       defaultOnMinimize,
-      onMinimize
+      onMinimize,
     } = this.props;
 
     return (
@@ -33,7 +33,6 @@ class Header extends React.Component {
             <Icon
               type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__WEIGHT_BOLD}
               color="#000E0E"
-              sizeType={Icon.SIZE_TYPE.SMALL}
               className={styles['minimize-button-icon']}
             />
           </span>
@@ -49,12 +48,12 @@ export class DetailPanel extends React.Component {
     description: PropTypes.string,
     children: PropTypes.node.isRequired,
     onClose: PropTypes.func,
-    onMinimize: PropTypes.func
+    onMinimize: PropTypes.func,
   };
 
   static defaultProps = {
     title: 'Detail panel title',
-    description: 'Nulla quis tortor orci. Etiam at risus et justo dignissim.'
+    description: 'Nulla quis tortor orci. Etiam at risus et justo dignissim.',
   };
 
   constructor(props) {
@@ -62,7 +61,7 @@ export class DetailPanel extends React.Component {
 
     this.state = {
       closed: false,
-      minimized: false
+      minimized: false,
     };
 
     this.handleCloseButton = this.handleCloseButton.bind(this);
@@ -79,7 +78,7 @@ export class DetailPanel extends React.Component {
 
   handleMinimizeButton() {
     this.setState(prevState => ({
-      minimized: !prevState.minimized
+      minimized: !prevState.minimized,
     }));
   }
 
