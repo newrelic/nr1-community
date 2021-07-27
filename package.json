@@ -61,8 +61,9 @@
     "dist"
   ],
   "dependencies": {
-    "crypto-random-string": "^3.2.0",
+    "crypto-random-string": "^3.3.0",
     "date-fns": "^2.15.0",
+    "date-fns": "^2.16.0",
     "funnel-graph-js": "^1.4.2",
     "lodash.get": "^4.4.2",
     "nice-color-palettes": "^3.0.0"
